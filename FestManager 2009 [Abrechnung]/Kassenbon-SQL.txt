@@ -1,0 +1,9 @@
+SELECT     Bestellung.BestellungId, Bestellung.PersonalId, Bestellung.Zeitpunkt, Bestellung.Gesamtpreis, Bestellung.Storniert, BestellungArtikel_V.Menge, 
+                      BestellungArtikel_V.ArtikelId, Artikel.Bezeichnung AS Artikel, Ausgabestelle.AusgabestelleId, Ausgabestelle.Bezeichnung AS Ausgabestelle, 
+                      Personal.Nachname + ' ' + Personal.Vorname AS Personal, Artikel.Einzelpreis
+FROM         ((BestellungArtikel_V INNER JOIN
+                      (Artikel INNER JOIN
+                      Ausgabestelle ON Artikel.AusgabestelleId = Ausgabestelle.AusgabestelleId) ON BestellungArtikel_V.ArtikelId = Artikel.ArtikelId) INNER JOIN
+                      (Bestellung INNER JOIN
+                      Personal ON Bestellung.PersonalId = Personal.PersonalId) ON BestellungArtikel_V.BestellungId = Bestellung.BestellungId)
+WHERE     (Ausgabestelle.AusgabestelleId = ?) AND (Bestellung.BestellungId = ?)
