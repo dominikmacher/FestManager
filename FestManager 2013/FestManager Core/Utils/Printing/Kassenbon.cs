@@ -240,12 +240,12 @@ namespace FestManager_Core.Utils.Printing
                     y += lineSpacing;
                 }
 
-                if (einpacken)
+                /*if (einpacken)
                 {
                     string artikel = artikel = Properties.Settings.Default.einpackenSymbol + Properties.Settings.Default.einpackenSymbol + " Einpacken " + Properties.Settings.Default.einpackenSymbol + Properties.Settings.Default.einpackenSymbol;
                     addArtikel(1, artikel, 0, marginLeft, y);
                     y += lineSpacing;
-                }
+                }*/
 
                 addHLine(marginLeft, y);
 
