@@ -1,0 +1,19 @@
+D:\Documents\FFK\fest\FestManager 2013\FestManager Bestellung\obj\x86\Debug\ResolveAssemblyReference.cache
+D:\Documents\FFK\fest\FestManager 2013\FestManager Bestellung\obj\x86\Debug\FestManager_Bestellung.Properties.Resources.resources
+D:\Documents\FFK\fest\FestManager 2013\FestManager Bestellung\obj\x86\Debug\ResGen.read.1.tlog
+D:\Documents\FFK\fest\FestManager 2013\FestManager Bestellung\obj\x86\Debug\ResGen.write.1.tlog
+D:\Documents\FFK\fest\FestManager 2013\FestManager Bestellung\bin\Debug\FestManager Bestellung.exe
+D:\Documents\FFK\fest\FestManager 2013\FestManager Bestellung\bin\Debug\FestManager Bestellung.pdb
+D:\Documents\FFK\fest\FestManager 2013\FestManager Bestellung\bin\Debug\FestManager Core.dll
+D:\Documents\FFK\fest\FestManager 2013\FestManager Bestellung\bin\Debug\FestManager Core.pdb
+D:\Documents\FFK\fest\FestManager 2013\FestManager Bestellung\obj\x86\Debug\FestManager Bestellung.exe
+D:\Documents\FFK\fest\FestManager 2013\FestManager Bestellung\obj\x86\Debug\FestManager Bestellung.pdb
+D:\Workspace\FestManager\FestManager 2013\FestManager Bestellung\bin\Debug\FestManager Bestellung.exe.config
+D:\Workspace\FestManager\FestManager 2013\FestManager Bestellung\obj\x86\Debug\FestManager Bestellung.exe
+D:\Workspace\FestManager\FestManager 2013\FestManager Bestellung\obj\x86\Debug\FestManager Bestellung.pdb
+C:\Development\Projekte\FF Karlstetten\FestManager\FestManager 2013\FestManager Bestellung\bin\Debug\FestManager Bestellung.exe.config
+C:\Development\Projekte\FF Karlstetten\FestManager\FestManager 2013\FestManager Bestellung\obj\x86\Debug\FestManager Bestellung.exe
+C:\Development\Projekte\FF Karlstetten\FestManager\FestManager 2013\FestManager Bestellung\obj\x86\Debug\FestManager Bestellung.pdb
+C:\Development\Projekte\FF Karlstetten\FestManager\Application\FestManager Bestellung\bin\Debug\FestManager Bestellung.exe.config
+C:\Development\Projekte\FF Karlstetten\FestManager\Application\FestManager Bestellung\obj\x86\Debug\FestManager Bestellung.exe
+C:\Development\Projekte\FF Karlstetten\FestManager\Application\FestManager Bestellung\obj\x86\Debug\FestManager Bestellung.pdb
