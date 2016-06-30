@@ -1,34 +1,31 @@
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
+using System.Globalization;
 using System.Windows.Forms;
+using FestManager_Core.Properties;
 using FestManager_Core.Utils.Printing;
 
 namespace FestManager_Core.Forms.SubForms
 {
     public partial class FormBestellung : Form
     {
-        private int ausgabestelle;
-        private bool printDirektverkaufTwice;
-        private int direktverkauftPersonalId = 1;
-        private int direktverkaufAusgabestelleId = 0;
-        private bool printAll = false;
-        private bool tischEnabled = true;
-        private FestManager_Core.Data.FestManagerDataSet.BestellungRow bestellungRow;
+        private int _ausgabestelle;
+        private readonly bool _printDirektverkaufTwice;
+        private readonly int _direktverkauftPersonalId;
+        private readonly int _direktverkaufAusgabestelleId;
+        private bool _printAll;
+        private readonly bool _tischEnabled;
+        private Data.FestManagerDataSet.BestellungRow _bestellungRow;
 
         public FormBestellung()
         {
             InitializeComponent();
-            this.printDirektverkaufTwice = Properties.Settings.Default.printDirektverkaufTwice;
-            this.direktverkauftPersonalId = Properties.Settings.Default.direktverkaufPersonalId;
-            this.direktverkaufAusgabestelleId = Properties.Settings.Default.direktverkaufAusgabestelleId;
-            this.tischEnabled = Properties.Settings.Default.tableNumbers;
+            _printDirektverkaufTwice = Settings.Default.printDirektverkaufTwice;
+            _direktverkauftPersonalId = Settings.Default.direktverkaufPersonalId;
+            _direktverkaufAusgabestelleId = Settings.Default.direktverkaufAusgabestelleId;
+            _tischEnabled = Settings.Default.tableNumbers;
             personalIdComboBox.Focus();
 
-            if (!this.tischEnabled)
+            if (!_tischEnabled)
             {
                 tischLabel.Visible = false;
                 tischTextBox.Visible = false;
@@ -40,94 +37,94 @@ namespace FestManager_Core.Forms.SubForms
         private void FormBestellung_Load(object sender, EventArgs e)
         {
             // TODO: This line of code loads data into the 'festManagerDataSet.PersonalKuerzel_V' table. You can move, or remove it, as needed.
-            this.personal_VTableAdapter.Fill(this.festManagerDataSet.Personal_V);
+            personal_VTableAdapter.Fill(festManagerDataSet.Personal_V);
 
-            newRecordset();
+            NewRecordset();
         }
 
-        private void newRecordset()
+        private void NewRecordset()
         {
-            newRecordset(false);
+            NewRecordset(false);
         }
-        private void newRecordset(bool storno)
+        private void NewRecordset(bool storno)
         {
             // TODO: This line of code loads data into the 'festManagerDataSet.Artikel' table. You can move, or remove it, as needed.
-            this.artikelTableAdapter.FillGueltige(this.festManagerDataSet.Artikel);
+            artikelTableAdapter.FillGueltige(festManagerDataSet.Artikel);
             
             if (!storno)
             {
                 // TODO: This line of code loads data into the 'festManagerDataSet.Bestellung' table. You can move, or remove it, as needed.
-                this.bestellungTableAdapter.Fill(this.festManagerDataSet.Bestellung);
-                bestellungRow = this.festManagerDataSet.Bestellung.NewBestellungRow();
+                bestellungTableAdapter.Fill(festManagerDataSet.Bestellung);
+                _bestellungRow = festManagerDataSet.Bestellung.NewBestellungRow();
             }
-            this.zeitpunktTextBox.Text = DateTime.Now.ToString();
-            this.tischTextBox.Text = "";
-            this.rueckgaengigButton.Visible = false;
-            this.bestellungIdTextBox.Text = bestellungRow.BestellungId.ToString();
+            zeitpunktTextBox.Text = DateTime.Now.ToString(CultureInfo.InvariantCulture);
+            tischTextBox.Text = "";
+            rueckgaengigButton.Visible = false;
+            bestellungIdTextBox.Text = _bestellungRow.BestellungId.ToString();
 
-            this.bestellungArtikelTableAdapter.FillByBestellungId(this.festManagerDataSet.BestellungArtikel, bestellungRow.BestellungId);
+            bestellungArtikelTableAdapter.FillByBestellungId(festManagerDataSet.BestellungArtikel, _bestellungRow.BestellungId);
 
             personalIdComboBox.Focus();
         }
 
-        private void calculateGesamtpreis()
+        private void CalculateGesamtpreis()
         {
-            bestellungRow.Gesamtpreis = 0;
+            _bestellungRow.Gesamtpreis = 0;
 
             //FestManager_Core.Data.FestManagerDataSet.BestellungArtikelDataTable table = festManagerDataSet.BestellungArtikel;
             for (int i = 0; i < artikelDataGridView.Rows.Count-1; i++)
             {
-                bestellungRow.Gesamtpreis += decimal.Parse(artikelDataGridView.Rows[i].Cells[4].Value.ToString());
+                _bestellungRow.Gesamtpreis += decimal.Parse(artikelDataGridView.Rows[i].Cells[4].Value.ToString());
             }
         }
 
         private void abschliessenButton_Click(object sender, EventArgs e)
         {
-            bestellungRow.Zeitpunkt = DateTime.Now;
-            bestellungRow.Storniert = "N";
-            bestellungRow.Tisch = this.tischTextBox.Text;
-            printAll = false;
+            _bestellungRow.Zeitpunkt = DateTime.Now;
+            _bestellungRow.Storniert = "N";
+            _bestellungRow.Tisch = tischTextBox.Text;
+            _printAll = false;
 
             try
             {
-                bestellungRow.PersonalId = (int)personalIdComboBox.SelectedValue;
+                _bestellungRow.PersonalId = (int)personalIdComboBox.SelectedValue;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                MessageBox.Show("Ungültiger Kellner gewählt!", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(Resources.FormBestellung_abschliessenButton_Click_Invalid_Waiter_selected, Resources.FormBestellung_abschliessenButton_Click_Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            this.calculateGesamtpreis();            
+            CalculateGesamtpreis();            
 
             try
             {
-                bestellungTableAdapter.Insert(bestellungRow.PersonalId, bestellungRow.Zeitpunkt, bestellungRow.Gesamtpreis, bestellungRow.Tisch, bestellungRow.Storniert, "N");
+                bestellungTableAdapter.Insert(_bestellungRow.PersonalId, _bestellungRow.Zeitpunkt, _bestellungRow.Gesamtpreis, _bestellungRow.Tisch, _bestellungRow.Storniert, "N");
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                MessageBox.Show("Fehler beim Speichern der Bestellung!", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(Resources.FormBestellung_abschliessenButton_Click_Error_saving_order, Resources.FormBestellung_abschliessenButton_Click_Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
                     
             bestellungArtikelTableAdapter.Update(festManagerDataSet.BestellungArtikel);
 
-            printBestellung();
+            PrintBestellung();
             
-            MessageBox.Show("Bestellung abgeschlossen!\nGesamtpreis in €: " + bestellungRow.Gesamtpreis.ToString());
+            MessageBox.Show(Resources.FormBestellung_abschliessenButton_Click_Order_placed + _bestellungRow.Gesamtpreis.ToString(CultureInfo.InvariantCulture));
             
-            newRecordset();
+            NewRecordset();
         }
 
 
-        private void printBestellung()
+        private void PrintBestellung()
         {
-            printBestellung(false);
+            PrintBestellung(false);
         }
-        private void printBestellung(bool secondPrint)
+        private void PrintBestellung(bool secondPrint)
         {
-            FestManager_Core.Data.FestManagerDataSetTableAdapters.AusgabestelleTableAdapter ausgabestellen = new FestManager_Core.Data.FestManagerDataSetTableAdapters.AusgabestelleTableAdapter();
-            FestManager_Core.Data.FestManagerDataSet.AusgabestelleDataTable ausgabe = (FestManager_Core.Data.FestManagerDataSet.AusgabestelleDataTable)ausgabestellen.GetData();
+            Data.FestManagerDataSetTableAdapters.AusgabestelleTableAdapter ausgabestellen = new Data.FestManagerDataSetTableAdapters.AusgabestelleTableAdapter();
+            Data.FestManagerDataSet.AusgabestelleDataTable ausgabe = ausgabestellen.GetData();
 
             printDocument.PrinterSettings = new System.Drawing.Printing.PrinterSettings();
             printDocument.PrinterSettings.Copies = 1;
@@ -136,53 +133,53 @@ namespace FestManager_Core.Forms.SubForms
             {
                 for (int i = 0; i < ausgabe.Rows.Count; i++)
                 {
-                    FestManager_Core.Data.FestManagerDataSet.AusgabestelleRow row =
-                        (FestManager_Core.Data.FestManagerDataSet.AusgabestelleRow)ausgabe.Rows[i];
+                    Data.FestManagerDataSet.AusgabestelleRow row =
+                        (Data.FestManagerDataSet.AusgabestelleRow)ausgabe.Rows[i];
 
-                    printKassabon(row);
+                    PrintKassabon(row);
                 }
             }
 
-            if ((printDirektverkaufTwice && (int)this.personalIdComboBox.SelectedValue == this.direktverkauftPersonalId) || secondPrint)
+            if ((_printDirektverkaufTwice && (int)personalIdComboBox.SelectedValue == _direktverkauftPersonalId) || secondPrint)
             {
-                printAll = true;
-                ausgabestellen = new FestManager_Core.Data.FestManagerDataSetTableAdapters.AusgabestelleTableAdapter();
-                ausgabe = (FestManager_Core.Data.FestManagerDataSet.AusgabestelleDataTable)ausgabestellen.GetKassaData();
+                _printAll = true;
+                ausgabestellen = new Data.FestManagerDataSetTableAdapters.AusgabestelleTableAdapter();
+                ausgabe = ausgabestellen.GetKassaData();
 
-                if (ausgabe.Count > this.direktverkaufAusgabestelleId)
+                if (ausgabe.Count > _direktverkaufAusgabestelleId)
                 {
                     printDocument.PrinterSettings = new System.Drawing.Printing.PrinterSettings();
                     printDocument.PrinterSettings.Copies = 1;
 
-                    FestManager_Core.Data.FestManagerDataSet.AusgabestelleRow row =
-                        (FestManager_Core.Data.FestManagerDataSet.AusgabestelleRow)ausgabe.Rows[this.direktverkaufAusgabestelleId];
+                    Data.FestManagerDataSet.AusgabestelleRow row =
+                        (Data.FestManagerDataSet.AusgabestelleRow)ausgabe.Rows[_direktverkaufAusgabestelleId];
                     
-                    printKassabon(row);
+                    PrintKassabon(row);
                 }
                 else
                 {
-                    MessageBox.Show("Fehler: Kein 'Kassa'-Drucker eingerichtet !!");
+                    MessageBox.Show(Resources.FormBestellung_PrintBestellung_Error_no_POS_printer_configured);
                 }
             }
         }
 
-        private void printKassabon(Data.FestManagerDataSet.AusgabestelleRow row)
+        private void PrintKassabon(Data.FestManagerDataSet.AusgabestelleRow row)
         {
-            FestManager_Core.Data.FestManagerDataSetTableAdapters.KassenbonTableAdapter kbTableAdapter = new FestManager_Core.Data.FestManagerDataSetTableAdapters.KassenbonTableAdapter();
-            FestManager_Core.Data.FestManagerDataSet.KassenbonDataTable kbTable = new FestManager_Core.Data.FestManagerDataSet.KassenbonDataTable();
+            Data.FestManagerDataSetTableAdapters.KassenbonTableAdapter kbTableAdapter = new Data.FestManagerDataSetTableAdapters.KassenbonTableAdapter();
+            Data.FestManagerDataSet.KassenbonDataTable kbTable = new Data.FestManagerDataSet.KassenbonDataTable();
 
-            if (bestellungRow.BestellungId == 0)
+            if (_bestellungRow.BestellungId == 0)
             {
-                MessageBox.Show("Fehler: Bestellung wird nicht gedruckt! Bitte starten Sie die Applikation neu.");
+                MessageBox.Show(Resources.FormBestellung_PrintKassabon_Critical_error_restart_application);
             }
-            if (printAll)
+            if (_printAll)
             {
-                kbTableAdapter.FillByBestellung(kbTable, bestellungRow.BestellungId);
+                kbTableAdapter.FillByBestellung(kbTable, _bestellungRow.BestellungId);
             }
             else
             {
-                this.ausgabestelle = (int)row.AusgabestelleId;
-                kbTableAdapter.FillByBestellungAndAusgabestelle(kbTable, bestellungRow.BestellungId, ausgabestelle);
+                _ausgabestelle = row.AusgabestelleId;
+                kbTableAdapter.FillByBestellungAndAusgabestelle(kbTable, _bestellungRow.BestellungId, _ausgabestelle);
             }
             
             
@@ -191,13 +188,13 @@ namespace FestManager_Core.Forms.SubForms
             }
             if (kbTable.Rows.Count > 0)
             {
-                bool print = true;
-                if (!Properties.Settings.Default.printStornoOrders)
+                var print = true;
+                if (!Settings.Default.printStornoOrders)
                 {
                     print=false;
                     for (int i = 0; i < kbTable.Rows.Count; i++)
                     {
-                        FestManager_Core.Data.FestManagerDataSet.KassenbonRow kbRow = (FestManager_Core.Data.FestManagerDataSet.KassenbonRow)kbTable.Rows[i];
+                        Data.FestManagerDataSet.KassenbonRow kbRow = (Data.FestManagerDataSet.KassenbonRow)kbTable.Rows[i];
                         if (kbRow.Menge >= 0)
                         {
                             print = true;
@@ -208,19 +205,19 @@ namespace FestManager_Core.Forms.SubForms
 
                 if (print)
                 {
-                    this.printDocument.PrinterSettings.PrinterName = row.Drucker;
+                    printDocument.PrinterSettings.PrinterName = row.Drucker;
 
                     DialogResult result = DialogResult.Retry;
                     while (result == DialogResult.Retry)
                     {
                         try
                         {
-                            this.printDocument.Print();
+                            printDocument.Print();
                             result = DialogResult.OK;
                         }
                         catch (Exception exc)
                         {
-                            result = MessageBox.Show("Fehler beim Drucken" + exc.Message, "Fehler", MessageBoxButtons.RetryCancel, MessageBoxIcon.Warning);
+                            result = MessageBox.Show(Resources.FormBestellung_PrintKassabon_Printing_error + exc.Message, Resources.FormBestellung_abschliessenButton_Click_Error, MessageBoxButtons.RetryCancel, MessageBoxIcon.Warning);
                         }
                     }
                 }
@@ -228,57 +225,38 @@ namespace FestManager_Core.Forms.SubForms
         }
 
 
-        private void resetView()
-        {
-            bestellungRow = this.festManagerDataSet.Bestellung.NewBestellungRow();
-            this.bestellungArtikelTableAdapter.FillByBestellungId(this.festManagerDataSet.BestellungArtikel, bestellungRow.BestellungId);
-        }
-
-
-        private void printPreviewToolStripButton_Click(object sender, EventArgs e)
-        {
-            printPreviewDialog.ShowDialog();
-            this.zeitpunktTextBox.Text = DateTime.Now.ToString();
-            this.bestellungIdTextBox.Text = bestellungRow.BestellungId.ToString();
-        }
-
         private void printDocument_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
         {
-            FestManager_Core.Data.FestManagerDataSetTableAdapters.KassenbonTableAdapter kbTableAdapter = new FestManager_Core.Data.FestManagerDataSetTableAdapters.KassenbonTableAdapter();
-            FestManager_Core.Data.FestManagerDataSet.KassenbonDataTable kbTable = new FestManager_Core.Data.FestManagerDataSet.KassenbonDataTable();
+            Data.FestManagerDataSetTableAdapters.KassenbonTableAdapter kbTableAdapter = new Data.FestManagerDataSetTableAdapters.KassenbonTableAdapter();
+            Data.FestManagerDataSet.KassenbonDataTable kbTable = new Data.FestManagerDataSet.KassenbonDataTable();
 
-            if (printAll)
+            if (_printAll)
             {
-                kbTableAdapter.FillByBestellung(kbTable, bestellungRow.BestellungId);
+                kbTableAdapter.FillByBestellung(kbTable, _bestellungRow.BestellungId);
             }
             else
             {
-                kbTableAdapter.FillByBestellungAndAusgabestelle(kbTable, bestellungRow.BestellungId, ausgabestelle);
+                kbTableAdapter.FillByBestellungAndAusgabestelle(kbTable, _bestellungRow.BestellungId, _ausgabestelle);
             }
             if (kbTable.Rows.Count > 0)
             {
                 Kassenbon kb = new Kassenbon(e.Graphics, kbTable);
                 // Important for Kassa-Prints:
-                kb.Draw(printAll);
+                kb.Draw(_printAll);
             }
             
         }
 
-        private void printToolStripButton_Click(object sender, EventArgs e)
-        {
-            printDialog.ShowDialog();
-        }
-
         private void artikelDataGridView_RowEnter(object sender, DataGridViewCellEventArgs e)
         {
-            artikelDataGridView.Rows[e.RowIndex].Cells[0].Value = bestellungRow.BestellungId;
+            artikelDataGridView.Rows[e.RowIndex].Cells[0].Value = _bestellungRow.BestellungId;
         }
 
         private void stornierenButton_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Bestellung wird nun storniert...");
+            MessageBox.Show(Resources.FormBestellung_stornierenButton_Click_Order_will_be_canceled);
 
-            newRecordset(true);
+            NewRecordset(true);
         }
 
         private void artikelDataGridView_CellValidated(object sender, DataGridViewCellEventArgs e)
@@ -287,7 +265,7 @@ namespace FestManager_Core.Forms.SubForms
             {
                 String shortcut = artikelDataGridView.Rows[e.RowIndex].Cells[2].Value.ToString();
                 
-                int shortcutValue = 0;
+                int shortcutValue;
                 try
                 {
                     shortcutValue = Int32.Parse(shortcut);
@@ -309,15 +287,15 @@ namespace FestManager_Core.Forms.SubForms
                 {
                     artikelDataGridView.Rows[e.RowIndex].Cells[3].Value = artikelId;
                     artikelDataGridView.Rows[e.RowIndex].Cells[4].Value = preis * int.Parse(artikelDataGridView.Rows[e.RowIndex].Cells[1].Value.ToString());
-                    this.rueckgaengigButton.Visible = true;
+                    rueckgaengigButton.Visible = true;
 
-                    calculateGesamtpreis();
-                    this.gesamtpreisTextBox.Text = bestellungRow.Gesamtpreis.ToString();
+                    CalculateGesamtpreis();
+                    gesamtpreisTextBox.Text = _bestellungRow.Gesamtpreis.ToString(CultureInfo.InvariantCulture);
                 }
                 else
                 {
                     artikelDataGridView.Rows[e.RowIndex].Cells[2].Value = DBNull.Value;
-                    MessageBox.Show("Artikel nicht gefunden!");
+                    MessageBox.Show(Resources.FormBestellung_artikelDataGridView_CellValidated_Product_not_found);
 
                     artikelDataGridView.Rows[e.RowIndex].Cells[1].Value = DBNull.Value;
                     artikelDataGridView.Rows[e.RowIndex].Cells[3].Value = DBNull.Value;
@@ -338,7 +316,7 @@ namespace FestManager_Core.Forms.SubForms
         {
             if (e.KeyCode == Keys.Enter)
             {
-                if (this.tischEnabled)
+                if (_tischEnabled)
                 {
                     tischTextBox.Focus();
                 }
@@ -361,15 +339,15 @@ namespace FestManager_Core.Forms.SubForms
 
         private void printLastOrderButton_Click(object sender, EventArgs e)
         {
-            int bkpBestellungId = bestellungRow.BestellungId;
+            int bkpBestellungId = _bestellungRow.BestellungId;
 
-            bestellungRow.BestellungId = (int)bestellungTableAdapter.GetMaxBestellungId();
-            printBestellung(true);            
+            _bestellungRow.BestellungId = (int)bestellungTableAdapter.GetMaxBestellungId();
+            PrintBestellung(true);            
 
-            bestellungRow.BestellungId = bkpBestellungId;
+            _bestellungRow.BestellungId = bkpBestellungId;
         }
 
-        private void removeRow(bool removeCurrentRow)
+        private void RemoveRow(bool removeCurrentRow)
         {
             if (artikelDataGridView.Rows.Count > 1)
             {
@@ -381,14 +359,14 @@ namespace FestManager_Core.Forms.SubForms
                 {
                     artikelDataGridView.Rows.RemoveAt(artikelDataGridView.Rows.Count - 1);
                 }
-                calculateGesamtpreis();
-                this.gesamtpreisTextBox.Text = bestellungRow.Gesamtpreis.ToString();
+                CalculateGesamtpreis();
+                gesamtpreisTextBox.Text = _bestellungRow.Gesamtpreis.ToString(CultureInfo.InvariantCulture);
             }
         }
 
         private void rueckgaengigButton_Click(object sender, EventArgs e)
         {
-            removeRow(false);
+            RemoveRow(false);
             artikelDataGridView.Focus();
             artikelDataGridView.MultiSelect = false;
             artikelDataGridView.Rows[artikelDataGridView.Rows.Count-1].Cells[1].Selected = true;

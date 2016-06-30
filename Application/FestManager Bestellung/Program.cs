@@ -7,20 +7,20 @@ using System.Collections.Specialized;
 
 namespace FestManager_Bestellung
 {
-    static class Program
+    internal static class Program
     {
         /// <summary>
         /// Der Haupteinstiegspunkt für die Anwendung.
         /// </summary>
         [STAThread]
-        static void Main()
+        private static void Main()
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
             FestManager_Core.Properties.Settings.Default["connectionString"] = Properties.Settings.Default.connectionString;
             // Overwrite default settings:
-            StringCollection appSettings = new StringCollection();
+            var appSettings = new StringCollection();
             foreach (SettingsProperty currentProperty in Properties.Settings.Default.Properties)
             {
                 appSettings.Add(currentProperty.Name);
@@ -62,67 +62,30 @@ namespace FestManager_Bestellung
                 FestManager_Core.Properties.Settings.Default["tableNumbers"] = Properties.Settings.Default["tableNumbers"];
             }
 
-            TreeViewNode node1 = new TreeViewNode("Bestellung", 8, 9);
-            TreeViewNode node2 = new TreeViewNode("Bestellungen History", 4, 5);
-            TreeViewNode node3 = new TreeViewNode("Festmanager", 12, 13);
-            node3.children.Add(node1);
-            node3.children.Add(node2);
-            TreeViewNode node4 = new TreeViewNode("Personal", 2, 3);
-            TreeViewNode node5 = new TreeViewNode("Artikel", 4, 5);
-            TreeViewNode node6 = new TreeViewNode("Ausgabestellen", 14, 15);
-            TreeViewNode node7 = new TreeViewNode("Einstellungen", 6, 7);
-            node7.children.Add(node4);
-            node7.children.Add(node5);
-            node7.children.Add(node6);
-            TreeViewNode node8 = new TreeViewNode("Info", 0, 1);
-            Collection<TreeViewNode> nodes = new Collection<TreeViewNode>();
-            nodes.Add(node3);
-            nodes.Add(node7);
-            nodes.Add(node8);
+            var bestellungNode = new TreeViewNode("Bestellung", 8, 9);
+            var bestellungenHistoryNode = new TreeViewNode("Bestellungen History", 4, 5);
 
-            /*System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("Bestellung", 8, 9);
-            System.Windows.Forms.TreeNode treeNode9 = new System.Windows.Forms.TreeNode("Bestellungen History", 4, 5);
-            System.Windows.Forms.TreeNode treeNode10 = new System.Windows.Forms.TreeNode("Festmanager", 12, 13, new System.Windows.Forms.TreeNode[] {
-            treeNode8,
-            treeNode9});
-            System.Windows.Forms.TreeNode treeNode11 = new System.Windows.Forms.TreeNode("Personal", 2, 3);
-            System.Windows.Forms.TreeNode treeNode12 = new System.Windows.Forms.TreeNode("Artikel", 4, 5);
-            System.Windows.Forms.TreeNode treeNode13 = new System.Windows.Forms.TreeNode("Ausgabestellen", 14, 15);
-            System.Windows.Forms.TreeNode treeNode14 = new System.Windows.Forms.TreeNode("Einstellungen", 6, 7, new System.Windows.Forms.TreeNode[] {
-            treeNode11,
-            treeNode12,
-            treeNode13});
-            treeNode8.ImageIndex = 8;
-            treeNode8.Name = "bestellungNode";
-            treeNode8.SelectedImageIndex = 9;
-            treeNode8.Text = "Bestellung";
-            treeNode9.ImageIndex = 4;
-            treeNode9.Name = "bestellungHistoryNode";
-            treeNode9.SelectedImageIndex = 5;
-            treeNode9.Text = "Bestellungen History";
-            treeNode10.ImageIndex = 12;
-            treeNode10.Name = "festmanagerNode";
-            treeNode10.SelectedImageIndex = 13;
-            treeNode10.Text = "Festmanager";
-            treeNode11.ImageIndex = 2;
-            treeNode11.Name = "personalNode";
-            treeNode11.SelectedImageIndex = 3;
-            treeNode11.Text = "Personal";
-            treeNode12.ImageIndex = 4;
-            treeNode12.Name = "artikelNode";
-            treeNode12.SelectedImageIndex = 5;
-            treeNode12.Text = "Artikel";
-            treeNode13.ImageIndex = 14;
-            treeNode13.Name = "ausgabestellenNode";
-            treeNode13.SelectedImageIndex = 15;
-            treeNode13.Text = "Ausgabestellen";
-            treeNode14.ImageIndex = 6;
-            treeNode14.Name = "einstellungenNode";
-            treeNode14.SelectedImageIndex = 7;
-            treeNode14.Text = "Einstellungen";
-            this.treeViewMain.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode10,
-            treeNode14});*/
+            var festmanagerNode = new TreeViewNode("Festmanager", 12, 13);
+            festmanagerNode.children.Add(bestellungNode);
+            festmanagerNode.children.Add(bestellungenHistoryNode);
+
+            var personalNode = new TreeViewNode("Personal", 2, 3);
+            var artikelNode = new TreeViewNode("Artikel", 4, 5);
+            var ausgabestellenNode = new TreeViewNode("Ausgabestellen", 14, 15);
+
+            var einstellungeNode = new TreeViewNode("Einstellungen", 6, 7);
+            einstellungeNode.children.Add(personalNode);
+            einstellungeNode.children.Add(artikelNode);
+            einstellungeNode.children.Add(ausgabestellenNode);
+
+            var infoNode = new TreeViewNode("Info", 0, 1);
+
+            var nodes = new Collection<TreeViewNode>
+            {
+                festmanagerNode,
+                einstellungeNode,
+                infoNode
+            };
 
             Application.Run(new FormMain("Bestellung", nodes));
         }

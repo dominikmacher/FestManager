@@ -1,7 +1,5 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Text;
 
 namespace FestManager_Core.Utils
 {
@@ -10,64 +8,60 @@ namespace FestManager_Core.Utils
     [Serializable]
     public class NameObjectCollection : SortedList
     {
-        /// <summary>
+	    /// <summary>
         /// </summary>
-        public NameObjectCollection() : base() { }
-
-        /// <summary>
-        /// </summary>
-        /// <param name="Name">
+        /// <param name="name">
         /// </param>
-        /// <param name="Value">
+        /// <param name="value">
         /// </param>
-        public virtual void Add(string Name, object Value)
+        public virtual void Add(string name, object value)
         {
-            base.Add(Name.ToLower(), Value);
+            base.Add(name.ToLower(), value);
         }
 
         /// <summary>
         /// </summary>
-        public virtual object this[string Name]
+        public virtual object this[string name]
         {
             get
             {
-                return this.Get(Name.ToLower());
+                return Get(name.ToLower());
             }
             set
             {
-                this.Set(Name.ToLower(), value);
+                Set(name.ToLower(), value);
             }
         }
 
         /// <summary>
         /// </summary>
-        /// <param name="Name">
+        /// <param name="name">
         /// </param>
         /// <returns>
         /// </returns>
-        public virtual object Get(string Name)
+        public virtual object Get(string name)
         {
-            return base[Name.ToLower()];
+            return base[name.ToLower()];
         }
 
         /// <summary>
         /// </summary>
-        /// <param name="Name">
+        /// <param name="name">
         /// </param>
-        /// <param name="Value">
+        /// <param name="value">
         /// </param>
-        public virtual void Set(string Name, object Value)
+        public virtual void Set(string name, object value)
         {
-            base[Name.ToLower()] = Value;
+            base[name.ToLower()] = value;
         }
 
         /// <summary>
         /// </summary>
-        /// <param name="Name">
+        /// <param name="name">
         /// </param>
-        public virtual void Remove(string Name)
+        public virtual void Remove(string name)
         {
-            base.Remove(Name.ToLower());
+            base.Remove(name.ToLower());
         }
     }
 }

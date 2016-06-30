@@ -140,7 +140,7 @@ namespace FestManager_Core.Forms
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.IsMdiContainer = true;
             this.Name = "FormMain";
-            this.Text = "Festmanager 2013";
+            this.Text = "Festmanager";
             this.Load += new System.EventHandler(this.FormMain_Load);
             this.statusStrip.ResumeLayout(false);
             this.statusStrip.PerformLayout();

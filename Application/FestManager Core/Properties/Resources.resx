@@ -117,4 +117,32 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="FormBestellung_abschliessenButton_Click_Invalid_Waiter_selected" xml:space="preserve">
+    <value>Ungültiger Kellner gewählt!</value>
+  </data>
+  <data name="FormBestellung_abschliessenButton_Click_Error" xml:space="preserve">
+    <value>Fehler</value>
+  </data>
+  <data name="FormBestellung_abschliessenButton_Click_Error_saving_order" xml:space="preserve">
+    <value>Fehler beim Speichern der Bestellung!</value>
+  </data>
+  <data name="FormBestellung_abschliessenButton_Click_Order_placed" xml:space="preserve">
+    <value>Bestellung abgeschlossen!
+Gesamtpreis in €: </value>
+  </data>
+  <data name="FormBestellung_PrintBestellung_Error_no_POS_printer_configured" xml:space="preserve">
+    <value>Fehler: Kein 'Kassa'-Drucker eingerichtet !!</value>
+  </data>
+  <data name="FormBestellung_PrintKassabon_Critical_error_restart_application" xml:space="preserve">
+    <value>Fehler: Bestellung wird nicht gedruckt! Bitte starten Sie die Applikation neu.</value>
+  </data>
+  <data name="FormBestellung_PrintKassabon_Printing_error" xml:space="preserve">
+    <value>Fehler beim Drucken</value>
+  </data>
+  <data name="FormBestellung_stornierenButton_Click_Order_will_be_canceled" xml:space="preserve">
+    <value>Bestellung wird nun storniert...</value>
+  </data>
+  <data name="FormBestellung_artikelDataGridView_CellValidated_Product_not_found" xml:space="preserve">
+    <value>Artikel nicht gefunden!</value>
+  </data>
 </root>

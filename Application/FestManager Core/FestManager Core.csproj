@@ -44,7 +44,6 @@
   <ItemGroup>
     <Compile Include="Data\FestManagerDataSet.cs">
       <DependentUpon>FestManagerDataSet.xsd</DependentUpon>
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Data\FestManagerDataSet.Designer.cs">
       <DependentUpon>FestManagerDataSet.xsd</DependentUpon>

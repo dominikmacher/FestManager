@@ -18,3 +18,16 @@ D:\Workspace\FestManager\FestManager 2013\FestManager Abrechnung\obj\x86\Debug\F
 D:\Workspace\FestManager\FestManager 2013\FestManager Abrechnung\obj\x86\Debug\FestManager Abrechnung.csproj.GenerateResource.Cache
 D:\Workspace\FestManager\FestManager 2013\FestManager Abrechnung\obj\x86\Debug\FestManager Abrechnung.exe
 D:\Workspace\FestManager\FestManager 2013\FestManager Abrechnung\obj\x86\Debug\FestManager Abrechnung.pdb
+C:\Development\Projekte\FF Karlstetten\FestManager\Application\FestManager Abrechnung\bin\Debug\FestManager Abrechnung.exe.config
+C:\Development\Projekte\FF Karlstetten\FestManager\Application\FestManager Abrechnung\bin\Debug\FestManager Abrechnung.exe
+C:\Development\Projekte\FF Karlstetten\FestManager\Application\FestManager Abrechnung\bin\Debug\FestManager Abrechnung.pdb
+C:\Development\Projekte\FF Karlstetten\FestManager\Application\FestManager Abrechnung\bin\Debug\FestManager Core.dll
+C:\Development\Projekte\FF Karlstetten\FestManager\Application\FestManager Abrechnung\bin\Debug\Microsoft.ReportViewer.Common.dll
+C:\Development\Projekte\FF Karlstetten\FestManager\Application\FestManager Abrechnung\bin\Debug\Microsoft.ReportViewer.WinForms.dll
+C:\Development\Projekte\FF Karlstetten\FestManager\Application\FestManager Abrechnung\bin\Debug\FestManager Core.pdb
+C:\Development\Projekte\FF Karlstetten\FestManager\Application\FestManager Abrechnung\bin\Debug\Microsoft.ReportViewer.WinForms.xml
+C:\Development\Projekte\FF Karlstetten\FestManager\Application\FestManager Abrechnung\obj\x86\Debug\FestManager Abrechnung.csprojResolveAssemblyReference.cache
+C:\Development\Projekte\FF Karlstetten\FestManager\Application\FestManager Abrechnung\obj\x86\Debug\FestManager_Abrechnung.Properties.Resources.resources
+C:\Development\Projekte\FF Karlstetten\FestManager\Application\FestManager Abrechnung\obj\x86\Debug\FestManager Abrechnung.csproj.GenerateResource.Cache
+C:\Development\Projekte\FF Karlstetten\FestManager\Application\FestManager Abrechnung\obj\x86\Debug\FestManager Abrechnung.exe
+C:\Development\Projekte\FF Karlstetten\FestManager\Application\FestManager Abrechnung\obj\x86\Debug\FestManager Abrechnung.pdb
