@@ -3,7 +3,7 @@
     
     
     public partial class FestManagerDataSet {
-        partial class Kellnerabrechnung_OffenDataTable
+        partial class KellnerabrechnungOffenDataTable
         {
         }
     

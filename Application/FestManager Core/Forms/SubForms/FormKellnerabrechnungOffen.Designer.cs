@@ -29,7 +29,7 @@ namespace FestManager_Core.Forms.SubForms
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormKellnerabrechnungOffen));
+            var resources = new System.ComponentModel.ComponentResourceManager(typeof(FormKellnerabrechnungOffen));
             this.titleLabel = new System.Windows.Forms.Label();
             this.contentPanel = new System.Windows.Forms.Panel();
             this.offeneAbrechnungenDataGridView = new System.Windows.Forms.DataGridView();
@@ -183,16 +183,6 @@ namespace FestManager_Core.Forms.SubForms
         private System.Windows.Forms.Panel contentPanel;
         private System.Windows.Forms.DataGridView offeneAbrechnungenDataGridView;
         private FestManager_Core.Data.FestManagerDataSet festManagerDataSet;
-        private System.Windows.Forms.DataGridViewTextBoxColumn bezeichnungDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn einzelpreisDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn mengeDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn bestellungArtikelGesamtpreisDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn bestellungGesamtpreisDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn bezeichnungDataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn einzelpreisDataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn mengeDataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn bestellungArtikelGesamtpreisDataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn bestellungGesamtpreisDataGridViewTextBoxColumn1;
         private System.Windows.Forms.BindingSource offeneKellnerabrechnungenBindingSource;
         private System.Windows.Forms.PrintDialog printDialog;
         private System.Windows.Forms.PrintPreviewDialog printPreviewDialog;

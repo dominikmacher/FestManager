@@ -56,7 +56,7 @@ namespace FestManager_Core.Data {
         
         private KellnerabrechnungNachTagenAbgeschlossenDataTable tableKellnerabrechnungNachTagenAbgeschlossen;
         
-        private Kellnerabrechnung_OffenDataTable tableKellnerabrechnung_Offen;
+        private KellnerabrechnungOffenDataTable tableKellnerabrechnung_Offen;
         
         private global::System.Data.DataRelation relationArtikelBestellungArtikel;
         
@@ -75,7 +75,7 @@ namespace FestManager_Core.Data {
         public FestManagerDataSet() {
             this.BeginInit();
             this.InitClass();
-            global::System.ComponentModel.CollectionChangeEventHandler schemaChangedHandler = new global::System.ComponentModel.CollectionChangeEventHandler(this.SchemaChanged);
+            var schemaChangedHandler = new global::System.ComponentModel.CollectionChangeEventHandler(this.SchemaChanged);
             base.Tables.CollectionChanged += schemaChangedHandler;
             base.Relations.CollectionChanged += schemaChangedHandler;
             this.EndInit();
@@ -87,14 +87,14 @@ namespace FestManager_Core.Data {
                 base(info, context, false) {
             if ((this.IsBinarySerialized(info, context) == true)) {
                 this.InitVars(false);
-                global::System.ComponentModel.CollectionChangeEventHandler schemaChangedHandler1 = new global::System.ComponentModel.CollectionChangeEventHandler(this.SchemaChanged);
+                var schemaChangedHandler1 = new global::System.ComponentModel.CollectionChangeEventHandler(this.SchemaChanged);
                 this.Tables.CollectionChanged += schemaChangedHandler1;
                 this.Relations.CollectionChanged += schemaChangedHandler1;
                 return;
             }
-            string strSchema = ((string)(info.GetValue("XmlSchema", typeof(string))));
+            var strSchema = ((string)(info.GetValue("XmlSchema", typeof(string))));
             if ((this.DetermineSchemaSerializationMode(info, context) == global::System.Data.SchemaSerializationMode.IncludeSchema)) {
-                global::System.Data.DataSet ds = new global::System.Data.DataSet();
+                var ds = new global::System.Data.DataSet();
                 ds.ReadXmlSchema(new global::System.Xml.XmlTextReader(new global::System.IO.StringReader(strSchema)));
                 if ((ds.Tables["Artikel"] != null)) {
                     base.Tables.Add(new ArtikelDataTable(ds.Tables["Artikel"]));
@@ -145,7 +145,7 @@ namespace FestManager_Core.Data {
                     base.Tables.Add(new KellnerabrechnungNachTagenAbgeschlossenDataTable(ds.Tables["KellnerabrechnungNachTagenAbgeschlossen"]));
                 }
                 if ((ds.Tables["Kellnerabrechnung_Offen"] != null)) {
-                    base.Tables.Add(new Kellnerabrechnung_OffenDataTable(ds.Tables["Kellnerabrechnung_Offen"]));
+                    base.Tables.Add(new KellnerabrechnungOffenDataTable(ds.Tables["Kellnerabrechnung_Offen"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -160,7 +160,7 @@ namespace FestManager_Core.Data {
                 this.ReadXmlSchema(new global::System.Xml.XmlTextReader(new global::System.IO.StringReader(strSchema)));
             }
             this.GetSerializationData(info, context);
-            global::System.ComponentModel.CollectionChangeEventHandler schemaChangedHandler = new global::System.ComponentModel.CollectionChangeEventHandler(this.SchemaChanged);
+            var schemaChangedHandler = new global::System.ComponentModel.CollectionChangeEventHandler(this.SchemaChanged);
             base.Tables.CollectionChanged += schemaChangedHandler;
             this.Relations.CollectionChanged += schemaChangedHandler;
         }
@@ -329,7 +329,7 @@ namespace FestManager_Core.Data {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Browsable(false)]
         [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public Kellnerabrechnung_OffenDataTable Kellnerabrechnung_Offen {
+        public KellnerabrechnungOffenDataTable Kellnerabrechnung_Offen {
             get {
                 return this.tableKellnerabrechnung_Offen;
             }
@@ -377,7 +377,7 @@ namespace FestManager_Core.Data {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         public override global::System.Data.DataSet Clone() {
-            FestManagerDataSet cln = ((FestManagerDataSet)(base.Clone()));
+            var cln = ((FestManagerDataSet)(base.Clone()));
             cln.InitVars();
             cln.SchemaSerializationMode = this.SchemaSerializationMode;
             return cln;
@@ -400,7 +400,7 @@ namespace FestManager_Core.Data {
         protected override void ReadXmlSerializable(global::System.Xml.XmlReader reader) {
             if ((this.DetermineSchemaSerializationMode(reader) == global::System.Data.SchemaSerializationMode.IncludeSchema)) {
                 this.Reset();
-                global::System.Data.DataSet ds = new global::System.Data.DataSet();
+                var ds = new global::System.Data.DataSet();
                 ds.ReadXml(reader);
                 if ((ds.Tables["Artikel"] != null)) {
                     base.Tables.Add(new ArtikelDataTable(ds.Tables["Artikel"]));
@@ -451,7 +451,7 @@ namespace FestManager_Core.Data {
                     base.Tables.Add(new KellnerabrechnungNachTagenAbgeschlossenDataTable(ds.Tables["KellnerabrechnungNachTagenAbgeschlossen"]));
                 }
                 if ((ds.Tables["Kellnerabrechnung_Offen"] != null)) {
-                    base.Tables.Add(new Kellnerabrechnung_OffenDataTable(ds.Tables["Kellnerabrechnung_Offen"]));
+                    base.Tables.Add(new KellnerabrechnungOffenDataTable(ds.Tables["Kellnerabrechnung_Offen"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -471,7 +471,7 @@ namespace FestManager_Core.Data {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         protected override global::System.Xml.Schema.XmlSchema GetSchemaSerializable() {
-            global::System.IO.MemoryStream stream = new global::System.IO.MemoryStream();
+            var stream = new global::System.IO.MemoryStream();
             this.WriteXmlSchema(new global::System.Xml.XmlTextWriter(stream, null));
             stream.Position = 0;
             return global::System.Xml.Schema.XmlSchema.Read(new global::System.Xml.XmlTextReader(stream), null);
@@ -582,7 +582,7 @@ namespace FestManager_Core.Data {
                     this.tableKellnerabrechnungNachTagenAbgeschlossen.InitVars();
                 }
             }
-            this.tableKellnerabrechnung_Offen = ((Kellnerabrechnung_OffenDataTable)(base.Tables["Kellnerabrechnung_Offen"]));
+            this.tableKellnerabrechnung_Offen = ((KellnerabrechnungOffenDataTable)(base.Tables["Kellnerabrechnung_Offen"]));
             if ((initTable == true)) {
                 if ((this.tableKellnerabrechnung_Offen != null)) {
                     this.tableKellnerabrechnung_Offen.InitVars();
@@ -635,7 +635,7 @@ namespace FestManager_Core.Data {
             base.Tables.Add(this.tablePersonalArtikel);
             this.tableKellnerabrechnungNachTagenAbgeschlossen = new KellnerabrechnungNachTagenAbgeschlossenDataTable();
             base.Tables.Add(this.tableKellnerabrechnungNachTagenAbgeschlossen);
-            this.tableKellnerabrechnung_Offen = new Kellnerabrechnung_OffenDataTable();
+            this.tableKellnerabrechnung_Offen = new KellnerabrechnungOffenDataTable();
             base.Tables.Add(this.tableKellnerabrechnung_Offen);
             this.relationArtikelBestellungArtikel = new global::System.Data.DataRelation("ArtikelBestellungArtikel", new global::System.Data.DataColumn[] {
                         this.tableArtikel.ArtikelIdColumn}, new global::System.Data.DataColumn[] {
@@ -772,21 +772,21 @@ namespace FestManager_Core.Data {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedDataSetSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-            FestManagerDataSet ds = new FestManagerDataSet();
-            global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
-            global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-            global::System.Xml.Schema.XmlSchemaAny any = new global::System.Xml.Schema.XmlSchemaAny();
+            var ds = new FestManagerDataSet();
+            var type = new global::System.Xml.Schema.XmlSchemaComplexType();
+            var sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+            var any = new global::System.Xml.Schema.XmlSchemaAny();
             any.Namespace = ds.Namespace;
             sequence.Items.Add(any);
             type.Particle = sequence;
-            global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+            var dsSchema = ds.GetSchemaSerializable();
             if (xs.Contains(dsSchema.TargetNamespace)) {
-                global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
-                global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                var s1 = new global::System.IO.MemoryStream();
+                var s2 = new global::System.IO.MemoryStream();
                 try {
                     global::System.Xml.Schema.XmlSchema schema = null;
                     dsSchema.Write(s1);
-                    for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                    for (var schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
                         schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
                         s2.SetLength(0);
                         schema.Write(s2);
@@ -1015,8 +1015,8 @@ namespace FestManager_Core.Data {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public ArtikelRow AddArtikelRow(string Bezeichnung, decimal Einzelpreis, string Gueltig, AusgabestelleRow parentAusgabestelleRowByAusgabestelleArtikel, int ShortCutNr, decimal Kellnergroschen) {
-                ArtikelRow rowArtikelRow = ((ArtikelRow)(this.NewRow()));
-                object[] columnValuesArray = new object[] {
+                var rowArtikelRow = ((ArtikelRow)(this.NewRow()));
+                var columnValuesArray = new object[] {
                         null,
                         Bezeichnung,
                         Einzelpreis,
@@ -1048,7 +1048,7 @@ namespace FestManager_Core.Data {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public override global::System.Data.DataTable Clone() {
-                ArtikelDataTable cln = ((ArtikelDataTable)(base.Clone()));
+                var cln = ((ArtikelDataTable)(base.Clone()));
                 cln.InitVars();
                 return cln;
             }
@@ -1160,37 +1160,37 @@ namespace FestManager_Core.Data {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
-                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                FestManagerDataSet ds = new FestManagerDataSet();
-                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                var type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                var sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                var ds = new FestManagerDataSet();
+                var any1 = new global::System.Xml.Schema.XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
                 any1.MaxOccurs = decimal.MaxValue;
                 any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
                 sequence.Items.Add(any1);
-                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                var any2 = new global::System.Xml.Schema.XmlSchemaAny();
                 any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
                 any2.MinOccurs = new decimal(1);
                 any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
                 sequence.Items.Add(any2);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                var attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute1.Name = "namespace";
                 attribute1.FixedValue = ds.Namespace;
                 type.Attributes.Add(attribute1);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                var attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
                 attribute2.FixedValue = "ArtikelDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
-                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                var dsSchema = ds.GetSchemaSerializable();
                 if (xs.Contains(dsSchema.TargetNamespace)) {
-                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
-                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    var s1 = new global::System.IO.MemoryStream();
+                    var s2 = new global::System.IO.MemoryStream();
                     try {
                         global::System.Xml.Schema.XmlSchema schema = null;
                         dsSchema.Write(s1);
-                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                        for (var schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
                             schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
                             s2.SetLength(0);
                             schema.Write(s2);
@@ -1339,8 +1339,8 @@ namespace FestManager_Core.Data {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public AusgabestelleRow AddAusgabestelleRow(string Kuerzel, string Bezeichnung, string Drucker) {
-                AusgabestelleRow rowAusgabestelleRow = ((AusgabestelleRow)(this.NewRow()));
-                object[] columnValuesArray = new object[] {
+                var rowAusgabestelleRow = ((AusgabestelleRow)(this.NewRow()));
+                var columnValuesArray = new object[] {
                         null,
                         Kuerzel,
                         Bezeichnung,
@@ -1366,7 +1366,7 @@ namespace FestManager_Core.Data {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public override global::System.Data.DataTable Clone() {
-                AusgabestelleDataTable cln = ((AusgabestelleDataTable)(base.Clone()));
+                var cln = ((AusgabestelleDataTable)(base.Clone()));
                 cln.InitVars();
                 return cln;
             }
@@ -1470,37 +1470,37 @@ namespace FestManager_Core.Data {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
-                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                FestManagerDataSet ds = new FestManagerDataSet();
-                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                var type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                var sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                var ds = new FestManagerDataSet();
+                var any1 = new global::System.Xml.Schema.XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
                 any1.MaxOccurs = decimal.MaxValue;
                 any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
                 sequence.Items.Add(any1);
-                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                var any2 = new global::System.Xml.Schema.XmlSchemaAny();
                 any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
                 any2.MinOccurs = new decimal(1);
                 any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
                 sequence.Items.Add(any2);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                var attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute1.Name = "namespace";
                 attribute1.FixedValue = ds.Namespace;
                 type.Attributes.Add(attribute1);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                var attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
                 attribute2.FixedValue = "AusgabestelleDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
-                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                var dsSchema = ds.GetSchemaSerializable();
                 if (xs.Contains(dsSchema.TargetNamespace)) {
-                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
-                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    var s1 = new global::System.IO.MemoryStream();
+                    var s2 = new global::System.IO.MemoryStream();
                     try {
                         global::System.Xml.Schema.XmlSchema schema = null;
                         dsSchema.Write(s1);
-                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                        for (var schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
                             schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
                             s2.SetLength(0);
                             schema.Write(s2);
@@ -1679,8 +1679,8 @@ namespace FestManager_Core.Data {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public BestellungRow AddBestellungRow(PersonalRow parentPersonalRowByPersonalBestellung, System.DateTime Zeitpunkt, decimal Gesamtpreis, string Storniert, string Tisch, string Abgerechnet) {
-                BestellungRow rowBestellungRow = ((BestellungRow)(this.NewRow()));
-                object[] columnValuesArray = new object[] {
+                var rowBestellungRow = ((BestellungRow)(this.NewRow()));
+                var columnValuesArray = new object[] {
                         null,
                         null,
                         Zeitpunkt,
@@ -1712,7 +1712,7 @@ namespace FestManager_Core.Data {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public override global::System.Data.DataTable Clone() {
-                BestellungDataTable cln = ((BestellungDataTable)(base.Clone()));
+                var cln = ((BestellungDataTable)(base.Clone()));
                 cln.InitVars();
                 return cln;
             }
@@ -1825,37 +1825,37 @@ namespace FestManager_Core.Data {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
-                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                FestManagerDataSet ds = new FestManagerDataSet();
-                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                var type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                var sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                var ds = new FestManagerDataSet();
+                var any1 = new global::System.Xml.Schema.XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
                 any1.MaxOccurs = decimal.MaxValue;
                 any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
                 sequence.Items.Add(any1);
-                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                var any2 = new global::System.Xml.Schema.XmlSchemaAny();
                 any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
                 any2.MinOccurs = new decimal(1);
                 any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
                 sequence.Items.Add(any2);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                var attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute1.Name = "namespace";
                 attribute1.FixedValue = ds.Namespace;
                 type.Attributes.Add(attribute1);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                var attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
                 attribute2.FixedValue = "BestellungDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
-                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                var dsSchema = ds.GetSchemaSerializable();
                 if (xs.Contains(dsSchema.TargetNamespace)) {
-                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
-                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    var s1 = new global::System.IO.MemoryStream();
+                    var s2 = new global::System.IO.MemoryStream();
                     try {
                         global::System.Xml.Schema.XmlSchema schema = null;
                         dsSchema.Write(s1);
-                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                        for (var schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
                             schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
                             s2.SetLength(0);
                             schema.Write(s2);
@@ -2014,8 +2014,8 @@ namespace FestManager_Core.Data {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public BestellungArtikelRow AddBestellungArtikelRow(int BestellungId, ArtikelRow parentArtikelRowByArtikelBestellungArtikel, int Menge, decimal Gesamtpreis) {
-                BestellungArtikelRow rowBestellungArtikelRow = ((BestellungArtikelRow)(this.NewRow()));
-                object[] columnValuesArray = new object[] {
+                var rowBestellungArtikelRow = ((BestellungArtikelRow)(this.NewRow()));
+                var columnValuesArray = new object[] {
                         BestellungId,
                         null,
                         Menge,
@@ -2045,7 +2045,7 @@ namespace FestManager_Core.Data {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public override global::System.Data.DataTable Clone() {
-                BestellungArtikelDataTable cln = ((BestellungArtikelDataTable)(base.Clone()));
+                var cln = ((BestellungArtikelDataTable)(base.Clone()));
                 cln.InitVars();
                 return cln;
             }
@@ -2149,37 +2149,37 @@ namespace FestManager_Core.Data {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
-                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                FestManagerDataSet ds = new FestManagerDataSet();
-                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                var type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                var sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                var ds = new FestManagerDataSet();
+                var any1 = new global::System.Xml.Schema.XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
                 any1.MaxOccurs = decimal.MaxValue;
                 any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
                 sequence.Items.Add(any1);
-                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                var any2 = new global::System.Xml.Schema.XmlSchemaAny();
                 any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
                 any2.MinOccurs = new decimal(1);
                 any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
                 sequence.Items.Add(any2);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                var attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute1.Name = "namespace";
                 attribute1.FixedValue = ds.Namespace;
                 type.Attributes.Add(attribute1);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                var attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
                 attribute2.FixedValue = "BestellungArtikelDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
-                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                var dsSchema = ds.GetSchemaSerializable();
                 if (xs.Contains(dsSchema.TargetNamespace)) {
-                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
-                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    var s1 = new global::System.IO.MemoryStream();
+                    var s2 = new global::System.IO.MemoryStream();
                     try {
                         global::System.Xml.Schema.XmlSchema schema = null;
                         dsSchema.Write(s1);
-                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                        for (var schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
                             schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
                             s2.SetLength(0);
                             schema.Write(s2);
@@ -2398,8 +2398,8 @@ namespace FestManager_Core.Data {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public KassenbonRow AddKassenbonRow(int BestellungId, System.DateTime Zeitpunkt, int ArtikelId, int Menge, string Artikel, int AusgabestelleId, string Ausgabestelle, decimal Einzelpreis, string Tisch, int PersonalNr, string Personal) {
-                KassenbonRow rowKassenbonRow = ((KassenbonRow)(this.NewRow()));
-                object[] columnValuesArray = new object[] {
+                var rowKassenbonRow = ((KassenbonRow)(this.NewRow()));
+                var columnValuesArray = new object[] {
                         BestellungId,
                         Zeitpunkt,
                         ArtikelId,
@@ -2425,7 +2425,7 @@ namespace FestManager_Core.Data {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public override global::System.Data.DataTable Clone() {
-                KassenbonDataTable cln = ((KassenbonDataTable)(base.Clone()));
+                var cln = ((KassenbonDataTable)(base.Clone()));
                 cln.InitVars();
                 return cln;
             }
@@ -2547,37 +2547,37 @@ namespace FestManager_Core.Data {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
-                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                FestManagerDataSet ds = new FestManagerDataSet();
-                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                var type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                var sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                var ds = new FestManagerDataSet();
+                var any1 = new global::System.Xml.Schema.XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
                 any1.MaxOccurs = decimal.MaxValue;
                 any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
                 sequence.Items.Add(any1);
-                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                var any2 = new global::System.Xml.Schema.XmlSchemaAny();
                 any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
                 any2.MinOccurs = new decimal(1);
                 any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
                 sequence.Items.Add(any2);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                var attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute1.Name = "namespace";
                 attribute1.FixedValue = ds.Namespace;
                 type.Attributes.Add(attribute1);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                var attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
                 attribute2.FixedValue = "KassenbonDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
-                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                var dsSchema = ds.GetSchemaSerializable();
                 if (xs.Contains(dsSchema.TargetNamespace)) {
-                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
-                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    var s1 = new global::System.IO.MemoryStream();
+                    var s2 = new global::System.IO.MemoryStream();
                     try {
                         global::System.Xml.Schema.XmlSchema schema = null;
                         dsSchema.Write(s1);
-                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                        for (var schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
                             schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
                             s2.SetLength(0);
                             schema.Write(s2);
@@ -2746,8 +2746,8 @@ namespace FestManager_Core.Data {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public PersonalRow AddPersonalRow(int PersonalNr, string Nachname, string Vorname, string TelefonNr, string Aktiv) {
-                PersonalRow rowPersonalRow = ((PersonalRow)(this.NewRow()));
-                object[] columnValuesArray = new object[] {
+                var rowPersonalRow = ((PersonalRow)(this.NewRow()));
+                var columnValuesArray = new object[] {
                         null,
                         PersonalNr,
                         Nachname,
@@ -2775,7 +2775,7 @@ namespace FestManager_Core.Data {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public override global::System.Data.DataTable Clone() {
-                PersonalDataTable cln = ((PersonalDataTable)(base.Clone()));
+                var cln = ((PersonalDataTable)(base.Clone()));
                 cln.InitVars();
                 return cln;
             }
@@ -2886,37 +2886,37 @@ namespace FestManager_Core.Data {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
-                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                FestManagerDataSet ds = new FestManagerDataSet();
-                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                var type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                var sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                var ds = new FestManagerDataSet();
+                var any1 = new global::System.Xml.Schema.XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
                 any1.MaxOccurs = decimal.MaxValue;
                 any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
                 sequence.Items.Add(any1);
-                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                var any2 = new global::System.Xml.Schema.XmlSchemaAny();
                 any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
                 any2.MinOccurs = new decimal(1);
                 any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
                 sequence.Items.Add(any2);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                var attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute1.Name = "namespace";
                 attribute1.FixedValue = ds.Namespace;
                 type.Attributes.Add(attribute1);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                var attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
                 attribute2.FixedValue = "PersonalDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
-                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                var dsSchema = ds.GetSchemaSerializable();
                 if (xs.Contains(dsSchema.TargetNamespace)) {
-                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
-                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    var s1 = new global::System.IO.MemoryStream();
+                    var s2 = new global::System.IO.MemoryStream();
                     try {
                         global::System.Xml.Schema.XmlSchema schema = null;
                         dsSchema.Write(s1);
-                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                        for (var schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
                             schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
                             s2.SetLength(0);
                             schema.Write(s2);
@@ -3045,8 +3045,8 @@ namespace FestManager_Core.Data {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public PrinterRow AddPrinterRow(string Printername) {
-                PrinterRow rowPrinterRow = ((PrinterRow)(this.NewRow()));
-                object[] columnValuesArray = new object[] {
+                var rowPrinterRow = ((PrinterRow)(this.NewRow()));
+                var columnValuesArray = new object[] {
                         null,
                         Printername};
                 rowPrinterRow.ItemArray = columnValuesArray;
@@ -3070,7 +3070,7 @@ namespace FestManager_Core.Data {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public override global::System.Data.DataTable Clone() {
-                PrinterDataTable cln = ((PrinterDataTable)(base.Clone()));
+                var cln = ((PrinterDataTable)(base.Clone()));
                 cln.InitVars();
                 return cln;
             }
@@ -3166,37 +3166,37 @@ namespace FestManager_Core.Data {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
-                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                FestManagerDataSet ds = new FestManagerDataSet();
-                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                var type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                var sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                var ds = new FestManagerDataSet();
+                var any1 = new global::System.Xml.Schema.XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
                 any1.MaxOccurs = decimal.MaxValue;
                 any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
                 sequence.Items.Add(any1);
-                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                var any2 = new global::System.Xml.Schema.XmlSchemaAny();
                 any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
                 any2.MinOccurs = new decimal(1);
                 any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
                 sequence.Items.Add(any2);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                var attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute1.Name = "namespace";
                 attribute1.FixedValue = ds.Namespace;
                 type.Attributes.Add(attribute1);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                var attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
                 attribute2.FixedValue = "PrinterDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
-                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                var dsSchema = ds.GetSchemaSerializable();
                 if (xs.Contains(dsSchema.TargetNamespace)) {
-                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
-                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    var s1 = new global::System.IO.MemoryStream();
+                    var s2 = new global::System.IO.MemoryStream();
                     try {
                         global::System.Xml.Schema.XmlSchema schema = null;
                         dsSchema.Write(s1);
-                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                        for (var schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
                             schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
                             s2.SetLength(0);
                             schema.Write(s2);
@@ -3315,8 +3315,8 @@ namespace FestManager_Core.Data {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public ArtikelVerkaufssumme_VRow AddArtikelVerkaufssumme_VRow() {
-                ArtikelVerkaufssumme_VRow rowArtikelVerkaufssumme_VRow = ((ArtikelVerkaufssumme_VRow)(this.NewRow()));
-                object[] columnValuesArray = new object[] {
+                var rowArtikelVerkaufssumme_VRow = ((ArtikelVerkaufssumme_VRow)(this.NewRow()));
+                var columnValuesArray = new object[] {
                         null};
                 rowArtikelVerkaufssumme_VRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowArtikelVerkaufssumme_VRow);
@@ -3339,7 +3339,7 @@ namespace FestManager_Core.Data {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public override global::System.Data.DataTable Clone() {
-                ArtikelVerkaufssumme_VDataTable cln = ((ArtikelVerkaufssumme_VDataTable)(base.Clone()));
+                var cln = ((ArtikelVerkaufssumme_VDataTable)(base.Clone()));
                 cln.InitVars();
                 return cln;
             }
@@ -3431,37 +3431,37 @@ namespace FestManager_Core.Data {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
-                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                FestManagerDataSet ds = new FestManagerDataSet();
-                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                var type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                var sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                var ds = new FestManagerDataSet();
+                var any1 = new global::System.Xml.Schema.XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
                 any1.MaxOccurs = decimal.MaxValue;
                 any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
                 sequence.Items.Add(any1);
-                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                var any2 = new global::System.Xml.Schema.XmlSchemaAny();
                 any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
                 any2.MinOccurs = new decimal(1);
                 any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
                 sequence.Items.Add(any2);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                var attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute1.Name = "namespace";
                 attribute1.FixedValue = ds.Namespace;
                 type.Attributes.Add(attribute1);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                var attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
                 attribute2.FixedValue = "ArtikelVerkaufssumme_VDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
-                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                var dsSchema = ds.GetSchemaSerializable();
                 if (xs.Contains(dsSchema.TargetNamespace)) {
-                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
-                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    var s1 = new global::System.IO.MemoryStream();
+                    var s2 = new global::System.IO.MemoryStream();
                     try {
                         global::System.Xml.Schema.XmlSchema schema = null;
                         dsSchema.Write(s1);
-                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                        for (var schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
                             schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
                             s2.SetLength(0);
                             schema.Write(s2);
@@ -3580,8 +3580,8 @@ namespace FestManager_Core.Data {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public BestellungArtikel_VRow AddBestellungArtikel_VRow(int BestellungId) {
-                BestellungArtikel_VRow rowBestellungArtikel_VRow = ((BestellungArtikel_VRow)(this.NewRow()));
-                object[] columnValuesArray = new object[] {
+                var rowBestellungArtikel_VRow = ((BestellungArtikel_VRow)(this.NewRow()));
+                var columnValuesArray = new object[] {
                         BestellungId};
                 rowBestellungArtikel_VRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowBestellungArtikel_VRow);
@@ -3604,7 +3604,7 @@ namespace FestManager_Core.Data {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public override global::System.Data.DataTable Clone() {
-                BestellungArtikel_VDataTable cln = ((BestellungArtikel_VDataTable)(base.Clone()));
+                var cln = ((BestellungArtikel_VDataTable)(base.Clone()));
                 cln.InitVars();
                 return cln;
             }
@@ -3695,37 +3695,37 @@ namespace FestManager_Core.Data {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
-                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                FestManagerDataSet ds = new FestManagerDataSet();
-                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                var type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                var sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                var ds = new FestManagerDataSet();
+                var any1 = new global::System.Xml.Schema.XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
                 any1.MaxOccurs = decimal.MaxValue;
                 any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
                 sequence.Items.Add(any1);
-                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                var any2 = new global::System.Xml.Schema.XmlSchemaAny();
                 any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
                 any2.MinOccurs = new decimal(1);
                 any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
                 sequence.Items.Add(any2);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                var attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute1.Name = "namespace";
                 attribute1.FixedValue = ds.Namespace;
                 type.Attributes.Add(attribute1);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                var attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
                 attribute2.FixedValue = "BestellungArtikel_VDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
-                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                var dsSchema = ds.GetSchemaSerializable();
                 if (xs.Contains(dsSchema.TargetNamespace)) {
-                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
-                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    var s1 = new global::System.IO.MemoryStream();
+                    var s2 = new global::System.IO.MemoryStream();
                     try {
                         global::System.Xml.Schema.XmlSchema schema = null;
                         dsSchema.Write(s1);
-                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                        for (var schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
                             schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
                             s2.SetLength(0);
                             schema.Write(s2);
@@ -3914,8 +3914,8 @@ namespace FestManager_Core.Data {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public PersonalBestellung_VRow AddPersonalBestellung_VRow(int PersonalNr, string Nachname, string Vorname, decimal Gesamtpreis, System.DateTime Zeitpunkt, int Menge, decimal Einzelpreis, decimal Kellnergroschen) {
-                PersonalBestellung_VRow rowPersonalBestellung_VRow = ((PersonalBestellung_VRow)(this.NewRow()));
-                object[] columnValuesArray = new object[] {
+                var rowPersonalBestellung_VRow = ((PersonalBestellung_VRow)(this.NewRow()));
+                var columnValuesArray = new object[] {
                         PersonalNr,
                         Nachname,
                         Vorname,
@@ -3938,7 +3938,7 @@ namespace FestManager_Core.Data {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public override global::System.Data.DataTable Clone() {
-                PersonalBestellung_VDataTable cln = ((PersonalBestellung_VDataTable)(base.Clone()));
+                var cln = ((PersonalBestellung_VDataTable)(base.Clone()));
                 cln.InitVars();
                 return cln;
             }
@@ -4050,37 +4050,37 @@ namespace FestManager_Core.Data {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
-                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                FestManagerDataSet ds = new FestManagerDataSet();
-                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                var type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                var sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                var ds = new FestManagerDataSet();
+                var any1 = new global::System.Xml.Schema.XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
                 any1.MaxOccurs = decimal.MaxValue;
                 any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
                 sequence.Items.Add(any1);
-                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                var any2 = new global::System.Xml.Schema.XmlSchemaAny();
                 any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
                 any2.MinOccurs = new decimal(1);
                 any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
                 sequence.Items.Add(any2);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                var attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute1.Name = "namespace";
                 attribute1.FixedValue = ds.Namespace;
                 type.Attributes.Add(attribute1);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                var attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
                 attribute2.FixedValue = "PersonalBestellung_VDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
-                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                var dsSchema = ds.GetSchemaSerializable();
                 if (xs.Contains(dsSchema.TargetNamespace)) {
-                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
-                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    var s1 = new global::System.IO.MemoryStream();
+                    var s2 = new global::System.IO.MemoryStream();
                     try {
                         global::System.Xml.Schema.XmlSchema schema = null;
                         dsSchema.Write(s1);
-                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                        for (var schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
                             schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
                             s2.SetLength(0);
                             schema.Write(s2);
@@ -4219,8 +4219,8 @@ namespace FestManager_Core.Data {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public Personal_VRow AddPersonal_VRow(string Personal, string Aktiv) {
-                Personal_VRow rowPersonal_VRow = ((Personal_VRow)(this.NewRow()));
-                object[] columnValuesArray = new object[] {
+                var rowPersonal_VRow = ((Personal_VRow)(this.NewRow()));
+                var columnValuesArray = new object[] {
                         null,
                         Personal,
                         Aktiv};
@@ -4245,7 +4245,7 @@ namespace FestManager_Core.Data {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public override global::System.Data.DataTable Clone() {
-                Personal_VDataTable cln = ((Personal_VDataTable)(base.Clone()));
+                var cln = ((Personal_VDataTable)(base.Clone()));
                 cln.InitVars();
                 return cln;
             }
@@ -4346,37 +4346,37 @@ namespace FestManager_Core.Data {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
-                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                FestManagerDataSet ds = new FestManagerDataSet();
-                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                var type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                var sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                var ds = new FestManagerDataSet();
+                var any1 = new global::System.Xml.Schema.XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
                 any1.MaxOccurs = decimal.MaxValue;
                 any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
                 sequence.Items.Add(any1);
-                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                var any2 = new global::System.Xml.Schema.XmlSchemaAny();
                 any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
                 any2.MinOccurs = new decimal(1);
                 any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
                 sequence.Items.Add(any2);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                var attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute1.Name = "namespace";
                 attribute1.FixedValue = ds.Namespace;
                 type.Attributes.Add(attribute1);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                var attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
                 attribute2.FixedValue = "Personal_VDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
-                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                var dsSchema = ds.GetSchemaSerializable();
                 if (xs.Contains(dsSchema.TargetNamespace)) {
-                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
-                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    var s1 = new global::System.IO.MemoryStream();
+                    var s2 = new global::System.IO.MemoryStream();
                     try {
                         global::System.Xml.Schema.XmlSchema schema = null;
                         dsSchema.Write(s1);
-                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                        for (var schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
                             schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
                             s2.SetLength(0);
                             schema.Write(s2);
@@ -4585,8 +4585,8 @@ namespace FestManager_Core.Data {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public BestellungenHistoryDetails_VRow AddBestellungenHistoryDetails_VRow(int PersonalNr, string Nachname, string Vorname, System.DateTime Zeitpunkt, string Bezeichnung, decimal Einzelpreis, int Menge, decimal BestellungArtikel_Gesamtpreis, decimal Bestellung_Gesamtpreis) {
-                BestellungenHistoryDetails_VRow rowBestellungenHistoryDetails_VRow = ((BestellungenHistoryDetails_VRow)(this.NewRow()));
-                object[] columnValuesArray = new object[] {
+                var rowBestellungenHistoryDetails_VRow = ((BestellungenHistoryDetails_VRow)(this.NewRow()));
+                var columnValuesArray = new object[] {
                         PersonalNr,
                         Nachname,
                         Vorname,
@@ -4611,7 +4611,7 @@ namespace FestManager_Core.Data {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public override global::System.Data.DataTable Clone() {
-                BestellungenHistoryDetails_VDataTable cln = ((BestellungenHistoryDetails_VDataTable)(base.Clone()));
+                var cln = ((BestellungenHistoryDetails_VDataTable)(base.Clone()));
                 cln.InitVars();
                 return cln;
             }
@@ -4733,37 +4733,37 @@ namespace FestManager_Core.Data {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
-                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                FestManagerDataSet ds = new FestManagerDataSet();
-                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                var type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                var sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                var ds = new FestManagerDataSet();
+                var any1 = new global::System.Xml.Schema.XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
                 any1.MaxOccurs = decimal.MaxValue;
                 any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
                 sequence.Items.Add(any1);
-                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                var any2 = new global::System.Xml.Schema.XmlSchemaAny();
                 any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
                 any2.MinOccurs = new decimal(1);
                 any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
                 sequence.Items.Add(any2);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                var attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute1.Name = "namespace";
                 attribute1.FixedValue = ds.Namespace;
                 type.Attributes.Add(attribute1);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                var attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
                 attribute2.FixedValue = "BestellungenHistoryDetails_VDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
-                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                var dsSchema = ds.GetSchemaSerializable();
                 if (xs.Contains(dsSchema.TargetNamespace)) {
-                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
-                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    var s1 = new global::System.IO.MemoryStream();
+                    var s2 = new global::System.IO.MemoryStream();
                     try {
                         global::System.Xml.Schema.XmlSchema schema = null;
                         dsSchema.Write(s1);
-                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                        for (var schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
                             schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
                             s2.SetLength(0);
                             schema.Write(s2);
@@ -4932,8 +4932,8 @@ namespace FestManager_Core.Data {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public BestellungenHistory_VRow AddBestellungenHistory_VRow(int PersonalNr, string Nachname, string Vorname, System.DateTime Zeitpunkt, decimal Gesamtpreis) {
-                BestellungenHistory_VRow rowBestellungenHistory_VRow = ((BestellungenHistory_VRow)(this.NewRow()));
-                object[] columnValuesArray = new object[] {
+                var rowBestellungenHistory_VRow = ((BestellungenHistory_VRow)(this.NewRow()));
+                var columnValuesArray = new object[] {
                         PersonalNr,
                         Nachname,
                         Vorname,
@@ -4954,7 +4954,7 @@ namespace FestManager_Core.Data {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public override global::System.Data.DataTable Clone() {
-                BestellungenHistory_VDataTable cln = ((BestellungenHistory_VDataTable)(base.Clone()));
+                var cln = ((BestellungenHistory_VDataTable)(base.Clone()));
                 cln.InitVars();
                 return cln;
             }
@@ -5061,37 +5061,37 @@ namespace FestManager_Core.Data {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
-                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                FestManagerDataSet ds = new FestManagerDataSet();
-                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                var type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                var sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                var ds = new FestManagerDataSet();
+                var any1 = new global::System.Xml.Schema.XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
                 any1.MaxOccurs = decimal.MaxValue;
                 any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
                 sequence.Items.Add(any1);
-                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                var any2 = new global::System.Xml.Schema.XmlSchemaAny();
                 any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
                 any2.MinOccurs = new decimal(1);
                 any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
                 sequence.Items.Add(any2);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                var attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute1.Name = "namespace";
                 attribute1.FixedValue = ds.Namespace;
                 type.Attributes.Add(attribute1);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                var attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
                 attribute2.FixedValue = "BestellungenHistory_VDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
-                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                var dsSchema = ds.GetSchemaSerializable();
                 if (xs.Contains(dsSchema.TargetNamespace)) {
-                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
-                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    var s1 = new global::System.IO.MemoryStream();
+                    var s2 = new global::System.IO.MemoryStream();
                     try {
                         global::System.Xml.Schema.XmlSchema schema = null;
                         dsSchema.Write(s1);
-                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                        for (var schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
                             schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
                             s2.SetLength(0);
                             schema.Write(s2);
@@ -5270,8 +5270,8 @@ namespace FestManager_Core.Data {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public KellnerabrechnungNachTagenOffenRow AddKellnerabrechnungNachTagenOffenRow(string Tag, string Nachname, string Vorname, decimal SummevonSumme, decimal SummevonKellnergroschen, int AnzahlBestellungen, double AnzahlArtikel) {
-                KellnerabrechnungNachTagenOffenRow rowKellnerabrechnungNachTagenOffenRow = ((KellnerabrechnungNachTagenOffenRow)(this.NewRow()));
-                object[] columnValuesArray = new object[] {
+                var rowKellnerabrechnungNachTagenOffenRow = ((KellnerabrechnungNachTagenOffenRow)(this.NewRow()));
+                var columnValuesArray = new object[] {
                         Tag,
                         Nachname,
                         Vorname,
@@ -5293,7 +5293,7 @@ namespace FestManager_Core.Data {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public override global::System.Data.DataTable Clone() {
-                KellnerabrechnungNachTagenOffenDataTable cln = ((KellnerabrechnungNachTagenOffenDataTable)(base.Clone()));
+                var cln = ((KellnerabrechnungNachTagenOffenDataTable)(base.Clone()));
                 cln.InitVars();
                 return cln;
             }
@@ -5401,37 +5401,37 @@ namespace FestManager_Core.Data {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
-                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                FestManagerDataSet ds = new FestManagerDataSet();
-                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                var type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                var sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                var ds = new FestManagerDataSet();
+                var any1 = new global::System.Xml.Schema.XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
                 any1.MaxOccurs = decimal.MaxValue;
                 any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
                 sequence.Items.Add(any1);
-                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                var any2 = new global::System.Xml.Schema.XmlSchemaAny();
                 any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
                 any2.MinOccurs = new decimal(1);
                 any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
                 sequence.Items.Add(any2);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                var attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute1.Name = "namespace";
                 attribute1.FixedValue = ds.Namespace;
                 type.Attributes.Add(attribute1);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                var attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
                 attribute2.FixedValue = "KellnerabrechnungNachTagenOffenDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
-                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                var dsSchema = ds.GetSchemaSerializable();
                 if (xs.Contains(dsSchema.TargetNamespace)) {
-                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
-                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    var s1 = new global::System.IO.MemoryStream();
+                    var s2 = new global::System.IO.MemoryStream();
                     try {
                         global::System.Xml.Schema.XmlSchema schema = null;
                         dsSchema.Write(s1);
-                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                        for (var schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
                             schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
                             s2.SetLength(0);
                             schema.Write(s2);
@@ -5620,8 +5620,8 @@ namespace FestManager_Core.Data {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public PersonalArtikelRow AddPersonalArtikelRow(int Menge, decimal Gesamtpreis, string Bezeichnung, decimal Einzelpreis, System.DateTime Zeitpunkt) {
-                PersonalArtikelRow rowPersonalArtikelRow = ((PersonalArtikelRow)(this.NewRow()));
-                object[] columnValuesArray = new object[] {
+                var rowPersonalArtikelRow = ((PersonalArtikelRow)(this.NewRow()));
+                var columnValuesArray = new object[] {
                         Menge,
                         Gesamtpreis,
                         null,
@@ -5644,7 +5644,7 @@ namespace FestManager_Core.Data {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public override global::System.Data.DataTable Clone() {
-                PersonalArtikelDataTable cln = ((PersonalArtikelDataTable)(base.Clone()));
+                var cln = ((PersonalArtikelDataTable)(base.Clone()));
                 cln.InitVars();
                 return cln;
             }
@@ -5762,37 +5762,37 @@ namespace FestManager_Core.Data {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
-                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                FestManagerDataSet ds = new FestManagerDataSet();
-                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                var type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                var sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                var ds = new FestManagerDataSet();
+                var any1 = new global::System.Xml.Schema.XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
                 any1.MaxOccurs = decimal.MaxValue;
                 any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
                 sequence.Items.Add(any1);
-                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                var any2 = new global::System.Xml.Schema.XmlSchemaAny();
                 any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
                 any2.MinOccurs = new decimal(1);
                 any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
                 sequence.Items.Add(any2);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                var attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute1.Name = "namespace";
                 attribute1.FixedValue = ds.Namespace;
                 type.Attributes.Add(attribute1);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                var attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
                 attribute2.FixedValue = "PersonalArtikelDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
-                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                var dsSchema = ds.GetSchemaSerializable();
                 if (xs.Contains(dsSchema.TargetNamespace)) {
-                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
-                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    var s1 = new global::System.IO.MemoryStream();
+                    var s2 = new global::System.IO.MemoryStream();
                     try {
                         global::System.Xml.Schema.XmlSchema schema = null;
                         dsSchema.Write(s1);
-                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                        for (var schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
                             schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
                             s2.SetLength(0);
                             schema.Write(s2);
@@ -5971,8 +5971,8 @@ namespace FestManager_Core.Data {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public KellnerabrechnungNachTagenAbgeschlossenRow AddKellnerabrechnungNachTagenAbgeschlossenRow(string Tag, string Nachname, string Vorname, decimal SummevonSumme, decimal SummevonKellnergroschen, int AnzahlBestellungen, double AnzahlArtikel) {
-                KellnerabrechnungNachTagenAbgeschlossenRow rowKellnerabrechnungNachTagenAbgeschlossenRow = ((KellnerabrechnungNachTagenAbgeschlossenRow)(this.NewRow()));
-                object[] columnValuesArray = new object[] {
+                var rowKellnerabrechnungNachTagenAbgeschlossenRow = ((KellnerabrechnungNachTagenAbgeschlossenRow)(this.NewRow()));
+                var columnValuesArray = new object[] {
                         Tag,
                         Nachname,
                         Vorname,
@@ -5994,7 +5994,7 @@ namespace FestManager_Core.Data {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public override global::System.Data.DataTable Clone() {
-                KellnerabrechnungNachTagenAbgeschlossenDataTable cln = ((KellnerabrechnungNachTagenAbgeschlossenDataTable)(base.Clone()));
+                var cln = ((KellnerabrechnungNachTagenAbgeschlossenDataTable)(base.Clone()));
                 cln.InitVars();
                 return cln;
             }
@@ -6102,37 +6102,37 @@ namespace FestManager_Core.Data {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
-                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                FestManagerDataSet ds = new FestManagerDataSet();
-                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                var type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                var sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                var ds = new FestManagerDataSet();
+                var any1 = new global::System.Xml.Schema.XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
                 any1.MaxOccurs = decimal.MaxValue;
                 any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
                 sequence.Items.Add(any1);
-                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                var any2 = new global::System.Xml.Schema.XmlSchemaAny();
                 any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
                 any2.MinOccurs = new decimal(1);
                 any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
                 sequence.Items.Add(any2);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                var attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute1.Name = "namespace";
                 attribute1.FixedValue = ds.Namespace;
                 type.Attributes.Add(attribute1);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                var attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
                 attribute2.FixedValue = "KellnerabrechnungNachTagenAbgeschlossenDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
-                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                var dsSchema = ds.GetSchemaSerializable();
                 if (xs.Contains(dsSchema.TargetNamespace)) {
-                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
-                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    var s1 = new global::System.IO.MemoryStream();
+                    var s2 = new global::System.IO.MemoryStream();
                     try {
                         global::System.Xml.Schema.XmlSchema schema = null;
                         dsSchema.Write(s1);
-                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                        for (var schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
                             schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
                             s2.SetLength(0);
                             schema.Write(s2);
@@ -6168,7 +6168,7 @@ namespace FestManager_Core.Data {
         ///</summary>
         [global::System.Serializable()]
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class Kellnerabrechnung_OffenDataTable : global::System.Data.DataTable, global::System.Collections.IEnumerable {
+        public partial class KellnerabrechnungOffenDataTable : global::System.Data.DataTable, global::System.Collections.IEnumerable {
             
             private global::System.Data.DataColumn columnNachname;
             
@@ -6178,7 +6178,7 @@ namespace FestManager_Core.Data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public Kellnerabrechnung_OffenDataTable() {
+            public KellnerabrechnungOffenDataTable() {
                 this.TableName = "Kellnerabrechnung_Offen";
                 this.BeginInit();
                 this.InitClass();
@@ -6187,7 +6187,7 @@ namespace FestManager_Core.Data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal Kellnerabrechnung_OffenDataTable(global::System.Data.DataTable table) {
+            internal KellnerabrechnungOffenDataTable(global::System.Data.DataTable table) {
                 this.TableName = table.TableName;
                 if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
                     this.CaseSensitive = table.CaseSensitive;
@@ -6204,7 +6204,7 @@ namespace FestManager_Core.Data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected Kellnerabrechnung_OffenDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+            protected KellnerabrechnungOffenDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                     base(info, context) {
                 this.InitVars();
             }
@@ -6271,8 +6271,8 @@ namespace FestManager_Core.Data {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public Kellnerabrechnung_OffenRow AddKellnerabrechnung_OffenRow(string Nachname, string Vorname, int PersonalNr) {
-                Kellnerabrechnung_OffenRow rowKellnerabrechnung_OffenRow = ((Kellnerabrechnung_OffenRow)(this.NewRow()));
-                object[] columnValuesArray = new object[] {
+                var rowKellnerabrechnung_OffenRow = ((Kellnerabrechnung_OffenRow)(this.NewRow()));
+                var columnValuesArray = new object[] {
                         Nachname,
                         Vorname,
                         PersonalNr};
@@ -6290,7 +6290,7 @@ namespace FestManager_Core.Data {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public override global::System.Data.DataTable Clone() {
-                Kellnerabrechnung_OffenDataTable cln = ((Kellnerabrechnung_OffenDataTable)(base.Clone()));
+                var cln = ((KellnerabrechnungOffenDataTable)(base.Clone()));
                 cln.InitVars();
                 return cln;
             }
@@ -6298,7 +6298,7 @@ namespace FestManager_Core.Data {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override global::System.Data.DataTable CreateInstance() {
-                return new Kellnerabrechnung_OffenDataTable();
+                return new KellnerabrechnungOffenDataTable();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -6385,37 +6385,37 @@ namespace FestManager_Core.Data {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
-                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                FestManagerDataSet ds = new FestManagerDataSet();
-                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                var type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                var sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                var ds = new FestManagerDataSet();
+                var any1 = new global::System.Xml.Schema.XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
                 any1.MaxOccurs = decimal.MaxValue;
                 any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
                 sequence.Items.Add(any1);
-                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                var any2 = new global::System.Xml.Schema.XmlSchemaAny();
                 any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
                 any2.MinOccurs = new decimal(1);
                 any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
                 sequence.Items.Add(any2);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                var attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute1.Name = "namespace";
                 attribute1.FixedValue = ds.Namespace;
                 type.Attributes.Add(attribute1);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                var attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
                 attribute2.FixedValue = "Kellnerabrechnung_OffenDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
-                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                var dsSchema = ds.GetSchemaSerializable();
                 if (xs.Contains(dsSchema.TargetNamespace)) {
-                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
-                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    var s1 = new global::System.IO.MemoryStream();
+                    var s2 = new global::System.IO.MemoryStream();
                     try {
                         global::System.Xml.Schema.XmlSchema schema = null;
                         dsSchema.Write(s1);
-                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                        for (var schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
                             schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
                             s2.SetLength(0);
                             schema.Write(s2);
@@ -9255,13 +9255,13 @@ namespace FestManager_Core.Data {
         ///</summary>
         public partial class Kellnerabrechnung_OffenRow : global::System.Data.DataRow {
             
-            private Kellnerabrechnung_OffenDataTable tableKellnerabrechnung_Offen;
+            private KellnerabrechnungOffenDataTable tableKellnerabrechnung_Offen;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             internal Kellnerabrechnung_OffenRow(global::System.Data.DataRowBuilder rb) : 
                     base(rb) {
-                this.tableKellnerabrechnung_Offen = ((Kellnerabrechnung_OffenDataTable)(this.Table));
+                this.tableKellnerabrechnung_Offen = ((KellnerabrechnungOffenDataTable)(this.Table));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -9987,7 +9987,7 @@ namespace FestManager_Core.Data.FestManagerDataSetTableAdapters {
                 if ((this.Adapter.UpdateCommand != null)) {
                     this.Adapter.UpdateCommand.Connection = value;
                 }
-                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                for (var i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
                     if ((this.CommandCollection[i] != null)) {
                         ((global::System.Data.OleDb.OleDbCommand)(this.CommandCollection[i])).Connection = value;
                     }
@@ -10021,7 +10021,7 @@ namespace FestManager_Core.Data.FestManagerDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitAdapter() {
             this._adapter = new global::System.Data.OleDb.OleDbDataAdapter();
-            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
+            var tableMapping = new global::System.Data.Common.DataTableMapping();
             tableMapping.SourceTable = "Table";
             tableMapping.DataSetTable = "Artikel";
             tableMapping.ColumnMappings.Add("ArtikelId", "ArtikelId");
@@ -10187,7 +10187,7 @@ SELECT ArtikelId, Bezeichnung, Einzelpreis, Gueltig, AusgabestelleId FROM Artike
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
             }
-            int returnValue = this.Adapter.Fill(dataTable);
+            var returnValue = this.Adapter.Fill(dataTable);
             return returnValue;
         }
         
@@ -10197,7 +10197,7 @@ SELECT ArtikelId, Bezeichnung, Einzelpreis, Gueltig, AusgabestelleId FROM Artike
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
         public virtual FestManagerDataSet.ArtikelDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            FestManagerDataSet.ArtikelDataTable dataTable = new FestManagerDataSet.ArtikelDataTable();
+            var dataTable = new FestManagerDataSet.ArtikelDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
@@ -10211,7 +10211,7 @@ SELECT ArtikelId, Bezeichnung, Einzelpreis, Gueltig, AusgabestelleId FROM Artike
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
             }
-            int returnValue = this.Adapter.Fill(dataTable);
+            var returnValue = this.Adapter.Fill(dataTable);
             return returnValue;
         }
         
@@ -10221,7 +10221,7 @@ SELECT ArtikelId, Bezeichnung, Einzelpreis, Gueltig, AusgabestelleId FROM Artike
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
         public virtual FestManagerDataSet.ArtikelDataTable GetGueltige() {
             this.Adapter.SelectCommand = this.CommandCollection[2];
-            FestManagerDataSet.ArtikelDataTable dataTable = new FestManagerDataSet.ArtikelDataTable();
+            var dataTable = new FestManagerDataSet.ArtikelDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
@@ -10309,13 +10309,13 @@ SELECT ArtikelId, Bezeichnung, Einzelpreis, Gueltig, AusgabestelleId FROM Artike
                 this.Adapter.DeleteCommand.Parameters[11].Value = ((object)(1));
                 this.Adapter.DeleteCommand.Parameters[12].Value = global::System.DBNull.Value;
             }
-            global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
+            var previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
                 this.Adapter.DeleteCommand.Connection.Open();
             }
             try {
-                int returnValue = this.Adapter.DeleteCommand.ExecuteNonQuery();
+                var returnValue = this.Adapter.DeleteCommand.ExecuteNonQuery();
                 return returnValue;
             }
             finally {
@@ -10366,13 +10366,13 @@ SELECT ArtikelId, Bezeichnung, Einzelpreis, Gueltig, AusgabestelleId FROM Artike
             else {
                 this.Adapter.InsertCommand.Parameters[5].Value = global::System.DBNull.Value;
             }
-            global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
+            var previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
                 this.Adapter.InsertCommand.Connection.Open();
             }
             try {
-                int returnValue = this.Adapter.InsertCommand.ExecuteNonQuery();
+                var returnValue = this.Adapter.InsertCommand.ExecuteNonQuery();
                 return returnValue;
             }
             finally {
@@ -10472,13 +10472,13 @@ SELECT ArtikelId, Bezeichnung, Einzelpreis, Gueltig, AusgabestelleId FROM Artike
                 this.Adapter.UpdateCommand.Parameters[17].Value = ((object)(1));
                 this.Adapter.UpdateCommand.Parameters[18].Value = global::System.DBNull.Value;
             }
-            global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
+            var previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
                 this.Adapter.UpdateCommand.Connection.Open();
             }
             try {
-                int returnValue = this.Adapter.UpdateCommand.ExecuteNonQuery();
+                var returnValue = this.Adapter.UpdateCommand.ExecuteNonQuery();
                 return returnValue;
             }
             finally {
@@ -10493,7 +10493,7 @@ SELECT ArtikelId, Bezeichnung, Einzelpreis, Gueltig, AusgabestelleId FROM Artike
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, false)]
         public virtual int DeleteQuery(int Original_ArtikelId, global::System.Nullable<int> IsNull_Bezeichnung, string Original_Bezeichnung, global::System.Nullable<int> IsNull_Einzelpreis, global::System.Nullable<decimal> Original_Einzelpreis, global::System.Nullable<int> IsNull_Gueltig, string Original_Gueltig, global::System.Nullable<int> IsNull_AusgabestelleId, global::System.Nullable<int> Original_AusgabestelleId, global::System.Nullable<int> IsNull_ShortCutNr, global::System.Nullable<int> Original_ShortCutNr, global::System.Nullable<int> IsNull_Kellnergroschen, global::System.Nullable<decimal> Original_Kellnergroschen) {
-            global::System.Data.OleDb.OleDbCommand command = this.CommandCollection[1];
+            var command = this.CommandCollection[1];
             command.Parameters[0].Value = ((int)(Original_ArtikelId));
             if ((IsNull_Bezeichnung.HasValue == true)) {
                 command.Parameters[1].Value = ((int)(IsNull_Bezeichnung.Value));
@@ -10567,7 +10567,7 @@ SELECT ArtikelId, Bezeichnung, Einzelpreis, Gueltig, AusgabestelleId FROM Artike
             else {
                 command.Parameters[12].Value = global::System.DBNull.Value;
             }
-            global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
+            var previousConnectionState = command.Connection.State;
             if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
                 command.Connection.Open();
@@ -10588,14 +10588,14 @@ SELECT ArtikelId, Bezeichnung, Einzelpreis, Gueltig, AusgabestelleId FROM Artike
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         public virtual global::System.Nullable<int> GetArtikelIdByShortCut(global::System.Nullable<int> ShortCutNr) {
-            global::System.Data.OleDb.OleDbCommand command = this.CommandCollection[3];
+            var command = this.CommandCollection[3];
             if ((ShortCutNr.HasValue == true)) {
                 command.Parameters[0].Value = ((int)(ShortCutNr.Value));
             }
             else {
                 command.Parameters[0].Value = global::System.DBNull.Value;
             }
-            global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
+            var previousConnectionState = command.Connection.State;
             if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
                 command.Connection.Open();
@@ -10622,14 +10622,14 @@ SELECT ArtikelId, Bezeichnung, Einzelpreis, Gueltig, AusgabestelleId FROM Artike
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         public virtual string GetBezeichnungByShortCut(global::System.Nullable<int> ShortCutNr) {
-            global::System.Data.OleDb.OleDbCommand command = this.CommandCollection[4];
+            var command = this.CommandCollection[4];
             if ((ShortCutNr.HasValue == true)) {
                 command.Parameters[0].Value = ((int)(ShortCutNr.Value));
             }
             else {
                 command.Parameters[0].Value = global::System.DBNull.Value;
             }
-            global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
+            var previousConnectionState = command.Connection.State;
             if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
                 command.Connection.Open();
@@ -10656,14 +10656,14 @@ SELECT ArtikelId, Bezeichnung, Einzelpreis, Gueltig, AusgabestelleId FROM Artike
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         public virtual global::System.Nullable<decimal> GetEinzelpreisByShortCut(global::System.Nullable<int> ShortCutNr) {
-            global::System.Data.OleDb.OleDbCommand command = this.CommandCollection[5];
+            var command = this.CommandCollection[5];
             if ((ShortCutNr.HasValue == true)) {
                 command.Parameters[0].Value = ((int)(ShortCutNr.Value));
             }
             else {
                 command.Parameters[0].Value = global::System.DBNull.Value;
             }
-            global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
+            var previousConnectionState = command.Connection.State;
             if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
                 command.Connection.Open();
@@ -10690,14 +10690,14 @@ SELECT ArtikelId, Bezeichnung, Einzelpreis, Gueltig, AusgabestelleId FROM Artike
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         public virtual global::System.Nullable<int> GetGueltigArtikelIdByShortCut(global::System.Nullable<int> ShortCutNr) {
-            global::System.Data.OleDb.OleDbCommand command = this.CommandCollection[6];
+            var command = this.CommandCollection[6];
             if ((ShortCutNr.HasValue == true)) {
                 command.Parameters[0].Value = ((int)(ShortCutNr.Value));
             }
             else {
                 command.Parameters[0].Value = global::System.DBNull.Value;
             }
-            global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
+            var previousConnectionState = command.Connection.State;
             if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
                 command.Connection.Open();
@@ -10725,7 +10725,7 @@ SELECT ArtikelId, Bezeichnung, Einzelpreis, Gueltig, AusgabestelleId FROM Artike
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, false)]
         public virtual int InsertQuery(string Bezeichnung, global::System.Nullable<decimal> Einzelpreis, string Gueltig, global::System.Nullable<int> AusgabestelleId, global::System.Nullable<int> ShortCutNr, global::System.Nullable<decimal> Kellnergroschen) {
-            global::System.Data.OleDb.OleDbCommand command = this.CommandCollection[7];
+            var command = this.CommandCollection[7];
             if ((Bezeichnung == null)) {
                 command.Parameters[0].Value = global::System.DBNull.Value;
             }
@@ -10762,7 +10762,7 @@ SELECT ArtikelId, Bezeichnung, Einzelpreis, Gueltig, AusgabestelleId FROM Artike
             else {
                 command.Parameters[5].Value = global::System.DBNull.Value;
             }
-            global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
+            var previousConnectionState = command.Connection.State;
             if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
                 command.Connection.Open();
@@ -10803,7 +10803,7 @@ SELECT ArtikelId, Bezeichnung, Einzelpreis, Gueltig, AusgabestelleId FROM Artike
                     global::System.Nullable<int> Original_ShortCutNr, 
                     global::System.Nullable<int> IsNull_Kellnergroschen, 
                     global::System.Nullable<decimal> Original_Kellnergroschen) {
-            global::System.Data.OleDb.OleDbCommand command = this.CommandCollection[8];
+            var command = this.CommandCollection[8];
             if ((Bezeichnung == null)) {
                 command.Parameters[0].Value = global::System.DBNull.Value;
             }
@@ -10913,7 +10913,7 @@ SELECT ArtikelId, Bezeichnung, Einzelpreis, Gueltig, AusgabestelleId FROM Artike
             else {
                 command.Parameters[18].Value = global::System.DBNull.Value;
             }
-            global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
+            var previousConnectionState = command.Connection.State;
             if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
                 command.Connection.Open();
@@ -10987,7 +10987,7 @@ SELECT ArtikelId, Bezeichnung, Einzelpreis, Gueltig, AusgabestelleId FROM Artike
                 if ((this.Adapter.UpdateCommand != null)) {
                     this.Adapter.UpdateCommand.Connection = value;
                 }
-                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                for (var i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
                     if ((this.CommandCollection[i] != null)) {
                         ((global::System.Data.OleDb.OleDbCommand)(this.CommandCollection[i])).Connection = value;
                     }
@@ -11021,7 +11021,7 @@ SELECT ArtikelId, Bezeichnung, Einzelpreis, Gueltig, AusgabestelleId FROM Artike
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitAdapter() {
             this._adapter = new global::System.Data.OleDb.OleDbDataAdapter();
-            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
+            var tableMapping = new global::System.Data.Common.DataTableMapping();
             tableMapping.SourceTable = "Table";
             tableMapping.DataSetTable = "Ausgabestelle";
             tableMapping.ColumnMappings.Add("AusgabestelleId", "AusgabestelleId");
@@ -11134,7 +11134,7 @@ SELECT AusgabestelleId, Kuerzel, Bezeichnung FROM Ausgabestelle WHERE (Ausgabest
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
             }
-            int returnValue = this.Adapter.Fill(dataTable);
+            var returnValue = this.Adapter.Fill(dataTable);
             return returnValue;
         }
         
@@ -11144,7 +11144,7 @@ SELECT AusgabestelleId, Kuerzel, Bezeichnung FROM Ausgabestelle WHERE (Ausgabest
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
         public virtual FestManagerDataSet.AusgabestelleDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            FestManagerDataSet.AusgabestelleDataTable dataTable = new FestManagerDataSet.AusgabestelleDataTable();
+            var dataTable = new FestManagerDataSet.AusgabestelleDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
@@ -11158,7 +11158,7 @@ SELECT AusgabestelleId, Kuerzel, Bezeichnung FROM Ausgabestelle WHERE (Ausgabest
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
             }
-            int returnValue = this.Adapter.Fill(dataTable);
+            var returnValue = this.Adapter.Fill(dataTable);
             return returnValue;
         }
         
@@ -11168,7 +11168,7 @@ SELECT AusgabestelleId, Kuerzel, Bezeichnung FROM Ausgabestelle WHERE (Ausgabest
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
         public virtual FestManagerDataSet.AusgabestelleDataTable GetKassaData() {
             this.Adapter.SelectCommand = this.CommandCollection[2];
-            FestManagerDataSet.AusgabestelleDataTable dataTable = new FestManagerDataSet.AusgabestelleDataTable();
+            var dataTable = new FestManagerDataSet.AusgabestelleDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
@@ -11232,13 +11232,13 @@ SELECT AusgabestelleId, Kuerzel, Bezeichnung FROM Ausgabestelle WHERE (Ausgabest
                 this.Adapter.DeleteCommand.Parameters[5].Value = ((object)(0));
                 this.Adapter.DeleteCommand.Parameters[6].Value = ((string)(Original_Drucker));
             }
-            global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
+            var previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
                 this.Adapter.DeleteCommand.Connection.Open();
             }
             try {
-                int returnValue = this.Adapter.DeleteCommand.ExecuteNonQuery();
+                var returnValue = this.Adapter.DeleteCommand.ExecuteNonQuery();
                 return returnValue;
             }
             finally {
@@ -11271,13 +11271,13 @@ SELECT AusgabestelleId, Kuerzel, Bezeichnung FROM Ausgabestelle WHERE (Ausgabest
             else {
                 this.Adapter.InsertCommand.Parameters[2].Value = ((string)(Drucker));
             }
-            global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
+            var previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
                 this.Adapter.InsertCommand.Connection.Open();
             }
             try {
-                int returnValue = this.Adapter.InsertCommand.ExecuteNonQuery();
+                var returnValue = this.Adapter.InsertCommand.ExecuteNonQuery();
                 return returnValue;
             }
             finally {
@@ -11335,13 +11335,13 @@ SELECT AusgabestelleId, Kuerzel, Bezeichnung FROM Ausgabestelle WHERE (Ausgabest
                 this.Adapter.UpdateCommand.Parameters[8].Value = ((object)(0));
                 this.Adapter.UpdateCommand.Parameters[9].Value = ((string)(Original_Drucker));
             }
-            global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
+            var previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
                 this.Adapter.UpdateCommand.Connection.Open();
             }
             try {
-                int returnValue = this.Adapter.UpdateCommand.ExecuteNonQuery();
+                var returnValue = this.Adapter.UpdateCommand.ExecuteNonQuery();
                 return returnValue;
             }
             finally {
@@ -11356,7 +11356,7 @@ SELECT AusgabestelleId, Kuerzel, Bezeichnung FROM Ausgabestelle WHERE (Ausgabest
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, false)]
         public virtual int DeleteQuery(int Original_AusgabestelleId, global::System.Nullable<int> IsNull_Kuerzel, string Original_Kuerzel, global::System.Nullable<int> IsNull_Bezeichnung, string Original_Bezeichnung, global::System.Nullable<int> IsNull_Drucker, string Original_Drucker) {
-            global::System.Data.OleDb.OleDbCommand command = this.CommandCollection[1];
+            var command = this.CommandCollection[1];
             command.Parameters[0].Value = ((int)(Original_AusgabestelleId));
             if ((IsNull_Kuerzel.HasValue == true)) {
                 command.Parameters[1].Value = ((int)(IsNull_Kuerzel.Value));
@@ -11394,7 +11394,7 @@ SELECT AusgabestelleId, Kuerzel, Bezeichnung FROM Ausgabestelle WHERE (Ausgabest
             else {
                 command.Parameters[6].Value = ((string)(Original_Drucker));
             }
-            global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
+            var previousConnectionState = command.Connection.State;
             if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
                 command.Connection.Open();
@@ -11416,7 +11416,7 @@ SELECT AusgabestelleId, Kuerzel, Bezeichnung FROM Ausgabestelle WHERE (Ausgabest
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, false)]
         public virtual int InsertQuery(string Kuerzel, string Bezeichnung, string Drucker) {
-            global::System.Data.OleDb.OleDbCommand command = this.CommandCollection[3];
+            var command = this.CommandCollection[3];
             if ((Kuerzel == null)) {
                 command.Parameters[0].Value = global::System.DBNull.Value;
             }
@@ -11435,7 +11435,7 @@ SELECT AusgabestelleId, Kuerzel, Bezeichnung FROM Ausgabestelle WHERE (Ausgabest
             else {
                 command.Parameters[2].Value = ((string)(Drucker));
             }
-            global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
+            var previousConnectionState = command.Connection.State;
             if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
                 command.Connection.Open();
@@ -11457,7 +11457,7 @@ SELECT AusgabestelleId, Kuerzel, Bezeichnung FROM Ausgabestelle WHERE (Ausgabest
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, false)]
         public virtual int UpdateQuery(string Kuerzel, string Bezeichnung, string Drucker, int Original_AusgabestelleId, global::System.Nullable<int> IsNull_Kuerzel, string Original_Kuerzel, global::System.Nullable<int> IsNull_Bezeichnung, string Original_Bezeichnung, global::System.Nullable<int> IsNull_Drucker, string Original_Drucker) {
-            global::System.Data.OleDb.OleDbCommand command = this.CommandCollection[4];
+            var command = this.CommandCollection[4];
             if ((Kuerzel == null)) {
                 command.Parameters[0].Value = global::System.DBNull.Value;
             }
@@ -11513,7 +11513,7 @@ SELECT AusgabestelleId, Kuerzel, Bezeichnung FROM Ausgabestelle WHERE (Ausgabest
             else {
                 command.Parameters[9].Value = ((string)(Original_Drucker));
             }
-            global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
+            var previousConnectionState = command.Connection.State;
             if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
                 command.Connection.Open();
@@ -11587,7 +11587,7 @@ SELECT AusgabestelleId, Kuerzel, Bezeichnung FROM Ausgabestelle WHERE (Ausgabest
                 if ((this.Adapter.UpdateCommand != null)) {
                     this.Adapter.UpdateCommand.Connection = value;
                 }
-                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                for (var i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
                     if ((this.CommandCollection[i] != null)) {
                         ((global::System.Data.OleDb.OleDbCommand)(this.CommandCollection[i])).Connection = value;
                     }
@@ -11621,7 +11621,7 @@ SELECT AusgabestelleId, Kuerzel, Bezeichnung FROM Ausgabestelle WHERE (Ausgabest
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitAdapter() {
             this._adapter = new global::System.Data.OleDb.OleDbDataAdapter();
-            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
+            var tableMapping = new global::System.Data.Common.DataTableMapping();
             tableMapping.SourceTable = "Table";
             tableMapping.DataSetTable = "Bestellung";
             tableMapping.ColumnMappings.Add("BestellungId", "BestellungId");
@@ -11760,7 +11760,7 @@ SELECT BestellungId, PersonalId, Zeitpunkt, Gesamtpreis, Storniert FROM Bestellu
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
             }
-            int returnValue = this.Adapter.Fill(dataTable);
+            var returnValue = this.Adapter.Fill(dataTable);
             return returnValue;
         }
         
@@ -11770,7 +11770,7 @@ SELECT BestellungId, PersonalId, Zeitpunkt, Gesamtpreis, Storniert FROM Bestellu
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
         public virtual FestManagerDataSet.BestellungDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            FestManagerDataSet.BestellungDataTable dataTable = new FestManagerDataSet.BestellungDataTable();
+            var dataTable = new FestManagerDataSet.BestellungDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
@@ -11858,13 +11858,13 @@ SELECT BestellungId, PersonalId, Zeitpunkt, Gesamtpreis, Storniert FROM Bestellu
                 this.Adapter.DeleteCommand.Parameters[11].Value = ((object)(0));
                 this.Adapter.DeleteCommand.Parameters[12].Value = ((string)(Original_Abgerechnet));
             }
-            global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
+            var previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
                 this.Adapter.DeleteCommand.Connection.Open();
             }
             try {
-                int returnValue = this.Adapter.DeleteCommand.ExecuteNonQuery();
+                var returnValue = this.Adapter.DeleteCommand.ExecuteNonQuery();
                 return returnValue;
             }
             finally {
@@ -11915,13 +11915,13 @@ SELECT BestellungId, PersonalId, Zeitpunkt, Gesamtpreis, Storniert FROM Bestellu
             else {
                 this.Adapter.InsertCommand.Parameters[5].Value = ((string)(Abgerechnet));
             }
-            global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
+            var previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
                 this.Adapter.InsertCommand.Connection.Open();
             }
             try {
-                int returnValue = this.Adapter.InsertCommand.ExecuteNonQuery();
+                var returnValue = this.Adapter.InsertCommand.ExecuteNonQuery();
                 return returnValue;
             }
             finally {
@@ -12021,13 +12021,13 @@ SELECT BestellungId, PersonalId, Zeitpunkt, Gesamtpreis, Storniert FROM Bestellu
                 this.Adapter.UpdateCommand.Parameters[17].Value = ((object)(0));
                 this.Adapter.UpdateCommand.Parameters[18].Value = ((string)(Original_Abgerechnet));
             }
-            global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
+            var previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
                 this.Adapter.UpdateCommand.Connection.Open();
             }
             try {
-                int returnValue = this.Adapter.UpdateCommand.ExecuteNonQuery();
+                var returnValue = this.Adapter.UpdateCommand.ExecuteNonQuery();
                 return returnValue;
             }
             finally {
@@ -12042,14 +12042,14 @@ SELECT BestellungId, PersonalId, Zeitpunkt, Gesamtpreis, Storniert FROM Bestellu
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, false)]
         public virtual int CloseBestellungenByPersonalId(global::System.Nullable<int> Original_PersonalId) {
-            global::System.Data.OleDb.OleDbCommand command = this.CommandCollection[1];
+            var command = this.CommandCollection[1];
             if ((Original_PersonalId.HasValue == true)) {
                 command.Parameters[0].Value = ((int)(Original_PersonalId.Value));
             }
             else {
                 command.Parameters[0].Value = global::System.DBNull.Value;
             }
-            global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
+            var previousConnectionState = command.Connection.State;
             if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
                 command.Connection.Open();
@@ -12071,7 +12071,7 @@ SELECT BestellungId, PersonalId, Zeitpunkt, Gesamtpreis, Storniert FROM Bestellu
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, false)]
         public virtual int DeleteQuery(int Original_BestellungId, global::System.Nullable<int> IsNull_PersonalId, global::System.Nullable<int> Original_PersonalId, global::System.Nullable<int> IsNull_Zeitpunkt, global::System.Nullable<global::System.DateTime> Original_Zeitpunkt, global::System.Nullable<int> IsNull_Gesamtpreis, global::System.Nullable<decimal> Original_Gesamtpreis, global::System.Nullable<int> IsNull_Storniert, string Original_Storniert) {
-            global::System.Data.OleDb.OleDbCommand command = this.CommandCollection[2];
+            var command = this.CommandCollection[2];
             command.Parameters[0].Value = ((int)(Original_BestellungId));
             if ((IsNull_PersonalId.HasValue == true)) {
                 command.Parameters[1].Value = ((int)(IsNull_PersonalId.Value));
@@ -12121,7 +12121,7 @@ SELECT BestellungId, PersonalId, Zeitpunkt, Gesamtpreis, Storniert FROM Bestellu
             else {
                 command.Parameters[8].Value = ((string)(Original_Storniert));
             }
-            global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
+            var previousConnectionState = command.Connection.State;
             if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
                 command.Connection.Open();
@@ -12142,8 +12142,8 @@ SELECT BestellungId, PersonalId, Zeitpunkt, Gesamtpreis, Storniert FROM Bestellu
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         public virtual object GetMaxBestellungId() {
-            global::System.Data.OleDb.OleDbCommand command = this.CommandCollection[3];
-            global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
+            var command = this.CommandCollection[3];
+            var previousConnectionState = command.Connection.State;
             if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
                 command.Connection.Open();
@@ -12171,7 +12171,7 @@ SELECT BestellungId, PersonalId, Zeitpunkt, Gesamtpreis, Storniert FROM Bestellu
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, false)]
         public virtual int InsertQuery(global::System.Nullable<int> PersonalId, global::System.Nullable<global::System.DateTime> Zeitpunkt, global::System.Nullable<decimal> Gesamtpreis, string Storniert) {
-            global::System.Data.OleDb.OleDbCommand command = this.CommandCollection[4];
+            var command = this.CommandCollection[4];
             if ((PersonalId.HasValue == true)) {
                 command.Parameters[0].Value = ((int)(PersonalId.Value));
             }
@@ -12196,7 +12196,7 @@ SELECT BestellungId, PersonalId, Zeitpunkt, Gesamtpreis, Storniert FROM Bestellu
             else {
                 command.Parameters[3].Value = ((string)(Storniert));
             }
-            global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
+            var previousConnectionState = command.Connection.State;
             if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
                 command.Connection.Open();
@@ -12218,7 +12218,7 @@ SELECT BestellungId, PersonalId, Zeitpunkt, Gesamtpreis, Storniert FROM Bestellu
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, false)]
         public virtual int UpdateQuery(global::System.Nullable<int> PersonalId, global::System.Nullable<global::System.DateTime> Zeitpunkt, global::System.Nullable<decimal> Gesamtpreis, string Storniert, int Original_BestellungId, global::System.Nullable<int> IsNull_PersonalId, global::System.Nullable<int> Original_PersonalId, global::System.Nullable<int> IsNull_Zeitpunkt, global::System.Nullable<global::System.DateTime> Original_Zeitpunkt, global::System.Nullable<int> IsNull_Gesamtpreis, global::System.Nullable<decimal> Original_Gesamtpreis, global::System.Nullable<int> IsNull_Storniert, string Original_Storniert) {
-            global::System.Data.OleDb.OleDbCommand command = this.CommandCollection[5];
+            var command = this.CommandCollection[5];
             if ((PersonalId.HasValue == true)) {
                 command.Parameters[0].Value = ((int)(PersonalId.Value));
             }
@@ -12292,7 +12292,7 @@ SELECT BestellungId, PersonalId, Zeitpunkt, Gesamtpreis, Storniert FROM Bestellu
             else {
                 command.Parameters[12].Value = ((string)(Original_Storniert));
             }
-            global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
+            var previousConnectionState = command.Connection.State;
             if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
                 command.Connection.Open();
@@ -12366,7 +12366,7 @@ SELECT BestellungId, PersonalId, Zeitpunkt, Gesamtpreis, Storniert FROM Bestellu
                 if ((this.Adapter.UpdateCommand != null)) {
                     this.Adapter.UpdateCommand.Connection = value;
                 }
-                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                for (var i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
                     if ((this.CommandCollection[i] != null)) {
                         ((global::System.Data.OleDb.OleDbCommand)(this.CommandCollection[i])).Connection = value;
                     }
@@ -12400,7 +12400,7 @@ SELECT BestellungId, PersonalId, Zeitpunkt, Gesamtpreis, Storniert FROM Bestellu
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitAdapter() {
             this._adapter = new global::System.Data.OleDb.OleDbDataAdapter();
-            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
+            var tableMapping = new global::System.Data.Common.DataTableMapping();
             tableMapping.SourceTable = "Table";
             tableMapping.DataSetTable = "BestellungArtikel";
             tableMapping.ColumnMappings.Add("BestellungId", "BestellungId");
@@ -12519,7 +12519,7 @@ SELECT BestellungId, ArtikelId, Menge, Gesamtpreis FROM BestellungArtikel WHERE 
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
             }
-            int returnValue = this.Adapter.Fill(dataTable);
+            var returnValue = this.Adapter.Fill(dataTable);
             return returnValue;
         }
         
@@ -12529,7 +12529,7 @@ SELECT BestellungId, ArtikelId, Menge, Gesamtpreis FROM BestellungArtikel WHERE 
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
         public virtual FestManagerDataSet.BestellungArtikelDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            FestManagerDataSet.BestellungArtikelDataTable dataTable = new FestManagerDataSet.BestellungArtikelDataTable();
+            var dataTable = new FestManagerDataSet.BestellungArtikelDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
@@ -12549,7 +12549,7 @@ SELECT BestellungId, ArtikelId, Menge, Gesamtpreis FROM BestellungArtikel WHERE 
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
             }
-            int returnValue = this.Adapter.Fill(dataTable);
+            var returnValue = this.Adapter.Fill(dataTable);
             return returnValue;
         }
         
@@ -12565,7 +12565,7 @@ SELECT BestellungId, ArtikelId, Menge, Gesamtpreis FROM BestellungArtikel WHERE 
             else {
                 this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
             }
-            FestManagerDataSet.BestellungArtikelDataTable dataTable = new FestManagerDataSet.BestellungArtikelDataTable();
+            var dataTable = new FestManagerDataSet.BestellungArtikelDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
@@ -12604,7 +12604,7 @@ SELECT BestellungId, ArtikelId, Menge, Gesamtpreis FROM BestellungArtikel WHERE 
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, false)]
         public virtual int DeleteQuery(global::System.Nullable<int> Original_BestellungId, global::System.Nullable<int> IsNull_ArtikelId, global::System.Nullable<int> Original_ArtikelId, global::System.Nullable<int> IsNull_Menge, global::System.Nullable<int> Original_Menge, global::System.Nullable<int> IsNull_Gesamtpreis, global::System.Nullable<decimal> Original_Gesamtpreis) {
-            global::System.Data.OleDb.OleDbCommand command = this.CommandCollection[1];
+            var command = this.CommandCollection[1];
             if ((Original_BestellungId.HasValue == true)) {
                 command.Parameters[0].Value = ((int)(Original_BestellungId.Value));
             }
@@ -12647,7 +12647,7 @@ SELECT BestellungId, ArtikelId, Menge, Gesamtpreis FROM BestellungArtikel WHERE 
             else {
                 command.Parameters[6].Value = global::System.DBNull.Value;
             }
-            global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
+            var previousConnectionState = command.Connection.State;
             if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
                 command.Connection.Open();
@@ -12669,7 +12669,7 @@ SELECT BestellungId, ArtikelId, Menge, Gesamtpreis FROM BestellungArtikel WHERE 
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, false)]
         public virtual int InsertQuery(global::System.Nullable<int> BestellungId, global::System.Nullable<int> ArtikelId, global::System.Nullable<int> Menge, global::System.Nullable<decimal> Gesamtpreis) {
-            global::System.Data.OleDb.OleDbCommand command = this.CommandCollection[3];
+            var command = this.CommandCollection[3];
             if ((BestellungId.HasValue == true)) {
                 command.Parameters[0].Value = ((int)(BestellungId.Value));
             }
@@ -12694,7 +12694,7 @@ SELECT BestellungId, ArtikelId, Menge, Gesamtpreis FROM BestellungArtikel WHERE 
             else {
                 command.Parameters[3].Value = global::System.DBNull.Value;
             }
-            global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
+            var previousConnectionState = command.Connection.State;
             if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
                 command.Connection.Open();
@@ -12716,7 +12716,7 @@ SELECT BestellungId, ArtikelId, Menge, Gesamtpreis FROM BestellungArtikel WHERE 
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, false)]
         public virtual int UpdateQuery(global::System.Nullable<int> BestellungId, global::System.Nullable<int> ArtikelId, global::System.Nullable<int> Menge, global::System.Nullable<decimal> Gesamtpreis, global::System.Nullable<int> Original_BestellungId, string Original_Param6, string Original_Param7, string Original_Param8, global::System.Nullable<int> Original_BestellungId1, global::System.Nullable<int> Original_ArtikelId, string Original_Param11) {
-            global::System.Data.OleDb.OleDbCommand command = this.CommandCollection[4];
+            var command = this.CommandCollection[4];
             if ((BestellungId.HasValue == true)) {
                 command.Parameters[0].Value = ((int)(BestellungId.Value));
             }
@@ -12783,7 +12783,7 @@ SELECT BestellungId, ArtikelId, Menge, Gesamtpreis FROM BestellungArtikel WHERE 
             else {
                 command.Parameters[10].Value = ((string)(Original_Param11));
             }
-            global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
+            var previousConnectionState = command.Connection.State;
             if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
                 command.Connection.Open();
@@ -12857,7 +12857,7 @@ SELECT BestellungId, ArtikelId, Menge, Gesamtpreis FROM BestellungArtikel WHERE 
                 if ((this.Adapter.UpdateCommand != null)) {
                     this.Adapter.UpdateCommand.Connection = value;
                 }
-                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                for (var i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
                     if ((this.CommandCollection[i] != null)) {
                         ((global::System.Data.OleDb.OleDbCommand)(this.CommandCollection[i])).Connection = value;
                     }
@@ -12891,7 +12891,7 @@ SELECT BestellungId, ArtikelId, Menge, Gesamtpreis FROM BestellungArtikel WHERE 
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitAdapter() {
             this._adapter = new global::System.Data.OleDb.OleDbDataAdapter();
-            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
+            var tableMapping = new global::System.Data.Common.DataTableMapping();
             tableMapping.SourceTable = "Table";
             tableMapping.DataSetTable = "Kassenbon";
             tableMapping.ColumnMappings.Add("BestellungId", "BestellungId");
@@ -12962,7 +12962,7 @@ ORDER BY Ausgabestelle.AusgabestelleId, BestellungArtikel.BestellungArtikelId";
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
             }
-            int returnValue = this.Adapter.Fill(dataTable);
+            var returnValue = this.Adapter.Fill(dataTable);
             return returnValue;
         }
         
@@ -12972,7 +12972,7 @@ ORDER BY Ausgabestelle.AusgabestelleId, BestellungArtikel.BestellungArtikelId";
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
         public virtual FestManagerDataSet.KassenbonDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            FestManagerDataSet.KassenbonDataTable dataTable = new FestManagerDataSet.KassenbonDataTable();
+            var dataTable = new FestManagerDataSet.KassenbonDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
@@ -12987,7 +12987,7 @@ ORDER BY Ausgabestelle.AusgabestelleId, BestellungArtikel.BestellungArtikelId";
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
             }
-            int returnValue = this.Adapter.Fill(dataTable);
+            var returnValue = this.Adapter.Fill(dataTable);
             return returnValue;
         }
         
@@ -12998,7 +12998,7 @@ ORDER BY Ausgabestelle.AusgabestelleId, BestellungArtikel.BestellungArtikelId";
         public virtual FestManagerDataSet.KassenbonDataTable GetDataByBestellung(int BestellungId) {
             this.Adapter.SelectCommand = this.CommandCollection[1];
             this.Adapter.SelectCommand.Parameters[0].Value = ((int)(BestellungId));
-            FestManagerDataSet.KassenbonDataTable dataTable = new FestManagerDataSet.KassenbonDataTable();
+            var dataTable = new FestManagerDataSet.KassenbonDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
@@ -13014,7 +13014,7 @@ ORDER BY Ausgabestelle.AusgabestelleId, BestellungArtikel.BestellungArtikelId";
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
             }
-            int returnValue = this.Adapter.Fill(dataTable);
+            var returnValue = this.Adapter.Fill(dataTable);
             return returnValue;
         }
         
@@ -13026,7 +13026,7 @@ ORDER BY Ausgabestelle.AusgabestelleId, BestellungArtikel.BestellungArtikelId";
             this.Adapter.SelectCommand = this.CommandCollection[2];
             this.Adapter.SelectCommand.Parameters[0].Value = ((int)(BestellungId));
             this.Adapter.SelectCommand.Parameters[1].Value = ((int)(AusgabestelleId));
-            FestManagerDataSet.KassenbonDataTable dataTable = new FestManagerDataSet.KassenbonDataTable();
+            var dataTable = new FestManagerDataSet.KassenbonDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
@@ -13088,7 +13088,7 @@ ORDER BY Ausgabestelle.AusgabestelleId, BestellungArtikel.BestellungArtikelId";
                 if ((this.Adapter.UpdateCommand != null)) {
                     this.Adapter.UpdateCommand.Connection = value;
                 }
-                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                for (var i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
                     if ((this.CommandCollection[i] != null)) {
                         ((global::System.Data.OleDb.OleDbCommand)(this.CommandCollection[i])).Connection = value;
                     }
@@ -13122,7 +13122,7 @@ ORDER BY Ausgabestelle.AusgabestelleId, BestellungArtikel.BestellungArtikelId";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitAdapter() {
             this._adapter = new global::System.Data.OleDb.OleDbDataAdapter();
-            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
+            var tableMapping = new global::System.Data.Common.DataTableMapping();
             tableMapping.SourceTable = "Table";
             tableMapping.DataSetTable = "Personal";
             tableMapping.ColumnMappings.Add("PersonalId", "PersonalId");
@@ -13205,7 +13205,7 @@ ORDER BY Ausgabestelle.AusgabestelleId, BestellungArtikel.BestellungArtikelId";
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
             }
-            int returnValue = this.Adapter.Fill(dataTable);
+            var returnValue = this.Adapter.Fill(dataTable);
             return returnValue;
         }
         
@@ -13215,7 +13215,7 @@ ORDER BY Ausgabestelle.AusgabestelleId, BestellungArtikel.BestellungArtikelId";
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
         public virtual FestManagerDataSet.PersonalDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            FestManagerDataSet.PersonalDataTable dataTable = new FestManagerDataSet.PersonalDataTable();
+            var dataTable = new FestManagerDataSet.PersonalDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
@@ -13295,13 +13295,13 @@ ORDER BY Ausgabestelle.AusgabestelleId, BestellungArtikel.BestellungArtikelId";
                 this.Adapter.DeleteCommand.Parameters[9].Value = ((object)(0));
                 this.Adapter.DeleteCommand.Parameters[10].Value = ((string)(Original_Aktiv));
             }
-            global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
+            var previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
                 this.Adapter.DeleteCommand.Connection.Open();
             }
             try {
-                int returnValue = this.Adapter.DeleteCommand.ExecuteNonQuery();
+                var returnValue = this.Adapter.DeleteCommand.ExecuteNonQuery();
                 return returnValue;
             }
             finally {
@@ -13346,13 +13346,13 @@ ORDER BY Ausgabestelle.AusgabestelleId, BestellungArtikel.BestellungArtikelId";
             else {
                 this.Adapter.InsertCommand.Parameters[4].Value = ((string)(Aktiv));
             }
-            global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
+            var previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
                 this.Adapter.InsertCommand.Connection.Open();
             }
             try {
-                int returnValue = this.Adapter.InsertCommand.ExecuteNonQuery();
+                var returnValue = this.Adapter.InsertCommand.ExecuteNonQuery();
                 return returnValue;
             }
             finally {
@@ -13438,13 +13438,13 @@ ORDER BY Ausgabestelle.AusgabestelleId, BestellungArtikel.BestellungArtikelId";
                 this.Adapter.UpdateCommand.Parameters[14].Value = ((object)(0));
                 this.Adapter.UpdateCommand.Parameters[15].Value = ((string)(Original_Aktiv));
             }
-            global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
+            var previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
                 this.Adapter.UpdateCommand.Connection.Open();
             }
             try {
-                int returnValue = this.Adapter.UpdateCommand.ExecuteNonQuery();
+                var returnValue = this.Adapter.UpdateCommand.ExecuteNonQuery();
                 return returnValue;
             }
             finally {
@@ -13511,7 +13511,7 @@ ORDER BY Ausgabestelle.AusgabestelleId, BestellungArtikel.BestellungArtikelId";
                 if ((this.Adapter.UpdateCommand != null)) {
                     this.Adapter.UpdateCommand.Connection = value;
                 }
-                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                for (var i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
                     if ((this.CommandCollection[i] != null)) {
                         ((global::System.Data.OleDb.OleDbCommand)(this.CommandCollection[i])).Connection = value;
                     }
@@ -13545,7 +13545,7 @@ ORDER BY Ausgabestelle.AusgabestelleId, BestellungArtikel.BestellungArtikelId";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitAdapter() {
             this._adapter = new global::System.Data.OleDb.OleDbDataAdapter();
-            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
+            var tableMapping = new global::System.Data.Common.DataTableMapping();
             tableMapping.SourceTable = "Table";
             tableMapping.DataSetTable = "Printer";
             tableMapping.ColumnMappings.Add("ID", "ID");
@@ -13601,7 +13601,7 @@ ORDER BY Ausgabestelle.AusgabestelleId, BestellungArtikel.BestellungArtikelId";
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
             }
-            int returnValue = this.Adapter.Fill(dataTable);
+            var returnValue = this.Adapter.Fill(dataTable);
             return returnValue;
         }
         
@@ -13611,7 +13611,7 @@ ORDER BY Ausgabestelle.AusgabestelleId, BestellungArtikel.BestellungArtikelId";
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
         public virtual FestManagerDataSet.PrinterDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            FestManagerDataSet.PrinterDataTable dataTable = new FestManagerDataSet.PrinterDataTable();
+            var dataTable = new FestManagerDataSet.PrinterDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
@@ -13659,13 +13659,13 @@ ORDER BY Ausgabestelle.AusgabestelleId, BestellungArtikel.BestellungArtikelId";
                 this.Adapter.DeleteCommand.Parameters[1].Value = ((object)(0));
                 this.Adapter.DeleteCommand.Parameters[2].Value = ((string)(Original_Printername));
             }
-            global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
+            var previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
                 this.Adapter.DeleteCommand.Connection.Open();
             }
             try {
-                int returnValue = this.Adapter.DeleteCommand.ExecuteNonQuery();
+                var returnValue = this.Adapter.DeleteCommand.ExecuteNonQuery();
                 return returnValue;
             }
             finally {
@@ -13686,13 +13686,13 @@ ORDER BY Ausgabestelle.AusgabestelleId, BestellungArtikel.BestellungArtikelId";
             else {
                 this.Adapter.InsertCommand.Parameters[0].Value = ((string)(Printername));
             }
-            global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
+            var previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
                 this.Adapter.InsertCommand.Connection.Open();
             }
             try {
-                int returnValue = this.Adapter.InsertCommand.ExecuteNonQuery();
+                var returnValue = this.Adapter.InsertCommand.ExecuteNonQuery();
                 return returnValue;
             }
             finally {
@@ -13722,13 +13722,13 @@ ORDER BY Ausgabestelle.AusgabestelleId, BestellungArtikel.BestellungArtikelId";
                 this.Adapter.UpdateCommand.Parameters[2].Value = ((object)(0));
                 this.Adapter.UpdateCommand.Parameters[3].Value = ((string)(Original_Printername));
             }
-            global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
+            var previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
                 this.Adapter.UpdateCommand.Connection.Open();
             }
             try {
-                int returnValue = this.Adapter.UpdateCommand.ExecuteNonQuery();
+                var returnValue = this.Adapter.UpdateCommand.ExecuteNonQuery();
                 return returnValue;
             }
             finally {
@@ -13795,7 +13795,7 @@ ORDER BY Ausgabestelle.AusgabestelleId, BestellungArtikel.BestellungArtikelId";
                 if ((this.Adapter.UpdateCommand != null)) {
                     this.Adapter.UpdateCommand.Connection = value;
                 }
-                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                for (var i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
                     if ((this.CommandCollection[i] != null)) {
                         ((global::System.Data.OleDb.OleDbCommand)(this.CommandCollection[i])).Connection = value;
                     }
@@ -13829,7 +13829,7 @@ ORDER BY Ausgabestelle.AusgabestelleId, BestellungArtikel.BestellungArtikelId";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitAdapter() {
             this._adapter = new global::System.Data.OleDb.OleDbDataAdapter();
-            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
+            var tableMapping = new global::System.Data.Common.DataTableMapping();
             tableMapping.SourceTable = "Table";
             tableMapping.DataSetTable = "ArtikelVerkaufssumme_V";
             tableMapping.ColumnMappings.Add("ArtikelId", "ArtikelId");
@@ -13862,7 +13862,7 @@ ORDER BY Ausgabestelle.AusgabestelleId, BestellungArtikel.BestellungArtikelId";
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
             }
-            int returnValue = this.Adapter.Fill(dataTable);
+            var returnValue = this.Adapter.Fill(dataTable);
             return returnValue;
         }
         
@@ -13872,7 +13872,7 @@ ORDER BY Ausgabestelle.AusgabestelleId, BestellungArtikel.BestellungArtikelId";
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
         public virtual FestManagerDataSet.ArtikelVerkaufssumme_VDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            FestManagerDataSet.ArtikelVerkaufssumme_VDataTable dataTable = new FestManagerDataSet.ArtikelVerkaufssumme_VDataTable();
+            var dataTable = new FestManagerDataSet.ArtikelVerkaufssumme_VDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
@@ -13934,7 +13934,7 @@ ORDER BY Ausgabestelle.AusgabestelleId, BestellungArtikel.BestellungArtikelId";
                 if ((this.Adapter.UpdateCommand != null)) {
                     this.Adapter.UpdateCommand.Connection = value;
                 }
-                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                for (var i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
                     if ((this.CommandCollection[i] != null)) {
                         ((global::System.Data.OleDb.OleDbCommand)(this.CommandCollection[i])).Connection = value;
                     }
@@ -13968,7 +13968,7 @@ ORDER BY Ausgabestelle.AusgabestelleId, BestellungArtikel.BestellungArtikelId";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitAdapter() {
             this._adapter = new global::System.Data.OleDb.OleDbDataAdapter();
-            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
+            var tableMapping = new global::System.Data.Common.DataTableMapping();
             tableMapping.SourceTable = "Table";
             tableMapping.DataSetTable = "BestellungArtikel_V";
             tableMapping.ColumnMappings.Add("BestellungId", "BestellungId");
@@ -14001,7 +14001,7 @@ ORDER BY Ausgabestelle.AusgabestelleId, BestellungArtikel.BestellungArtikelId";
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
             }
-            int returnValue = this.Adapter.Fill(dataTable);
+            var returnValue = this.Adapter.Fill(dataTable);
             return returnValue;
         }
         
@@ -14011,7 +14011,7 @@ ORDER BY Ausgabestelle.AusgabestelleId, BestellungArtikel.BestellungArtikelId";
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
         public virtual FestManagerDataSet.BestellungArtikel_VDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            FestManagerDataSet.BestellungArtikel_VDataTable dataTable = new FestManagerDataSet.BestellungArtikel_VDataTable();
+            var dataTable = new FestManagerDataSet.BestellungArtikel_VDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
@@ -14073,7 +14073,7 @@ ORDER BY Ausgabestelle.AusgabestelleId, BestellungArtikel.BestellungArtikelId";
                 if ((this.Adapter.UpdateCommand != null)) {
                     this.Adapter.UpdateCommand.Connection = value;
                 }
-                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                for (var i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
                     if ((this.CommandCollection[i] != null)) {
                         ((global::System.Data.OleDb.OleDbCommand)(this.CommandCollection[i])).Connection = value;
                     }
@@ -14107,7 +14107,7 @@ ORDER BY Ausgabestelle.AusgabestelleId, BestellungArtikel.BestellungArtikelId";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitAdapter() {
             this._adapter = new global::System.Data.OleDb.OleDbDataAdapter();
-            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
+            var tableMapping = new global::System.Data.Common.DataTableMapping();
             tableMapping.SourceTable = "Table";
             tableMapping.DataSetTable = "PersonalBestellung_V";
             tableMapping.ColumnMappings.Add("PersonalNr", "PersonalNr");
@@ -14155,7 +14155,7 @@ ORDER BY Ausgabestelle.AusgabestelleId, BestellungArtikel.BestellungArtikelId";
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
             }
-            int returnValue = this.Adapter.Fill(dataTable);
+            var returnValue = this.Adapter.Fill(dataTable);
             return returnValue;
         }
         
@@ -14165,7 +14165,7 @@ ORDER BY Ausgabestelle.AusgabestelleId, BestellungArtikel.BestellungArtikelId";
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
         public virtual FestManagerDataSet.PersonalBestellung_VDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            FestManagerDataSet.PersonalBestellung_VDataTable dataTable = new FestManagerDataSet.PersonalBestellung_VDataTable();
+            var dataTable = new FestManagerDataSet.PersonalBestellung_VDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
@@ -14185,7 +14185,7 @@ ORDER BY Ausgabestelle.AusgabestelleId, BestellungArtikel.BestellungArtikelId";
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
             }
-            int returnValue = this.Adapter.Fill(dataTable);
+            var returnValue = this.Adapter.Fill(dataTable);
             return returnValue;
         }
         
@@ -14201,7 +14201,7 @@ ORDER BY Ausgabestelle.AusgabestelleId, BestellungArtikel.BestellungArtikelId";
             else {
                 this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
             }
-            FestManagerDataSet.PersonalBestellung_VDataTable dataTable = new FestManagerDataSet.PersonalBestellung_VDataTable();
+            var dataTable = new FestManagerDataSet.PersonalBestellung_VDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
@@ -14263,7 +14263,7 @@ ORDER BY Ausgabestelle.AusgabestelleId, BestellungArtikel.BestellungArtikelId";
                 if ((this.Adapter.UpdateCommand != null)) {
                     this.Adapter.UpdateCommand.Connection = value;
                 }
-                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                for (var i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
                     if ((this.CommandCollection[i] != null)) {
                         ((global::System.Data.OleDb.OleDbCommand)(this.CommandCollection[i])).Connection = value;
                     }
@@ -14297,7 +14297,7 @@ ORDER BY Ausgabestelle.AusgabestelleId, BestellungArtikel.BestellungArtikelId";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitAdapter() {
             this._adapter = new global::System.Data.OleDb.OleDbDataAdapter();
-            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
+            var tableMapping = new global::System.Data.Common.DataTableMapping();
             tableMapping.SourceTable = "Table";
             tableMapping.DataSetTable = "Personal_V";
             tableMapping.ColumnMappings.Add("PersonalId", "PersonalId");
@@ -14333,7 +14333,7 @@ ORDER BY Ausgabestelle.AusgabestelleId, BestellungArtikel.BestellungArtikelId";
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
             }
-            int returnValue = this.Adapter.Fill(dataTable);
+            var returnValue = this.Adapter.Fill(dataTable);
             return returnValue;
         }
         
@@ -14343,7 +14343,7 @@ ORDER BY Ausgabestelle.AusgabestelleId, BestellungArtikel.BestellungArtikelId";
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
         public virtual FestManagerDataSet.Personal_VDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            FestManagerDataSet.Personal_VDataTable dataTable = new FestManagerDataSet.Personal_VDataTable();
+            var dataTable = new FestManagerDataSet.Personal_VDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
@@ -14405,7 +14405,7 @@ ORDER BY Ausgabestelle.AusgabestelleId, BestellungArtikel.BestellungArtikelId";
                 if ((this.Adapter.UpdateCommand != null)) {
                     this.Adapter.UpdateCommand.Connection = value;
                 }
-                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                for (var i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
                     if ((this.CommandCollection[i] != null)) {
                         ((global::System.Data.OleDb.OleDbCommand)(this.CommandCollection[i])).Connection = value;
                     }
@@ -14439,7 +14439,7 @@ ORDER BY Ausgabestelle.AusgabestelleId, BestellungArtikel.BestellungArtikelId";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitAdapter() {
             this._adapter = new global::System.Data.OleDb.OleDbDataAdapter();
-            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
+            var tableMapping = new global::System.Data.Common.DataTableMapping();
             tableMapping.SourceTable = "Table";
             tableMapping.DataSetTable = "BestellungenHistoryDetails_V";
             tableMapping.ColumnMappings.Add("PersonalNr", "PersonalNr");
@@ -14490,7 +14490,7 @@ ORDER BY Ausgabestelle.AusgabestelleId, BestellungArtikel.BestellungArtikelId";
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
             }
-            int returnValue = this.Adapter.Fill(dataTable);
+            var returnValue = this.Adapter.Fill(dataTable);
             return returnValue;
         }
         
@@ -14500,7 +14500,7 @@ ORDER BY Ausgabestelle.AusgabestelleId, BestellungArtikel.BestellungArtikelId";
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
         public virtual FestManagerDataSet.BestellungenHistoryDetails_VDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            FestManagerDataSet.BestellungenHistoryDetails_VDataTable dataTable = new FestManagerDataSet.BestellungenHistoryDetails_VDataTable();
+            var dataTable = new FestManagerDataSet.BestellungenHistoryDetails_VDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
@@ -14515,7 +14515,7 @@ ORDER BY Ausgabestelle.AusgabestelleId, BestellungArtikel.BestellungArtikelId";
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
             }
-            int returnValue = this.Adapter.Fill(dataTable);
+            var returnValue = this.Adapter.Fill(dataTable);
             return returnValue;
         }
         
@@ -14526,7 +14526,7 @@ ORDER BY Ausgabestelle.AusgabestelleId, BestellungArtikel.BestellungArtikelId";
         public virtual FestManagerDataSet.BestellungenHistoryDetails_VDataTable GetDataByBestellungId(int BestellungId) {
             this.Adapter.SelectCommand = this.CommandCollection[1];
             this.Adapter.SelectCommand.Parameters[0].Value = ((int)(BestellungId));
-            FestManagerDataSet.BestellungenHistoryDetails_VDataTable dataTable = new FestManagerDataSet.BestellungenHistoryDetails_VDataTable();
+            var dataTable = new FestManagerDataSet.BestellungenHistoryDetails_VDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
@@ -14588,7 +14588,7 @@ ORDER BY Ausgabestelle.AusgabestelleId, BestellungArtikel.BestellungArtikelId";
                 if ((this.Adapter.UpdateCommand != null)) {
                     this.Adapter.UpdateCommand.Connection = value;
                 }
-                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                for (var i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
                     if ((this.CommandCollection[i] != null)) {
                         ((global::System.Data.OleDb.OleDbCommand)(this.CommandCollection[i])).Connection = value;
                     }
@@ -14622,7 +14622,7 @@ ORDER BY Ausgabestelle.AusgabestelleId, BestellungArtikel.BestellungArtikelId";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitAdapter() {
             this._adapter = new global::System.Data.OleDb.OleDbDataAdapter();
-            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
+            var tableMapping = new global::System.Data.Common.DataTableMapping();
             tableMapping.SourceTable = "Table";
             tableMapping.DataSetTable = "BestellungenHistory_V";
             tableMapping.ColumnMappings.Add("PersonalNr", "PersonalNr");
@@ -14661,7 +14661,7 @@ ORDER BY Ausgabestelle.AusgabestelleId, BestellungArtikel.BestellungArtikelId";
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
             }
-            int returnValue = this.Adapter.Fill(dataTable);
+            var returnValue = this.Adapter.Fill(dataTable);
             return returnValue;
         }
         
@@ -14671,7 +14671,7 @@ ORDER BY Ausgabestelle.AusgabestelleId, BestellungArtikel.BestellungArtikelId";
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
         public virtual FestManagerDataSet.BestellungenHistory_VDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            FestManagerDataSet.BestellungenHistory_VDataTable dataTable = new FestManagerDataSet.BestellungenHistory_VDataTable();
+            var dataTable = new FestManagerDataSet.BestellungenHistory_VDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
@@ -14733,7 +14733,7 @@ ORDER BY Ausgabestelle.AusgabestelleId, BestellungArtikel.BestellungArtikelId";
                 if ((this.Adapter.UpdateCommand != null)) {
                     this.Adapter.UpdateCommand.Connection = value;
                 }
-                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                for (var i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
                     if ((this.CommandCollection[i] != null)) {
                         ((global::System.Data.OleDb.OleDbCommand)(this.CommandCollection[i])).Connection = value;
                     }
@@ -14767,7 +14767,7 @@ ORDER BY Ausgabestelle.AusgabestelleId, BestellungArtikel.BestellungArtikelId";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitAdapter() {
             this._adapter = new global::System.Data.OleDb.OleDbDataAdapter();
-            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
+            var tableMapping = new global::System.Data.Common.DataTableMapping();
             tableMapping.SourceTable = "Table";
             tableMapping.DataSetTable = "KellnerabrechnungNachTagenOffen";
             tableMapping.ColumnMappings.Add("Tag", "Tag");
@@ -14815,7 +14815,7 @@ FROM            (KellnerabrechnungNachTagen_Offen_V INNER JOIN
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
             }
-            int returnValue = this.Adapter.Fill(dataTable);
+            var returnValue = this.Adapter.Fill(dataTable);
             return returnValue;
         }
         
@@ -14825,7 +14825,7 @@ FROM            (KellnerabrechnungNachTagen_Offen_V INNER JOIN
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
         public virtual FestManagerDataSet.KellnerabrechnungNachTagenOffenDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            FestManagerDataSet.KellnerabrechnungNachTagenOffenDataTable dataTable = new FestManagerDataSet.KellnerabrechnungNachTagenOffenDataTable();
+            var dataTable = new FestManagerDataSet.KellnerabrechnungNachTagenOffenDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
@@ -14840,7 +14840,7 @@ FROM            (KellnerabrechnungNachTagen_Offen_V INNER JOIN
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
             }
-            int returnValue = this.Adapter.Fill(dataTable);
+            var returnValue = this.Adapter.Fill(dataTable);
             return returnValue;
         }
         
@@ -14851,7 +14851,7 @@ FROM            (KellnerabrechnungNachTagen_Offen_V INNER JOIN
         public virtual FestManagerDataSet.KellnerabrechnungNachTagenOffenDataTable GetDataByPersonalId(int PersonalId) {
             this.Adapter.SelectCommand = this.CommandCollection[1];
             this.Adapter.SelectCommand.Parameters[0].Value = ((int)(PersonalId));
-            FestManagerDataSet.KellnerabrechnungNachTagenOffenDataTable dataTable = new FestManagerDataSet.KellnerabrechnungNachTagenOffenDataTable();
+            var dataTable = new FestManagerDataSet.KellnerabrechnungNachTagenOffenDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
@@ -14913,7 +14913,7 @@ FROM            (KellnerabrechnungNachTagen_Offen_V INNER JOIN
                 if ((this.Adapter.UpdateCommand != null)) {
                     this.Adapter.UpdateCommand.Connection = value;
                 }
-                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                for (var i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
                     if ((this.CommandCollection[i] != null)) {
                         ((global::System.Data.OleDb.OleDbCommand)(this.CommandCollection[i])).Connection = value;
                     }
@@ -14947,7 +14947,7 @@ FROM            (KellnerabrechnungNachTagen_Offen_V INNER JOIN
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitAdapter() {
             this._adapter = new global::System.Data.OleDb.OleDbDataAdapter();
-            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
+            var tableMapping = new global::System.Data.Common.DataTableMapping();
             tableMapping.SourceTable = "Table";
             tableMapping.DataSetTable = "PersonalArtikel";
             tableMapping.ColumnMappings.Add("Menge", "Menge");
@@ -15008,7 +15008,7 @@ WHERE        (Personal.PersonalId = ?)";
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
             }
-            int returnValue = this.Adapter.Fill(dataTable);
+            var returnValue = this.Adapter.Fill(dataTable);
             return returnValue;
         }
         
@@ -15018,7 +15018,7 @@ WHERE        (Personal.PersonalId = ?)";
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
         public virtual FestManagerDataSet.PersonalArtikelDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            FestManagerDataSet.PersonalArtikelDataTable dataTable = new FestManagerDataSet.PersonalArtikelDataTable();
+            var dataTable = new FestManagerDataSet.PersonalArtikelDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
@@ -15033,7 +15033,7 @@ WHERE        (Personal.PersonalId = ?)";
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
             }
-            int returnValue = this.Adapter.Fill(dataTable);
+            var returnValue = this.Adapter.Fill(dataTable);
             return returnValue;
         }
         
@@ -15044,7 +15044,7 @@ WHERE        (Personal.PersonalId = ?)";
         public virtual FestManagerDataSet.PersonalArtikelDataTable GetDataByPersonalId(int PersonalId) {
             this.Adapter.SelectCommand = this.CommandCollection[2];
             this.Adapter.SelectCommand.Parameters[0].Value = ((int)(PersonalId));
-            FestManagerDataSet.PersonalArtikelDataTable dataTable = new FestManagerDataSet.PersonalArtikelDataTable();
+            var dataTable = new FestManagerDataSet.PersonalArtikelDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
@@ -15054,9 +15054,9 @@ WHERE        (Personal.PersonalId = ?)";
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, false)]
         public virtual int DeleteByBestellungArtikelId(int BestellungArtikelId) {
-            global::System.Data.OleDb.OleDbCommand command = this.CommandCollection[1];
+            var command = this.CommandCollection[1];
             command.Parameters[0].Value = ((int)(BestellungArtikelId));
-            global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
+            var previousConnectionState = command.Connection.State;
             if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
                 command.Connection.Open();
@@ -15130,7 +15130,7 @@ WHERE        (Personal.PersonalId = ?)";
                 if ((this.Adapter.UpdateCommand != null)) {
                     this.Adapter.UpdateCommand.Connection = value;
                 }
-                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                for (var i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
                     if ((this.CommandCollection[i] != null)) {
                         ((global::System.Data.OleDb.OleDbCommand)(this.CommandCollection[i])).Connection = value;
                     }
@@ -15164,7 +15164,7 @@ WHERE        (Personal.PersonalId = ?)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitAdapter() {
             this._adapter = new global::System.Data.OleDb.OleDbDataAdapter();
-            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
+            var tableMapping = new global::System.Data.Common.DataTableMapping();
             tableMapping.SourceTable = "Table";
             tableMapping.DataSetTable = "KellnerabrechnungNachTagenAbgeschlossen";
             tableMapping.ColumnMappings.Add("Tag", "Tag");
@@ -15212,7 +15212,7 @@ FROM            (KellnerabrechnungNachTagen_Abgeschlossen_V INNER JOIN
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
             }
-            int returnValue = this.Adapter.Fill(dataTable);
+            var returnValue = this.Adapter.Fill(dataTable);
             return returnValue;
         }
         
@@ -15222,7 +15222,7 @@ FROM            (KellnerabrechnungNachTagen_Abgeschlossen_V INNER JOIN
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
         public virtual FestManagerDataSet.KellnerabrechnungNachTagenAbgeschlossenDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            FestManagerDataSet.KellnerabrechnungNachTagenAbgeschlossenDataTable dataTable = new FestManagerDataSet.KellnerabrechnungNachTagenAbgeschlossenDataTable();
+            var dataTable = new FestManagerDataSet.KellnerabrechnungNachTagenAbgeschlossenDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
@@ -15237,7 +15237,7 @@ FROM            (KellnerabrechnungNachTagen_Abgeschlossen_V INNER JOIN
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
             }
-            int returnValue = this.Adapter.Fill(dataTable);
+            var returnValue = this.Adapter.Fill(dataTable);
             return returnValue;
         }
         
@@ -15248,7 +15248,7 @@ FROM            (KellnerabrechnungNachTagen_Abgeschlossen_V INNER JOIN
         public virtual FestManagerDataSet.KellnerabrechnungNachTagenAbgeschlossenDataTable GetDataByPersonalId(int PersonalId) {
             this.Adapter.SelectCommand = this.CommandCollection[1];
             this.Adapter.SelectCommand.Parameters[0].Value = ((int)(PersonalId));
-            FestManagerDataSet.KellnerabrechnungNachTagenAbgeschlossenDataTable dataTable = new FestManagerDataSet.KellnerabrechnungNachTagenAbgeschlossenDataTable();
+            var dataTable = new FestManagerDataSet.KellnerabrechnungNachTagenAbgeschlossenDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
@@ -15310,7 +15310,7 @@ FROM            (KellnerabrechnungNachTagen_Abgeschlossen_V INNER JOIN
                 if ((this.Adapter.UpdateCommand != null)) {
                     this.Adapter.UpdateCommand.Connection = value;
                 }
-                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                for (var i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
                     if ((this.CommandCollection[i] != null)) {
                         ((global::System.Data.OleDb.OleDbCommand)(this.CommandCollection[i])).Connection = value;
                     }
@@ -15344,7 +15344,7 @@ FROM            (KellnerabrechnungNachTagen_Abgeschlossen_V INNER JOIN
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitAdapter() {
             this._adapter = new global::System.Data.OleDb.OleDbDataAdapter();
-            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
+            var tableMapping = new global::System.Data.Common.DataTableMapping();
             tableMapping.SourceTable = "Table";
             tableMapping.DataSetTable = "Kellnerabrechnung_Offen";
             tableMapping.ColumnMappings.Add("Nachname", "Nachname");
@@ -15375,12 +15375,12 @@ FROM            (KellnerabrechnungNachTagen_Abgeschlossen_V INNER JOIN
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(FestManagerDataSet.Kellnerabrechnung_OffenDataTable dataTable) {
+        public virtual int Fill(FestManagerDataSet.KellnerabrechnungOffenDataTable dataTable) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
             }
-            int returnValue = this.Adapter.Fill(dataTable);
+            var returnValue = this.Adapter.Fill(dataTable);
             return returnValue;
         }
         
@@ -15388,9 +15388,9 @@ FROM            (KellnerabrechnungNachTagen_Abgeschlossen_V INNER JOIN
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual FestManagerDataSet.Kellnerabrechnung_OffenDataTable GetData() {
+        public virtual FestManagerDataSet.KellnerabrechnungOffenDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            FestManagerDataSet.Kellnerabrechnung_OffenDataTable dataTable = new FestManagerDataSet.Kellnerabrechnung_OffenDataTable();
+            var dataTable = new FestManagerDataSet.KellnerabrechnungOffenDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }

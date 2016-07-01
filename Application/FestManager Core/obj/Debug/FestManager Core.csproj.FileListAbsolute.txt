@@ -70,3 +70,29 @@ C:\Development\Projekte\FF Karlstetten\FestManager\FestManager 2013\FestManager 
 C:\Development\Projekte\FF Karlstetten\FestManager\FestManager 2013\FestManager Core\obj\Debug\RdlCompile.compiled
 C:\Development\Projekte\FF Karlstetten\FestManager\FestManager 2013\FestManager Core\obj\Debug\FestManager Core.dll
 C:\Development\Projekte\FF Karlstetten\FestManager\FestManager 2013\FestManager Core\obj\Debug\FestManager Core.pdb
+C:\Development\Projekte\FF Karlstetten\FestManager\Application\FestManager Core\bin\Debug\FestManager Core.dll.config
+C:\Development\Projekte\FF Karlstetten\FestManager\Application\FestManager Core\bin\Debug\FestManager Core.dll
+C:\Development\Projekte\FF Karlstetten\FestManager\Application\FestManager Core\bin\Debug\FestManager Core.pdb
+C:\Development\Projekte\FF Karlstetten\FestManager\Application\FestManager Core\bin\Debug\Microsoft.ReportViewer.Common.dll
+C:\Development\Projekte\FF Karlstetten\FestManager\Application\FestManager Core\bin\Debug\Microsoft.ReportViewer.WinForms.dll
+C:\Development\Projekte\FF Karlstetten\FestManager\Application\FestManager Core\bin\Debug\Microsoft.ReportViewer.WinForms.xml
+C:\Development\Projekte\FF Karlstetten\FestManager\Application\FestManager Core\obj\Debug\FestManager_Core.Forms.FormMain.resources
+C:\Development\Projekte\FF Karlstetten\FestManager\Application\FestManager Core\obj\Debug\FestManager_Core.Forms.SubForms.AboutFestmanager.resources
+C:\Development\Projekte\FF Karlstetten\FestManager\Application\FestManager Core\obj\Debug\FestManager_Core.Forms.SubForms.FormArtikel.resources
+C:\Development\Projekte\FF Karlstetten\FestManager\Application\FestManager Core\obj\Debug\FestManager_Core.Forms.SubForms.FormAusgabestelle.resources
+C:\Development\Projekte\FF Karlstetten\FestManager\Application\FestManager Core\obj\Debug\FestManager_Core.Forms.SubForms.FormAuswertungen.resources
+C:\Development\Projekte\FF Karlstetten\FestManager\Application\FestManager Core\obj\Debug\FestManager_Core.Forms.SubForms.FormBestellung.resources
+C:\Development\Projekte\FF Karlstetten\FestManager\Application\FestManager Core\obj\Debug\FestManager_Core.Forms.SubForms.FormBestellungenHistory.resources
+C:\Development\Projekte\FF Karlstetten\FestManager\Application\FestManager Core\obj\Debug\FestManager_Core.Forms.SubForms.FormDialog.resources
+C:\Development\Projekte\FF Karlstetten\FestManager\Application\FestManager Core\obj\Debug\FestManager_Core.Forms.SubForms.FormKellnerabrechnung.resources
+C:\Development\Projekte\FF Karlstetten\FestManager\Application\FestManager Core\obj\Debug\FestManager_Core.Forms.SubForms.FormManualStorno.resources
+C:\Development\Projekte\FF Karlstetten\FestManager\Application\FestManager Core\obj\Debug\FestManager_Core.Forms.SubForms.FormPersonal.resources
+C:\Development\Projekte\FF Karlstetten\FestManager\Application\FestManager Core\obj\Debug\FestManager_Core.Forms.SubForms.FormPrinter.resources
+C:\Development\Projekte\FF Karlstetten\FestManager\Application\FestManager Core\obj\Debug\FestManager_Core.Forms.SubForms.FormKellnerabrechnungOffen.resources
+C:\Development\Projekte\FF Karlstetten\FestManager\Application\FestManager Core\obj\Debug\FestManager_Core.Forms.SubForms.FormInfo.resources
+C:\Development\Projekte\FF Karlstetten\FestManager\Application\FestManager Core\obj\Debug\FestManager_Core.Properties.Resources.resources
+C:\Development\Projekte\FF Karlstetten\FestManager\Application\FestManager Core\obj\Debug\FestManager Core.csproj.GenerateResource.Cache
+C:\Development\Projekte\FF Karlstetten\FestManager\Application\FestManager Core\obj\Debug\RdlCompile.cache
+C:\Development\Projekte\FF Karlstetten\FestManager\Application\FestManager Core\obj\Debug\RdlCompile.compiled
+C:\Development\Projekte\FF Karlstetten\FestManager\Application\FestManager Core\obj\Debug\FestManager Core.dll
+C:\Development\Projekte\FF Karlstetten\FestManager\Application\FestManager Core\obj\Debug\FestManager Core.pdb

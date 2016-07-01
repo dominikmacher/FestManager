@@ -29,7 +29,7 @@ namespace FestManager_Core.Forms.SubForms
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormBestellungenHistory));
+            var resources = new System.ComponentModel.ComponentResourceManager(typeof(FormBestellungenHistory));
             this.titleLabel = new System.Windows.Forms.Label();
             this.contentPanel = new System.Windows.Forms.Panel();
             this.bestellungenHistoryDataGridView = new System.Windows.Forms.DataGridView();
@@ -354,17 +354,7 @@ namespace FestManager_Core.Forms.SubForms
         private System.Windows.Forms.DataGridView bestellungenHistoryDataGridView;
         private FestManager_Core.Data.FestManagerDataSet festManagerDataSet;
         private FestManager_Core.Data.FestManagerDataSetTableAdapters.BestellungenHistory_VTableAdapter bestellungenHistory_VTableAdapter;
-        private System.Windows.Forms.DataGridViewTextBoxColumn bezeichnungDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn einzelpreisDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn mengeDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn bestellungArtikelGesamtpreisDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn bestellungGesamtpreisDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridView bestellungenHistoryDetailsDataGridView;
-        private System.Windows.Forms.DataGridViewTextBoxColumn bezeichnungDataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn einzelpreisDataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn mengeDataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn bestellungArtikelGesamtpreisDataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn bestellungGesamtpreisDataGridViewTextBoxColumn1;
         private System.Windows.Forms.Panel operationsPanel;
         private System.Windows.Forms.Label lblBestellDetails;
         private System.Windows.Forms.Label label1;

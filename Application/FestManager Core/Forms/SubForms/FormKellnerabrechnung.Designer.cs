@@ -456,9 +456,7 @@ namespace FestManager_Core.Forms.SubForms
         private System.Windows.Forms.ComboBox personalComboBox;
         private System.Windows.Forms.BindingSource personalBindingSource;
         private FestManager_Core.Data.FestManagerDataSetTableAdapters.Personal_VTableAdapter personal_VTableAdapter;
-        private System.Windows.Forms.DataGridViewTextBoxColumn kellnergroschenDataGridViewTextBoxColumn;
         private System.Windows.Forms.BindingSource abrechnungNachTagenBindingSource;
-        private System.Windows.Forms.DataGridViewTextBoxColumn personalIdDataGridViewTextBoxColumn;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.DataGridView offeneAbrechnungenDataGridView;
         private System.Windows.Forms.Panel panel3;

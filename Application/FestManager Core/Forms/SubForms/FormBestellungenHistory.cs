@@ -1,17 +1,15 @@
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
+using FestManager_Core.Properties;
 using FestManager_Core.Utils.Printing;
 
 namespace FestManager_Core.Forms.SubForms
 {
     public partial class FormBestellungenHistory : Form
     {
-        private int actualBestellungId = 0;
+        private int _actualBestellungId;
 
         public FormBestellungenHistory()
         {
@@ -24,18 +22,8 @@ namespace FestManager_Core.Forms.SubForms
             // TODO: Diese Codezeile lädt Daten in die Tabelle "festManagerDataSet.BestellungenHistoryDetails_V". Sie können sie bei Bedarf verschieben oder entfernen.
             //this.bestellungenHistoryDetails_VTableAdapter.Fill(this.festManagerDataSet.BestellungenHistoryDetails_V);
             // TODO: This line of code loads data into the 'festManagerDataSet.Artikel' table. You can move, or remove it, as needed.
-            this.bestellungenHistory_VTableAdapter.Fill(this.festManagerDataSet.BestellungenHistory_V);
+            bestellungenHistory_VTableAdapter.Fill(festManagerDataSet.BestellungenHistory_V);
 
-        }
-
-        private void speichernButton_Click(object sender, EventArgs e)
-        {
-            //this.bestellungenHistory_VTableAdapter.Update(this.festManagerDataSet.BestellungenHistory_V);
-        }
-
-        private void zuruecksetzenButton_Click(object sender, EventArgs e)
-        {
-            this.bestellungenHistory_VTableAdapter.Fill(this.festManagerDataSet.BestellungenHistory_V);
         }
 
         private void bestellungenHistoryDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -43,51 +31,50 @@ namespace FestManager_Core.Forms.SubForms
             bestellungenHistoryDetailsDataGridView.Visible = true;
             buttonCancelBestellung.Visible = true;
             buttonPrintBestellung.Visible = true;
-            this.actualBestellungId = (int)this.festManagerDataSet.BestellungenHistory_V.Rows[e.RowIndex]["BestellungId"];
-            lblBestellDetails.Text = "Bestell-Details für #" + actualBestellungId.ToString() + ":";
+            _actualBestellungId = (int)festManagerDataSet.BestellungenHistory_V.Rows[e.RowIndex]["BestellungId"];
+            lblBestellDetails.Text = Resources.FormBestellungenHistory_bestellungenHistoryDataGridView_CellDoubleClick_Order_details_for + _actualBestellungId.ToString() + @":";
 
             //this.bestellungenHistoryDetails_VTableAdapter.Fill(this.festManagerDataSet.BestellungenHistoryDetails_V);
             //this.festManagerDataSet.BestellungenHistoryDetails_V = ;
-            DataTable t = this.bestellungenHistoryDetails_VTableAdapter.GetDataByBestellungId(actualBestellungId);
-            this.bestellungenHistoryDetailsDataGridView.DataSource = t;
+            DataTable t = bestellungenHistoryDetails_VTableAdapter.GetDataByBestellungId(_actualBestellungId);
+            bestellungenHistoryDetailsDataGridView.DataSource = t;
         }
 
         private void buttonPrintBestellung_Click(object sender, EventArgs e)
         {
-            if (this.actualBestellungId > 0)
+            if (_actualBestellungId > 0)
             {
-                FestManager_Core.Data.FestManagerDataSetTableAdapters.AusgabestelleTableAdapter ausgabestellen = new FestManager_Core.Data.FestManagerDataSetTableAdapters.AusgabestelleTableAdapter();
-                FestManager_Core.Data.FestManagerDataSet.AusgabestelleDataTable ausgabe = (FestManager_Core.Data.FestManagerDataSet.AusgabestelleDataTable)ausgabestellen.GetKassaData();
+                var ausgabestellen = new Data.FestManagerDataSetTableAdapters.AusgabestelleTableAdapter();
+                var ausgabe = ausgabestellen.GetKassaData();
 
                 if (ausgabe.Count > 0)
                 {
-                    printDocument.PrinterSettings = new System.Drawing.Printing.PrinterSettings();
-                    printDocument.PrinterSettings.Copies = 1;
-                    
-                    FestManager_Core.Data.FestManagerDataSet.AusgabestelleRow row =
-                        (FestManager_Core.Data.FestManagerDataSet.AusgabestelleRow)ausgabe.Rows[0];
+                    printDocument.PrinterSettings = new System.Drawing.Printing.PrinterSettings {Copies = 1};
+
+                    var row =
+                        (Data.FestManagerDataSet.AusgabestelleRow)ausgabe.Rows[0];
 
                     //int ausgabestelle = (int)row.AusgabestelleId;
 
-                    FestManager_Core.Data.FestManagerDataSetTableAdapters.KassenbonTableAdapter kbTableAdapter = new FestManager_Core.Data.FestManagerDataSetTableAdapters.KassenbonTableAdapter();
-                    FestManager_Core.Data.FestManagerDataSet.KassenbonDataTable kbTable = new FestManager_Core.Data.FestManagerDataSet.KassenbonDataTable();
-                    kbTableAdapter.FillByBestellung(kbTable, this.actualBestellungId);
+                    var kbTableAdapter = new Data.FestManagerDataSetTableAdapters.KassenbonTableAdapter();
+                    var kbTable = new Data.FestManagerDataSet.KassenbonDataTable();
+                    kbTableAdapter.FillByBestellung(kbTable, _actualBestellungId);
                     
                     if (kbTable.Rows.Count > 0)
                     {
-                        this.printDocument.PrinterSettings.PrinterName = row.Drucker;
+                        printDocument.PrinterSettings.PrinterName = row.Drucker;
 
-                        DialogResult result = DialogResult.Retry;
+                        var result = DialogResult.Retry;
                         while (result == DialogResult.Retry)
                         {
                             try
                             {
-                                this.printDocument.Print();
+                                printDocument.Print();
                                 result = DialogResult.OK;
                             }
                             catch (InvalidAsynchronousStateException exc)
                             {
-                                result = MessageBox.Show("Fehler beim Drucken" + exc.Message, "Fehler", MessageBoxButtons.RetryCancel, MessageBoxIcon.Warning);
+                                result = MessageBox.Show(Resources.FormBestellungenHistory_buttonPrintBestellung_Click_Printing_error + exc.Message, Resources.Error, MessageBoxButtons.RetryCancel, MessageBoxIcon.Warning);
                             }
                         }
                     }
@@ -95,7 +82,7 @@ namespace FestManager_Core.Forms.SubForms
                 }
                 else
                 {
-                    MessageBox.Show("Fehler: Kein 'Kassa'-Drucker eingerichtet !!");
+                    MessageBox.Show(Resources.FormBestellungenHistory_buttonPrintBestellung_Click_Error_no_POS_printer);
                 }
             }
         }
@@ -104,13 +91,13 @@ namespace FestManager_Core.Forms.SubForms
 
         private void printDocument_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
         {
-            FestManager_Core.Data.FestManagerDataSetTableAdapters.KassenbonTableAdapter kbTableAdapter = new FestManager_Core.Data.FestManagerDataSetTableAdapters.KassenbonTableAdapter();
-            FestManager_Core.Data.FestManagerDataSet.KassenbonDataTable kbTable = new FestManager_Core.Data.FestManagerDataSet.KassenbonDataTable();
+            var kbTableAdapter = new Data.FestManagerDataSetTableAdapters.KassenbonTableAdapter();
+            var kbTable = new Data.FestManagerDataSet.KassenbonDataTable();
 
-            kbTableAdapter.FillByBestellung(kbTable, this.actualBestellungId);
+            kbTableAdapter.FillByBestellung(kbTable, _actualBestellungId);
             if (kbTable.Rows.Count > 0)
             {
-                Kassenbon kb = new Kassenbon(e.Graphics, kbTable);
+                var kb = new Kassenbon(e.Graphics, kbTable);
                 // Important for Kassa-Prints:
                 kb.Draw(true);
             }
@@ -119,7 +106,7 @@ namespace FestManager_Core.Forms.SubForms
 
         private void buttonRefreshList_Click(object sender, EventArgs e)
         {
-            this.bestellungenHistory_VTableAdapter.Fill(this.festManagerDataSet.BestellungenHistory_V);
+            bestellungenHistory_VTableAdapter.Fill(festManagerDataSet.BestellungenHistory_V);
         }
         
     }

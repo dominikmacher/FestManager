@@ -29,7 +29,7 @@ namespace FestManager_Core.Forms.SubForms
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormBestellung));
+            var resources = new System.ComponentModel.ComponentResourceManager(typeof(FormBestellung));
             this.toolStripContainer = new System.Windows.Forms.ToolStripContainer();
             this.actionsPanel = new System.Windows.Forms.Panel();
             this.rueckgaengigButton = new System.Windows.Forms.Button();

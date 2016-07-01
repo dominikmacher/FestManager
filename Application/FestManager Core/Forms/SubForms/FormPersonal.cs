@@ -1,9 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
 
 namespace FestManager_Core.Forms.SubForms
@@ -17,17 +12,17 @@ namespace FestManager_Core.Forms.SubForms
 
         private void FormPersonal_Load(object sender, EventArgs e)
         {
-            this.personalTableAdapter.Fill(this.festManagerDataSet.Personal);
+            personalTableAdapter.Fill(festManagerDataSet.Personal);
         }
 
         private void speichernButton_Click(object sender, EventArgs e)
         {
-            this.personalTableAdapter.Update(this.festManagerDataSet.Personal);
+            personalTableAdapter.Update(festManagerDataSet.Personal);
         }
 
         private void zuruecksetzenButton_Click(object sender, EventArgs e)
         {
-            this.personalTableAdapter.Fill(this.festManagerDataSet.Personal);
+            personalTableAdapter.Fill(festManagerDataSet.Personal);
         }
     }
 }

@@ -1,23 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Text;
+﻿using System.Collections.ObjectModel;
 
 namespace FestManager_Core.Forms
 {
     public class TreeViewNode
     {
-        public int imageIndex;
-        public string name;
-        public int selectedImageIndex;
-        public Collection<TreeViewNode> children;
+        public int ImageIndex { get; set; }
+
+        public string Name { get; set; }
+
+        public int SelectedImageIndex { get; set; }
+
+        public Collection<TreeViewNode> Children { get; set; }
 
         public TreeViewNode(string name, int imageIndex, int selectedImageIndex)
         {
-            this.imageIndex = imageIndex;
-            this.name = name;
-            this.selectedImageIndex = selectedImageIndex;
-            this.children = new Collection<TreeViewNode>();
+            ImageIndex = imageIndex;
+            Name = name;
+            SelectedImageIndex = selectedImageIndex;
+            Children = new Collection<TreeViewNode>();
         }
     }
 }

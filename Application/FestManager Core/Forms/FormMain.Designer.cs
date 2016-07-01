@@ -29,7 +29,7 @@ namespace FestManager_Core.Forms
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
+            var resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.treeViewMain = new System.Windows.Forms.TreeView();

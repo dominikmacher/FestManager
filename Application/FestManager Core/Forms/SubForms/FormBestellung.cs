@@ -42,11 +42,7 @@ namespace FestManager_Core.Forms.SubForms
             NewRecordset();
         }
 
-        private void NewRecordset()
-        {
-            NewRecordset(false);
-        }
-        private void NewRecordset(bool storno)
+        private void NewRecordset(bool storno = false)
         {
             // TODO: This line of code loads data into the 'festManagerDataSet.Artikel' table. You can move, or remove it, as needed.
             artikelTableAdapter.FillGueltige(festManagerDataSet.Artikel);
@@ -72,7 +68,7 @@ namespace FestManager_Core.Forms.SubForms
             _bestellungRow.Gesamtpreis = 0;
 
             //FestManager_Core.Data.FestManagerDataSet.BestellungArtikelDataTable table = festManagerDataSet.BestellungArtikel;
-            for (int i = 0; i < artikelDataGridView.Rows.Count-1; i++)
+            for (var i = 0; i < artikelDataGridView.Rows.Count-1; i++)
             {
                 _bestellungRow.Gesamtpreis += decimal.Parse(artikelDataGridView.Rows[i].Cells[4].Value.ToString());
             }
@@ -117,23 +113,18 @@ namespace FestManager_Core.Forms.SubForms
         }
 
 
-        private void PrintBestellung()
+        private void PrintBestellung(bool secondPrint = false)
         {
-            PrintBestellung(false);
-        }
-        private void PrintBestellung(bool secondPrint)
-        {
-            Data.FestManagerDataSetTableAdapters.AusgabestelleTableAdapter ausgabestellen = new Data.FestManagerDataSetTableAdapters.AusgabestelleTableAdapter();
-            Data.FestManagerDataSet.AusgabestelleDataTable ausgabe = ausgabestellen.GetData();
+            var ausgabestellen = new Data.FestManagerDataSetTableAdapters.AusgabestelleTableAdapter();
+            var ausgabe = ausgabestellen.GetData();
 
-            printDocument.PrinterSettings = new System.Drawing.Printing.PrinterSettings();
-            printDocument.PrinterSettings.Copies = 1;
+            printDocument.PrinterSettings = new System.Drawing.Printing.PrinterSettings {Copies = 1};
 
             if (!secondPrint)
             {
-                for (int i = 0; i < ausgabe.Rows.Count; i++)
+                for (var i = 0; i < ausgabe.Rows.Count; i++)
                 {
-                    Data.FestManagerDataSet.AusgabestelleRow row =
+                    var row =
                         (Data.FestManagerDataSet.AusgabestelleRow)ausgabe.Rows[i];
 
                     PrintKassabon(row);
@@ -148,10 +139,9 @@ namespace FestManager_Core.Forms.SubForms
 
                 if (ausgabe.Count > _direktverkaufAusgabestelleId)
                 {
-                    printDocument.PrinterSettings = new System.Drawing.Printing.PrinterSettings();
-                    printDocument.PrinterSettings.Copies = 1;
+                    printDocument.PrinterSettings = new System.Drawing.Printing.PrinterSettings {Copies = 1};
 
-                    Data.FestManagerDataSet.AusgabestelleRow row =
+                    var row =
                         (Data.FestManagerDataSet.AusgabestelleRow)ausgabe.Rows[_direktverkaufAusgabestelleId];
                     
                     PrintKassabon(row);
@@ -165,8 +155,8 @@ namespace FestManager_Core.Forms.SubForms
 
         private void PrintKassabon(Data.FestManagerDataSet.AusgabestelleRow row)
         {
-            Data.FestManagerDataSetTableAdapters.KassenbonTableAdapter kbTableAdapter = new Data.FestManagerDataSetTableAdapters.KassenbonTableAdapter();
-            Data.FestManagerDataSet.KassenbonDataTable kbTable = new Data.FestManagerDataSet.KassenbonDataTable();
+            var kbTableAdapter = new Data.FestManagerDataSetTableAdapters.KassenbonTableAdapter();
+            var kbTable = new Data.FestManagerDataSet.KassenbonDataTable();
 
             if (_bestellungRow.BestellungId == 0)
             {
@@ -192,9 +182,9 @@ namespace FestManager_Core.Forms.SubForms
                 if (!Settings.Default.printStornoOrders)
                 {
                     print=false;
-                    for (int i = 0; i < kbTable.Rows.Count; i++)
+                    for (var i = 0; i < kbTable.Rows.Count; i++)
                     {
-                        Data.FestManagerDataSet.KassenbonRow kbRow = (Data.FestManagerDataSet.KassenbonRow)kbTable.Rows[i];
+                        var kbRow = (Data.FestManagerDataSet.KassenbonRow)kbTable.Rows[i];
                         if (kbRow.Menge >= 0)
                         {
                             print = true;
@@ -207,7 +197,7 @@ namespace FestManager_Core.Forms.SubForms
                 {
                     printDocument.PrinterSettings.PrinterName = row.Drucker;
 
-                    DialogResult result = DialogResult.Retry;
+                    var result = DialogResult.Retry;
                     while (result == DialogResult.Retry)
                     {
                         try
@@ -227,8 +217,8 @@ namespace FestManager_Core.Forms.SubForms
 
         private void printDocument_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
         {
-            Data.FestManagerDataSetTableAdapters.KassenbonTableAdapter kbTableAdapter = new Data.FestManagerDataSetTableAdapters.KassenbonTableAdapter();
-            Data.FestManagerDataSet.KassenbonDataTable kbTable = new Data.FestManagerDataSet.KassenbonDataTable();
+            var kbTableAdapter = new Data.FestManagerDataSetTableAdapters.KassenbonTableAdapter();
+            var kbTable = new Data.FestManagerDataSet.KassenbonDataTable();
 
             if (_printAll)
             {
@@ -240,7 +230,7 @@ namespace FestManager_Core.Forms.SubForms
             }
             if (kbTable.Rows.Count > 0)
             {
-                Kassenbon kb = new Kassenbon(e.Graphics, kbTable);
+                var kb = new Kassenbon(e.Graphics, kbTable);
                 // Important for Kassa-Prints:
                 kb.Draw(_printAll);
             }
@@ -263,12 +253,12 @@ namespace FestManager_Core.Forms.SubForms
         {
             if ((e.ColumnIndex == 2 || e.ColumnIndex == 1) && artikelDataGridView.Rows[e.RowIndex].Cells[2].Value != null)
             {
-                String shortcut = artikelDataGridView.Rows[e.RowIndex].Cells[2].Value.ToString();
+                var shortcut = artikelDataGridView.Rows[e.RowIndex].Cells[2].Value.ToString();
                 
                 int shortcutValue;
                 try
                 {
-                    shortcutValue = Int32.Parse(shortcut);
+                    shortcutValue = int.Parse(shortcut);
                 }
                 catch (Exception)
                 {
@@ -339,7 +329,7 @@ namespace FestManager_Core.Forms.SubForms
 
         private void printLastOrderButton_Click(object sender, EventArgs e)
         {
-            int bkpBestellungId = _bestellungRow.BestellungId;
+            var bkpBestellungId = _bestellungRow.BestellungId;
 
             _bestellungRow.BestellungId = (int)bestellungTableAdapter.GetMaxBestellungId();
             PrintBestellung(true);            

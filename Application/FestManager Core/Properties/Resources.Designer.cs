@@ -61,6 +61,15 @@ namespace FestManager_Core.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Error ähnelt.
+        /// </summary>
+        internal static string Error {
+            get {
+                return ResourceManager.GetString("Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Fehler ähnelt.
         /// </summary>
         internal static string FormBestellung_abschliessenButton_Click_Error {
@@ -139,6 +148,53 @@ namespace FestManager_Core.Properties {
         internal static string FormBestellung_stornierenButton_Click_Order_will_be_canceled {
             get {
                 return ResourceManager.GetString("FormBestellung_stornierenButton_Click_Order_will_be_canceled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Bestell-Details für # ähnelt.
+        /// </summary>
+        internal static string FormBestellungenHistory_bestellungenHistoryDataGridView_CellDoubleClick_Order_details_for {
+            get {
+                return ResourceManager.GetString("FormBestellungenHistory_bestellungenHistoryDataGridView_CellDoubleClick_Order_det" +
+                        "ails_for", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Fehler: Kein &apos;Kassa&apos;-Drucker eingerichtet !! ähnelt.
+        /// </summary>
+        internal static string FormBestellungenHistory_buttonPrintBestellung_Click_Error_no_POS_printer {
+            get {
+                return ResourceManager.GetString("FormBestellungenHistory_buttonPrintBestellung_Click_Error_no_POS_printer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Fehler beim Drucken ähnelt.
+        /// </summary>
+        internal static string FormBestellungenHistory_buttonPrintBestellung_Click_Printing_error {
+            get {
+                return ResourceManager.GetString("FormBestellungenHistory_buttonPrintBestellung_Click_Printing_error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Alle offenen Abrechnungen werden als &apos;abgerechnet&apos; markiert. Fortfahren? ähnelt.
+        /// </summary>
+        internal static string FormKellnerabrechnung_buttonCloseOrders_Click_Continue_on_mark_all_open_orders_finalized {
+            get {
+                return ResourceManager.GetString("FormKellnerabrechnung_buttonCloseOrders_Click_Continue_on_mark_all_open_orders_fi" +
+                        "nalized", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Abrechnungen dauerhaft abschließen ähnelt.
+        /// </summary>
+        internal static string FormKellnerabrechnung_buttonCloseOrders_Click_Finalize_orders {
+            get {
+                return ResourceManager.GetString("FormKellnerabrechnung_buttonCloseOrders_Click_Finalize_orders", resourceCulture);
             }
         }
     }

@@ -66,17 +66,17 @@ namespace FestManager_Bestellung
             var bestellungenHistoryNode = new TreeViewNode("Bestellungen History", 4, 5);
 
             var festmanagerNode = new TreeViewNode("Festmanager", 12, 13);
-            festmanagerNode.children.Add(bestellungNode);
-            festmanagerNode.children.Add(bestellungenHistoryNode);
+            festmanagerNode.Children.Add(bestellungNode);
+            festmanagerNode.Children.Add(bestellungenHistoryNode);
 
             var personalNode = new TreeViewNode("Personal", 2, 3);
             var artikelNode = new TreeViewNode("Artikel", 4, 5);
             var ausgabestellenNode = new TreeViewNode("Ausgabestellen", 14, 15);
 
             var einstellungeNode = new TreeViewNode("Einstellungen", 6, 7);
-            einstellungeNode.children.Add(personalNode);
-            einstellungeNode.children.Add(artikelNode);
-            einstellungeNode.children.Add(ausgabestellenNode);
+            einstellungeNode.Children.Add(personalNode);
+            einstellungeNode.Children.Add(artikelNode);
+            einstellungeNode.Children.Add(ausgabestellenNode);
 
             var infoNode = new TreeViewNode("Info", 0, 1);
 

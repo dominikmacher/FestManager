@@ -37,9 +37,9 @@ namespace FestManager_Abrechnung
 
             var festManagerNode = new TreeViewNode("Festmanager", 12, 13);
 
-            festManagerNode.children.Add(kellnerabrechnungNode);
-            festManagerNode.children.Add(offeneAbrechnungenNode);
-            festManagerNode.children.Add(manuellesStornierenNode);
+            festManagerNode.Children.Add(kellnerabrechnungNode);
+            festManagerNode.Children.Add(offeneAbrechnungenNode);
+            festManagerNode.Children.Add(manuellesStornierenNode);
 
             var personalNode = new TreeViewNode("Personal", 2, 3);
             var artikelNode = new TreeViewNode("Artikel", 4, 5);
@@ -47,9 +47,9 @@ namespace FestManager_Abrechnung
 
             var einstellungenNode = new TreeViewNode("Einstellungen", 6, 7);
 
-            einstellungenNode.children.Add(personalNode);
-            einstellungenNode.children.Add(artikelNode);
-            einstellungenNode.children.Add(ausgabestellenNode);
+            einstellungenNode.Children.Add(personalNode);
+            einstellungenNode.Children.Add(artikelNode);
+            einstellungenNode.Children.Add(ausgabestellenNode);
 
             var infoNode = new TreeViewNode("Info", 0, 1);
 

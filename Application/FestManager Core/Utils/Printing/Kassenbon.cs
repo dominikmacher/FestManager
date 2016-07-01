@@ -9,9 +9,9 @@ namespace FestManager_Core.Utils.Printing
 {
     public class Kassenbon
     {
-        private static int _width = 200;
-        private static int _marginTop = 10;
-        private static int _marginLeft = 10;
+        private static readonly int Width = 200;
+        private static readonly int MarginTop = 10;
+        private static readonly int MarginLeft = 10;
 
         /* Components */
         private Font _fontDefault;
@@ -68,50 +68,50 @@ namespace FestManager_Core.Utils.Printing
             {
                 var firstRow = (FestManagerDataSet.KassenbonRow)_table.Rows[0];
 
-                var y = _marginTop;
-                AddHLine(_marginLeft, y);
+                var y = MarginTop;
+                AddHLine(MarginLeft, y);
 
                 y += 0;
-                AddString("Festmanager Kassenbon", _marginLeft + _width / 2, y, _fontBold, _sfCenter);
+                AddString("Festmanager Kassenbon", MarginLeft + Width / 2, y, _fontBold, _sfCenter);
 
                 y += _lineSpacing;
-                AddString(_title, _marginLeft + _width / 2, y, _fontBold, _sfCenter);
+                AddString(_title, MarginLeft + Width / 2, y, _fontBold, _sfCenter);
 
                 y += _lineSpacing;
-                AddHLine(_marginLeft, y);
+                AddHLine(MarginLeft, y);
 
                 y += _lineSpacing;
-                AddString("Bedienung:", _marginLeft, y, _fontBold, _sfLeft);
-                AddString(firstRow.PersonalNr + " - " + firstRow.Personal, _marginLeft + _width, y, _fontDefault, _sfRight);
+                AddString("Bedienung:", MarginLeft, y, _fontBold, _sfLeft);
+                AddString(firstRow.PersonalNr + " - " + firstRow.Personal, MarginLeft + Width, y, _fontDefault, _sfRight);
 
                 y += _lineSpacing;
-                AddString("Datum/Uhrzeit:", _marginLeft, y, _fontBold, _sfLeft);
-                AddString(firstRow.Zeitpunkt.ToString(CultureInfo.InvariantCulture), _marginLeft + _width, y, _fontDefault, _sfRight);
+                AddString("Datum/Uhrzeit:", MarginLeft, y, _fontBold, _sfLeft);
+                AddString(firstRow.Zeitpunkt.ToString(CultureInfo.InvariantCulture), MarginLeft + Width, y, _fontDefault, _sfRight);
 
                 if (!string.IsNullOrEmpty(firstRow.Tisch))
                 {
                     y += _lineSpacing;
-                    AddString("Tisch:", _marginLeft, y, _fontBold, _sfLeft);
-                    AddString(firstRow.Tisch, _marginLeft + _width, y, _fontDefault, _sfRight);
+                    AddString("Tisch:", MarginLeft, y, _fontBold, _sfLeft);
+                    AddString(firstRow.Tisch, MarginLeft + Width, y, _fontDefault, _sfRight);
                 }
 
                 y += _lineSpacing;
-                AddString("Bestellung-Nr:", _marginLeft, y, _fontBold, _sfLeft);
-                AddString(firstRow.BestellungId.ToString(), _marginLeft + _width, y, _fontDefault, _sfRight);
+                AddString("Bestellung-Nr:", MarginLeft, y, _fontBold, _sfLeft);
+                AddString(firstRow.BestellungId.ToString(), MarginLeft + Width, y, _fontDefault, _sfRight);
 
                 y += _lineSpacing;
-                AddString("Ausgabe:", _marginLeft, y, _fontBold, _sfLeft);
+                AddString("Ausgabe:", MarginLeft, y, _fontBold, _sfLeft);
                 if (isCopy)
                 {
-                    AddString("Kassa (Rechnungskopie)", _marginLeft + _width, y, _fontDefault, _sfRight);
+                    AddString("Kassa (Rechnungskopie)", MarginLeft + Width, y, _fontDefault, _sfRight);
                 }
                 else
                 {
-                    AddString(firstRow.Ausgabestelle + "(" + firstRow.AusgabestelleId + ")", _marginLeft + _width, y, _fontDefault, _sfRight);
+                    AddString(firstRow.Ausgabestelle + "(" + firstRow.AusgabestelleId + ")", MarginLeft + Width, y, _fontDefault, _sfRight);
                 }
 
                 y += _lineSpacing;
-                AddHLine(_marginLeft, y);
+                AddHLine(MarginLeft, y);
 
                 /* Artikel */
                 y += _lineSpacing;
@@ -132,7 +132,7 @@ namespace FestManager_Core.Utils.Printing
                     {
                         var row = (FestManagerDataSet.KassenbonRow)_table.Rows[i];
                         var artikel = row.Artikel;
-                        if (String.Compare("Einpacken", artikel, StringComparison.OrdinalIgnoreCase) == 0)    // look for pressed Einpacken-buttons
+                        if (string.Compare("Einpacken", artikel, StringComparison.OrdinalIgnoreCase) == 0)    // look for pressed Einpacken-buttons
                         {
                             continue;
                         }
@@ -215,7 +215,7 @@ namespace FestManager_Core.Utils.Printing
                     }
                     var gesamtpreis = einzelpreis * menge;
                     summe += gesamtpreis;
-                    AddArtikel(menge, artikel, gesamtpreis, _marginLeft, y);
+                    AddArtikel(menge, artikel, gesamtpreis, MarginLeft, y);
                     y += _lineSpacing;
                 }
 
@@ -226,22 +226,22 @@ namespace FestManager_Core.Utils.Printing
                     y += lineSpacing;
                 }*/
 
-                AddHLine(_marginLeft, y);
+                AddHLine(MarginLeft, y);
 
                 /* Summe */
-                AddSumme(summe, _marginLeft, y);
+                AddSumme(summe, MarginLeft, y);
 
                 /* Bestellung erledigt */
                 y += 2 * _lineSpacing;
 
-                AddString("Bestellung abgeschlossen", _marginLeft + _lineSpacing + 5, y, _fontDefault, _sfLeft);
-                AddHLine(_marginLeft, y, _lineSpacing);
-                AddHLine(_marginLeft, y + _lineSpacing, _lineSpacing);
-                AddVLine(_marginLeft, y, y + _lineSpacing);
-                AddVLine(_marginLeft + _lineSpacing, y, y + _lineSpacing);
+                AddString("Bestellung abgeschlossen", MarginLeft + _lineSpacing + 5, y, _fontDefault, _sfLeft);
+                AddHLine(MarginLeft, y, _lineSpacing);
+                AddHLine(MarginLeft, y + _lineSpacing, _lineSpacing);
+                AddVLine(MarginLeft, y, y + _lineSpacing);
+                AddVLine(MarginLeft + _lineSpacing, y, y + _lineSpacing);
 
                 y += 2 * _lineSpacing;
-                AddString("-", _marginLeft, y, _fontBold, _sfLeft);
+                AddString("-", MarginLeft, y, _fontBold, _sfLeft);
             }
         }
 
@@ -262,7 +262,7 @@ namespace FestManager_Core.Utils.Printing
             Graphic.DrawLine(
                 _defaultPen,
                 new Point(x, y),
-                new Point(x + _width, y)
+                new Point(x + Width, y)
             );
 
         }
@@ -309,7 +309,7 @@ namespace FestManager_Core.Utils.Printing
                 gesamtpreis.ToString("0.00") + " €",
                 _fontDefault,
                 _defaultBrush,
-                new PointF(x + _width, y),
+                new PointF(x + Width, y),
                 _sfRight
             );
 
@@ -330,12 +330,12 @@ namespace FestManager_Core.Utils.Printing
                 gesamtpreis.ToString("0.00") + " €",
                 _fontBold,
                 _defaultBrush,
-                new PointF(x + _width, y),
+                new PointF(x + Width, y),
                 _sfRight
             );
 
-            AddHLine(x + 25, y + _lineSpacing, _width - 25);
-            AddHLine(x + 25, y + _lineSpacing + 2, _width - 25);
+            AddHLine(x + 25, y + _lineSpacing, Width - 25);
+            AddHLine(x + 25, y + _lineSpacing + 2, Width - 25);
 
         }
         

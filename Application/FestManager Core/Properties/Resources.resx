@@ -145,4 +145,22 @@ Gesamtpreis in €: </value>
   <data name="FormBestellung_artikelDataGridView_CellValidated_Product_not_found" xml:space="preserve">
     <value>Artikel nicht gefunden!</value>
   </data>
+  <data name="Error" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="FormBestellungenHistory_bestellungenHistoryDataGridView_CellDoubleClick_Order_details_for" xml:space="preserve">
+    <value>Bestell-Details für #</value>
+  </data>
+  <data name="FormBestellungenHistory_buttonPrintBestellung_Click_Printing_error" xml:space="preserve">
+    <value>Fehler beim Drucken</value>
+  </data>
+  <data name="FormBestellungenHistory_buttonPrintBestellung_Click_Error_no_POS_printer" xml:space="preserve">
+    <value>Fehler: Kein 'Kassa'-Drucker eingerichtet !!</value>
+  </data>
+  <data name="FormKellnerabrechnung_buttonCloseOrders_Click_Continue_on_mark_all_open_orders_finalized" xml:space="preserve">
+    <value>Alle offenen Abrechnungen werden als 'abgerechnet' markiert. Fortfahren?</value>
+  </data>
+  <data name="FormKellnerabrechnung_buttonCloseOrders_Click_Finalize_orders" xml:space="preserve">
+    <value>Abrechnungen dauerhaft abschließen</value>
+  </data>
 </root>
