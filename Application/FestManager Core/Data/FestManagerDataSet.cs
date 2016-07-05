@@ -1,12 +1,13 @@
 ﻿namespace FestManager_Core.Data
 {
-    
-    
-    public partial class FestManagerDataSet {
+
+
+    public partial class FestManagerDataSet
+    {
         partial class KellnerabrechnungOffenDataTable
         {
         }
-    
+
         partial class KassenbonDataTable
         {
         }

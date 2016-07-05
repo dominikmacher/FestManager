@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Linq;
 using System.Windows.Forms;
 using FestManager_Core.Forms.SubForms;
 using FestManager_Core.Properties;
@@ -318,17 +319,17 @@ namespace FestManager_Core.Forms
         }
 
 
-        void childForm_Disposed(object sender, EventArgs e)
+        private void childForm_Disposed(object sender, EventArgs e)
         {
             try
             {
                 var formSender = (Form)sender;
-                foreach (var key in _childs.Keys)
+                foreach (var key in _childs.Keys.ToArray())
                 {
-                    var formTmp = _childs[key.ToString()];
+                    var formTmp = _childs[key];
                     if (string.Compare(formTmp.Name, formSender.Name, StringComparison.OrdinalIgnoreCase) == 0)
                     {
-                        _childs.Remove(key.ToString());
+                        _childs.Remove(key);
                     }
                 }
             }
