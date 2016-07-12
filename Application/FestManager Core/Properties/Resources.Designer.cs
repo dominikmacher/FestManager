@@ -61,11 +61,47 @@ namespace FestManager_Core.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Fehler beim Laden der Daten:  ähnelt.
+        /// </summary>
+        internal static string Database_Error_Message_Pfx {
+            get {
+                return ResourceManager.GetString("Database_Error_Message_Pfx", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Datenbankfehler ähnelt.
+        /// </summary>
+        internal static string Database_Error_Message_Title {
+            get {
+                return ResourceManager.GetString("Database_Error_Message_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Error ähnelt.
         /// </summary>
         internal static string Error {
             get {
                 return ResourceManager.GetString("Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Fehler beim Verbinden mit der Datenbank! Wollen Sie den Speicherort der Datenbank prüfen? ähnelt.
+        /// </summary>
+        internal static string Error_connection_to_DB_Msg {
+            get {
+                return ResourceManager.GetString("Error_connection_to_DB_Msg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Datenbank-Verbindungsfehler ähnelt.
+        /// </summary>
+        internal static string Error_connection_to_DB_Title {
+            get {
+                return ResourceManager.GetString("Error_connection_to_DB_Title", resourceCulture);
             }
         }
         
@@ -107,11 +143,20 @@ namespace FestManager_Core.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Artikel nicht gefunden! ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Der angegebene Artikel konnte nicht gefunden werden! ähnelt.
         /// </summary>
         internal static string FormBestellung_artikelDataGridView_CellValidated_Product_not_found {
             get {
                 return ResourceManager.GetString("FormBestellung_artikelDataGridView_CellValidated_Product_not_found", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Artikel nicht gefunden ähnelt.
+        /// </summary>
+        internal static string FormBestellung_artikelDataGridView_CellValidated_Product_not_found_Title {
+            get {
+                return ResourceManager.GetString("FormBestellung_artikelDataGridView_CellValidated_Product_not_found_Title", resourceCulture);
             }
         }
         

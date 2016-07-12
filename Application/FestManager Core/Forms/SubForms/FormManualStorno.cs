@@ -1,6 +1,7 @@
 using System;
 using System.Data;
 using System.Windows.Forms;
+using FestManager_Core.Properties;
 
 namespace FestManager_Core.Forms.SubForms
 {
@@ -16,10 +17,19 @@ namespace FestManager_Core.Forms.SubForms
 
         private void FormManualStorno_Load(object sender, EventArgs e)
         {
-            // TODO: Diese Codezeile lädt Daten in die Tabelle "festManagerDataSet.Personal_V". Sie können sie bei Bedarf verschieben oder entfernen.
-            personal_VTableAdapter.Fill(festManagerDataSet.Personal_V);
-            _personalId = (int)personalComboBox.SelectedValue;
-            FillGridView();
+            try
+            {
+                // TODO: Diese Codezeile lädt Daten in die Tabelle "festManagerDataSet.Personal_V". Sie können sie bei Bedarf verschieben oder entfernen.
+                personal_VTableAdapter.Fill(festManagerDataSet.Personal_V);
+                _personalId = (int) personalComboBox.SelectedValue;
+                FillGridView();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(Resources.Database_Error_Message_Pfx + ex.Message,
+                    Resources.Database_Error_Message_Title, MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
         }
 
         private void personalComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -30,11 +40,21 @@ namespace FestManager_Core.Forms.SubForms
 
         private void FillGridView()
         {
-            // TODO: Diese Codezeile lädt Daten in die Tabelle "festManagerDataSet.PersonalArtikel". Sie können sie bei Bedarf verschieben oder entfernen.
-            //this.personalArtikelTableAdapter.Fill(this.festManagerDataSet.PersonalArtikel);
+            try
+            {
+                // TODO: Diese Codezeile lädt Daten in die Tabelle "festManagerDataSet.PersonalArtikel". Sie können sie bei Bedarf verschieben oder entfernen.
+                //this.personalArtikelTableAdapter.Fill(this.festManagerDataSet.PersonalArtikel);
 
-            DataTable t = personalArtikelTableAdapter.GetDataByPersonalId(_personalId);
-            personalArtikelDataGridView.DataSource = t; 
+                DataTable t = personalArtikelTableAdapter.GetDataByPersonalId(_personalId);
+                personalArtikelDataGridView.DataSource = t;
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(Resources.Database_Error_Message_Pfx + ex.Message,
+                    Resources.Database_Error_Message_Title, MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
         }
 
         private void personalArtikelDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)

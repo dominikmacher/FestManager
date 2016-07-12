@@ -29,7 +29,7 @@ namespace FestManager_Core.Forms
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            var resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.treeViewMain = new System.Windows.Forms.TreeView();
@@ -40,7 +40,9 @@ namespace FestManager_Core.Forms
             this.LeftToolStripPanel = new System.Windows.Forms.ToolStripPanel();
             this.ContentPanel = new System.Windows.Forms.ToolStripContentPanel();
             this.ToolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.festManagerDataSet = new FestManager_Core.Data.FestManagerDataSet();
             this.statusStrip.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.festManagerDataSet)).BeginInit();
             this.SuspendLayout();
             // 
             // statusStrip
@@ -130,6 +132,11 @@ namespace FestManager_Core.Forms
             // 
             this.ContentPanel.Size = new System.Drawing.Size(462, 382);
             // 
+            // festManagerDataSet
+            // 
+            this.festManagerDataSet.DataSetName = "FestManagerDataSet";
+            this.festManagerDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -144,6 +151,7 @@ namespace FestManager_Core.Forms
             this.Load += new System.EventHandler(this.FormMain_Load);
             this.statusStrip.ResumeLayout(false);
             this.statusStrip.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.festManagerDataSet)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -160,6 +168,7 @@ namespace FestManager_Core.Forms
         private System.Windows.Forms.ToolStripContentPanel ContentPanel;
         private System.Windows.Forms.ImageList imageList;
         private System.Windows.Forms.ToolTip ToolTip;
+        private Data.FestManagerDataSet festManagerDataSet;
     }
 }
 

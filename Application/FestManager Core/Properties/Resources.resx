@@ -143,7 +143,7 @@ Gesamtpreis in €: </value>
     <value>Bestellung wird nun storniert...</value>
   </data>
   <data name="FormBestellung_artikelDataGridView_CellValidated_Product_not_found" xml:space="preserve">
-    <value>Artikel nicht gefunden!</value>
+    <value>Der angegebene Artikel konnte nicht gefunden werden!</value>
   </data>
   <data name="Error" xml:space="preserve">
     <value>Error</value>
@@ -162,5 +162,20 @@ Gesamtpreis in €: </value>
   </data>
   <data name="FormKellnerabrechnung_buttonCloseOrders_Click_Finalize_orders" xml:space="preserve">
     <value>Abrechnungen dauerhaft abschließen</value>
+  </data>
+  <data name="Database_Error_Message_Pfx" xml:space="preserve">
+    <value>Fehler beim Laden der Daten: </value>
+  </data>
+  <data name="Database_Error_Message_Title" xml:space="preserve">
+    <value>Datenbankfehler</value>
+  </data>
+  <data name="FormBestellung_artikelDataGridView_CellValidated_Product_not_found_Title" xml:space="preserve">
+    <value>Artikel nicht gefunden</value>
+  </data>
+  <data name="Error_connection_to_DB_Msg" xml:space="preserve">
+    <value>Fehler beim Verbinden mit der Datenbank! Wollen Sie den Speicherort der Datenbank prüfen?</value>
+  </data>
+  <data name="Error_connection_to_DB_Title" xml:space="preserve">
+    <value>Datenbank-Verbindungsfehler</value>
   </data>
 </root>

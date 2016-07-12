@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows.Forms;
+using FestManager_Core.Data.FestManagerDataSetTableAdapters;
 using FestManager_Core.Forms.SubForms;
 using FestManager_Core.Properties;
 using FestManager_Core.Utils;
@@ -13,7 +13,7 @@ namespace FestManager_Core.Forms
     public partial class FormMain : Form
     {
         private readonly NameFormCollection _childs = new NameFormCollection();
-
+        
         private void InitializeTreeViewComponent(IList<TreeViewNode> nodes)
         {
             var treenodes = new TreeNode[nodes.Count];
@@ -30,12 +30,41 @@ namespace FestManager_Core.Forms
         }
 
 
-        public FormMain(string name, Collection<TreeViewNode> nodes)
+        public FormMain(string name, IList<TreeViewNode> nodes)
         {
             InitializeComponent();
             InitializeTreeViewComponent(nodes);
 
+            if (!CheckDatabaseConnectivity() && MessageBox.Show(
+                        Resources.Error_connection_to_DB_Msg,
+                        Resources.Error_connection_to_DB_Title, MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                var formSettings = new FormSettings();
+                formSettings.Show(this);
+            }
+
             Text += " [" + name + "]";
+        }
+
+        private bool CheckDatabaseConnectivity()
+        {
+            try
+            {
+                var ausgabestelleTableAdapter = new AusgabestelleTableAdapter();
+
+                ausgabestelleTableAdapter.Fill(festManagerDataSet.Ausgabestelle);
+
+                var count = festManagerDataSet.Ausgabestelle.Count;
+
+                if (count > 0)
+                    return true;
+            }
+            catch (Exception)
+            {
+                // ignored
+            }
+
+            return false;
         }
 
         [Localizable(false)]

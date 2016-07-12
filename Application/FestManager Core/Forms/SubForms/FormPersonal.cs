@@ -1,5 +1,6 @@
 using System;
 using System.Windows.Forms;
+using FestManager_Core.Properties;
 
 namespace FestManager_Core.Forms.SubForms
 {
@@ -12,17 +13,43 @@ namespace FestManager_Core.Forms.SubForms
 
         private void FormPersonal_Load(object sender, EventArgs e)
         {
-            personalTableAdapter.Fill(festManagerDataSet.Personal);
+            try { 
+                personalTableAdapter.Fill(festManagerDataSet.Personal);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(Resources.Database_Error_Message_Pfx + ex.Message,
+                    Resources.Database_Error_Message_Title, MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
         }
 
         private void speichernButton_Click(object sender, EventArgs e)
         {
-            personalTableAdapter.Update(festManagerDataSet.Personal);
+            try
+            {
+                personalTableAdapter.Update(festManagerDataSet.Personal);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(Resources.Database_Error_Message_Pfx + ex.Message,
+                    Resources.Database_Error_Message_Title, MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
         }
 
         private void zuruecksetzenButton_Click(object sender, EventArgs e)
         {
-            personalTableAdapter.Fill(festManagerDataSet.Personal);
+            try
+            {
+                personalTableAdapter.Fill(festManagerDataSet.Personal);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(Resources.Database_Error_Message_Pfx + ex.Message,
+                    Resources.Database_Error_Message_Title, MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
         }
     }
 }

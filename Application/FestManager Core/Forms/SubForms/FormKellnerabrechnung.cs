@@ -17,13 +17,22 @@ namespace FestManager_Core.Forms.SubForms
 
         private void FormKellnerabrechnung_Load(object sender, EventArgs e)
         {
-            // TODO: Diese Codezeile lädt Daten in die Tabelle "festManagerDataSet.KellnerabrechnungNachTagenAbgeschlossen". Sie können sie bei Bedarf verschieben oder entfernen.
-            kellnerabrechnungNachTagenAbgeschlossenTableAdapter.Fill(festManagerDataSet.KellnerabrechnungNachTagenAbgeschlossen);
-            // TODO: Diese Codezeile lädt Daten in die Tabelle "festManagerDataSet.KellnerabrechnungNachTagenOffen". Sie können sie bei Bedarf verschieben oder entfernen.
-            kellnerabrechnungNachTagenOffenTableAdapter.Fill(festManagerDataSet.KellnerabrechnungNachTagenOffen);
-            personal_VTableAdapter.Fill(festManagerDataSet.Personal_V);
-            _personalId = (int)personalComboBox.SelectedValue;
-            FillGridView();
+            try
+            {
+                // TODO: Diese Codezeile lädt Daten in die Tabelle "festManagerDataSet.KellnerabrechnungNachTagenAbgeschlossen". Sie können sie bei Bedarf verschieben oder entfernen.
+                kellnerabrechnungNachTagenAbgeschlossenTableAdapter.Fill(
+                    festManagerDataSet.KellnerabrechnungNachTagenAbgeschlossen);
+                // TODO: Diese Codezeile lädt Daten in die Tabelle "festManagerDataSet.KellnerabrechnungNachTagenOffen". Sie können sie bei Bedarf verschieben oder entfernen.
+                kellnerabrechnungNachTagenOffenTableAdapter.Fill(festManagerDataSet.KellnerabrechnungNachTagenOffen);
+                personal_VTableAdapter.Fill(festManagerDataSet.Personal_V);
+                _personalId = (int) personalComboBox.SelectedValue;
+                FillGridView();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(Resources.Database_Error_Message_Pfx + ex.Message, Resources.Database_Error_Message_Title, MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
         }
 
         private void personalComboBox_SelectedIndexChanged(object sender, EventArgs e)

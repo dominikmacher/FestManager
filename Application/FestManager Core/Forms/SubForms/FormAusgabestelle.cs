@@ -1,6 +1,7 @@
 using System;
 using System.Windows.Forms;
 using System.Drawing.Printing;
+using FestManager_Core.Properties;
 
 namespace FestManager_Core.Forms.SubForms
 {
@@ -14,38 +15,48 @@ namespace FestManager_Core.Forms.SubForms
         private void FormAusgabestelle_Load(object sender, EventArgs e)
         {
             var dt = new Data.FestManagerDataSet.AusgabestelleDataTable();
-            ausgabestelleTableAdapter.Fill(dt);
+            try
+            { 
+                ausgabestelleTableAdapter.Fill(dt);
 
-            for (var i = 0; i < dt.Rows.Count; i++)
-            {
-                var installedPrinter = "";
-                foreach (string printerName in PrinterSettings.InstalledPrinters)
+                for (var i = 0; i < dt.Rows.Count; i++)
                 {
-                    if (string.IsNullOrEmpty(installedPrinter))
+                    var installedPrinter = "";
+                    foreach (string printerName in PrinterSettings.InstalledPrinters)
                     {
-                        installedPrinter = printerName;
+                        if (string.IsNullOrEmpty(installedPrinter))
+                        {
+                            installedPrinter = printerName;
+                        }
+                        if (string.Compare(dt.Rows[i]["Drucker"].ToString(), printerName, StringComparison.OrdinalIgnoreCase) == 0)
+                        {
+                            installedPrinter = printerName;
+                        }
                     }
-                    if (string.Compare(dt.Rows[i]["Drucker"].ToString(), printerName, StringComparison.OrdinalIgnoreCase) == 0)
-                    {
-                        installedPrinter = printerName;
-                    }
+
+                    dt.Rows[i]["Drucker"] = installedPrinter;
+                    festManagerDataSet.Ausgabestelle.ImportRow((Data.FestManagerDataSet.AusgabestelleRow)dt.Rows[i]);
+
+                    //MessageBox.Show();
                 }
 
-                dt.Rows[i]["Drucker"] = installedPrinter;
-                festManagerDataSet.Ausgabestelle.ImportRow((Data.FestManagerDataSet.AusgabestelleRow)dt.Rows[i]);
+                //this.ausgabestelleTableAdapter.Update(
 
-                //MessageBox.Show();
+                foreach (string printerName in PrinterSettings.InstalledPrinters)
+                {
+                    festManagerDataSet.Printer.AddPrinterRow(printerName);
+                }
+
+                    // TODO: This line of code loads data into the 'festManagerDataSet.Ausgabestelle' table. You can move, or remove it, as needed.
+                    //this.ausgabestelleTableAdapter.Fill(this.festManagerDataSet.Ausgabestelle); 
+
             }
-
-            //this.ausgabestelleTableAdapter.Update(
-
-            foreach (string printerName in PrinterSettings.InstalledPrinters)
+            catch (Exception ex)
             {
-                festManagerDataSet.Printer.AddPrinterRow(printerName);
+                MessageBox.Show(Resources.Database_Error_Message_Pfx + ex.Message,
+                    Resources.Database_Error_Message_Title, MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
             }
-
-            // TODO: This line of code loads data into the 'festManagerDataSet.Ausgabestelle' table. You can move, or remove it, as needed.
-            //this.ausgabestelleTableAdapter.Fill(this.festManagerDataSet.Ausgabestelle);            
         }
 
         private void speichernButton_Click(object sender, EventArgs e)

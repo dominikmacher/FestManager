@@ -37,31 +37,49 @@ namespace FestManager_Core.Forms.SubForms
         private void FormBestellung_Load(object sender, EventArgs e)
         {
             // TODO: This line of code loads data into the 'festManagerDataSet.PersonalKuerzel_V' table. You can move, or remove it, as needed.
-            personal_VTableAdapter.Fill(festManagerDataSet.Personal_V);
+            try { 
+                personal_VTableAdapter.Fill(festManagerDataSet.Personal_V);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(Resources.Database_Error_Message_Pfx + ex.Message,
+                    Resources.Database_Error_Message_Title, MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
 
             NewRecordset();
         }
 
         private void NewRecordset(bool storno = false)
         {
-            // TODO: This line of code loads data into the 'festManagerDataSet.Artikel' table. You can move, or remove it, as needed.
-            artikelTableAdapter.FillGueltige(festManagerDataSet.Artikel);
-            
-            if (!storno)
+            try
             {
-                // TODO: This line of code loads data into the 'festManagerDataSet.Bestellung' table. You can move, or remove it, as needed.
-                bestellungTableAdapter.Fill(festManagerDataSet.Bestellung);
-                _bestellungRow = festManagerDataSet.Bestellung.NewBestellungRow();
+                // TODO: This line of code loads data into the 'festManagerDataSet.Artikel' table. You can move, or remove it, as needed.
+                artikelTableAdapter.FillGueltige(festManagerDataSet.Artikel);
+
+                if (!storno)
+                {
+                    // TODO: This line of code loads data into the 'festManagerDataSet.Bestellung' table. You can move, or remove it, as needed.
+                    bestellungTableAdapter.Fill(festManagerDataSet.Bestellung);
+                    _bestellungRow = festManagerDataSet.Bestellung.NewBestellungRow();
+                }
+                zeitpunktTextBox.Text = DateTime.Now.ToString(CultureInfo.InvariantCulture);
+                tischTextBox.Text = "";
+                rueckgaengigButton.Visible = false;
+                bestellungIdTextBox.Text = _bestellungRow.BestellungId.ToString();
+
+                bestellungArtikelTableAdapter.FillByBestellungId(festManagerDataSet.BestellungArtikel,
+                    _bestellungRow.BestellungId);
+
+                personalIdComboBox.Focus();
             }
-            zeitpunktTextBox.Text = DateTime.Now.ToString(CultureInfo.InvariantCulture);
-            tischTextBox.Text = "";
-            rueckgaengigButton.Visible = false;
-            bestellungIdTextBox.Text = _bestellungRow.BestellungId.ToString();
-
-            bestellungArtikelTableAdapter.FillByBestellungId(festManagerDataSet.BestellungArtikel, _bestellungRow.BestellungId);
-
-            personalIdComboBox.Focus();
-        }
+            catch (Exception ex)
+            {
+                MessageBox.Show(Resources.Database_Error_Message_Pfx + ex.Message,
+                    Resources.Database_Error_Message_Title, MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+}
 
         private void CalculateGesamtpreis()
         {
@@ -70,7 +88,14 @@ namespace FestManager_Core.Forms.SubForms
             //FestManager_Core.Data.FestManagerDataSet.BestellungArtikelDataTable table = festManagerDataSet.BestellungArtikel;
             for (var i = 0; i < artikelDataGridView.Rows.Count-1; i++)
             {
-                _bestellungRow.Gesamtpreis += decimal.Parse(artikelDataGridView.Rows[i].Cells[4].Value.ToString());
+                try
+                {
+                    _bestellungRow.Gesamtpreis += decimal.Parse(artikelDataGridView.Rows[i].Cells[4].Value.ToString());
+                }
+                catch (FormatException)
+                {
+                    // Cell has wrong format
+                }
             }
         }
 
@@ -155,62 +180,77 @@ namespace FestManager_Core.Forms.SubForms
 
         private void PrintKassabon(Data.FestManagerDataSet.AusgabestelleRow row)
         {
-            var kbTableAdapter = new Data.FestManagerDataSetTableAdapters.KassenbonTableAdapter();
-            var kbTable = new Data.FestManagerDataSet.KassenbonDataTable();
+            try
+            {
+                var kbTableAdapter = new Data.FestManagerDataSetTableAdapters.KassenbonTableAdapter();
+                var kbTable = new Data.FestManagerDataSet.KassenbonDataTable();
 
-            if (_bestellungRow.BestellungId == 0)
-            {
-                MessageBox.Show(Resources.FormBestellung_PrintKassabon_Critical_error_restart_application);
-            }
-            if (_printAll)
-            {
-                kbTableAdapter.FillByBestellung(kbTable, _bestellungRow.BestellungId);
-            }
-            else
-            {
-                _ausgabestelle = row.AusgabestelleId;
-                kbTableAdapter.FillByBestellungAndAusgabestelle(kbTable, _bestellungRow.BestellungId, _ausgabestelle);
-            }
-            
-            
-            if (kbTable.Rows.Count == 0) {
-                //MessageBox.Show(this.ausgabestelle + ": huhu => " + bestellungRow.BestellungId.ToString());
-            }
-            if (kbTable.Rows.Count > 0)
-            {
-                var print = true;
-                if (!Settings.Default.printStornoOrders)
+                if (_bestellungRow.BestellungId == 0)
                 {
-                    print=false;
-                    for (var i = 0; i < kbTable.Rows.Count; i++)
+                    MessageBox.Show(Resources.FormBestellung_PrintKassabon_Critical_error_restart_application);
+                }
+                if (_printAll)
+                {
+                    kbTableAdapter.FillByBestellung(kbTable, _bestellungRow.BestellungId);
+                }
+                else
+                {
+                    _ausgabestelle = row.AusgabestelleId;
+                    kbTableAdapter.FillByBestellungAndAusgabestelle(kbTable, _bestellungRow.BestellungId, _ausgabestelle);
+                }
+
+
+                if (kbTable.Rows.Count == 0)
+                {
+                    //MessageBox.Show(this.ausgabestelle + ": huhu => " + bestellungRow.BestellungId.ToString());
+                }
+                if (kbTable.Rows.Count > 0)
+                {
+                    var print = true;
+                    if (!Settings.Default.printStornoOrders)
                     {
-                        var kbRow = (Data.FestManagerDataSet.KassenbonRow)kbTable.Rows[i];
-                        if (kbRow.Menge >= 0)
+                        print = false;
+                        for (var i = 0; i < kbTable.Rows.Count; i++)
                         {
-                            print = true;
-                            break;
+                            var kbRow = (Data.FestManagerDataSet.KassenbonRow) kbTable.Rows[i];
+                            if (kbRow.Menge >= 0)
+                            {
+                                print = true;
+                                break;
+                            }
+                        }
+                    }
+
+                    if (print)
+                    {
+                        printDocument.PrinterSettings.PrinterName = row.Drucker;
+
+                        var result = DialogResult.Retry;
+                        while (result == DialogResult.Retry)
+                        {
+                            try
+                            {
+                                printDocument.Print();
+                                result = DialogResult.OK;
+                            }
+                            catch (Exception exc)
+                            {
+                                result =
+                                    MessageBox.Show(
+                                        Resources.FormBestellung_PrintKassabon_Printing_error + exc.Message,
+                                        Resources.FormBestellung_abschliessenButton_Click_Error,
+                                        MessageBoxButtons.RetryCancel, MessageBoxIcon.Warning);
+                            }
                         }
                     }
                 }
 
-                if (print)
-                {
-                    printDocument.PrinterSettings.PrinterName = row.Drucker;
-
-                    var result = DialogResult.Retry;
-                    while (result == DialogResult.Retry)
-                    {
-                        try
-                        {
-                            printDocument.Print();
-                            result = DialogResult.OK;
-                        }
-                        catch (Exception exc)
-                        {
-                            result = MessageBox.Show(Resources.FormBestellung_PrintKassabon_Printing_error + exc.Message, Resources.FormBestellung_abschliessenButton_Click_Error, MessageBoxButtons.RetryCancel, MessageBoxIcon.Warning);
-                        }
-                    }
-                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(Resources.Database_Error_Message_Pfx + ex.Message,
+                    Resources.Database_Error_Message_Title, MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
             }
         }
 
@@ -220,21 +260,31 @@ namespace FestManager_Core.Forms.SubForms
             var kbTableAdapter = new Data.FestManagerDataSetTableAdapters.KassenbonTableAdapter();
             var kbTable = new Data.FestManagerDataSet.KassenbonDataTable();
 
-            if (_printAll)
-            {
-                kbTableAdapter.FillByBestellung(kbTable, _bestellungRow.BestellungId);
+            try { 
+
+                if (_printAll)
+                {
+                    kbTableAdapter.FillByBestellung(kbTable, _bestellungRow.BestellungId);
+                }
+                else
+                {
+                    kbTableAdapter.FillByBestellungAndAusgabestelle(kbTable, _bestellungRow.BestellungId, _ausgabestelle);
+                }
+                if (kbTable.Rows.Count > 0)
+                {
+                    var kb = new Kassenbon(e.Graphics, kbTable);
+                    // Important for Kassa-Prints:
+                    kb.Draw(_printAll);
+                }
+
             }
-            else
+            catch (Exception ex)
             {
-                kbTableAdapter.FillByBestellungAndAusgabestelle(kbTable, _bestellungRow.BestellungId, _ausgabestelle);
+                MessageBox.Show(Resources.Database_Error_Message_Pfx + ex.Message,
+                    Resources.Database_Error_Message_Title, MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
             }
-            if (kbTable.Rows.Count > 0)
-            {
-                var kb = new Kassenbon(e.Graphics, kbTable);
-                // Important for Kassa-Prints:
-                kb.Draw(_printAll);
-            }
-            
+
         }
 
         private void artikelDataGridView_RowEnter(object sender, DataGridViewCellEventArgs e)
@@ -285,7 +335,7 @@ namespace FestManager_Core.Forms.SubForms
                 else
                 {
                     artikelDataGridView.Rows[e.RowIndex].Cells[2].Value = DBNull.Value;
-                    MessageBox.Show(Resources.FormBestellung_artikelDataGridView_CellValidated_Product_not_found);
+                    MessageBox.Show(Resources.FormBestellung_artikelDataGridView_CellValidated_Product_not_found, Resources.FormBestellung_artikelDataGridView_CellValidated_Product_not_found_Title, MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
                     artikelDataGridView.Rows[e.RowIndex].Cells[1].Value = DBNull.Value;
                     artikelDataGridView.Rows[e.RowIndex].Cells[3].Value = DBNull.Value;

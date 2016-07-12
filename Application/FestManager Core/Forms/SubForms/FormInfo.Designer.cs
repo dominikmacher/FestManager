@@ -54,9 +54,9 @@ namespace FestManager_Core.Forms.SubForms
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(71, 54);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(229, 29);
+            this.label1.Size = new System.Drawing.Size(166, 29);
             this.label1.TabIndex = 12;
-            this.label1.Text = "FestManager 2013";
+            this.label1.Text = "FestManager";
             // 
             // label2
             // 
@@ -88,7 +88,8 @@ namespace FestManager_Core.Forms.SubForms
             this.label4.Size = new System.Drawing.Size(241, 72);
             this.label4.TabIndex = 16;
             this.label4.Text = "Anforderungen: \r\n- Windows 2000 (oder höher)\r\n- MS Access 2003 (oder höher) \r\n- ." +
-    "NET Framework 2.0 (oder höher)";
+    "NET Framework 4.0 (oder höher)";
+            this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // label5
             // 
