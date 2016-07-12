@@ -178,4 +178,10 @@ Gesamtpreis in €: </value>
   <data name="Error_connection_to_DB_Title" xml:space="preserve">
     <value>Datenbank-Verbindungsfehler</value>
   </data>
+  <data name="FormBestellungenHistory_bestellungenHistoryDataGridView_CellDoubleClick_Invalid_order" xml:space="preserve">
+    <value>Bitte klicken Sie auf eine gültige Bestellung.</value>
+  </data>
+  <data name="FormBestellungenHistory_bestellungenHistoryDataGridView_CellDoubleClick_Invalid_order_Title" xml:space="preserve">
+    <value>Ungültige Bestellung</value>
+  </data>
 </root>

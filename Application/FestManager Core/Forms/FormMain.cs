@@ -13,6 +13,8 @@ namespace FestManager_Core.Forms
     public partial class FormMain : Form
     {
         private readonly NameFormCollection _childs = new NameFormCollection();
+
+        private readonly FestManagerSettings _settings;
         
         private void InitializeTreeViewComponent(IList<TreeViewNode> nodes)
         {
@@ -30,7 +32,7 @@ namespace FestManager_Core.Forms
         }
 
 
-        public FormMain(string name, IList<TreeViewNode> nodes)
+        public FormMain(string name, IList<TreeViewNode> nodes, FestManagerSettings settings)
         {
             InitializeComponent();
             InitializeTreeViewComponent(nodes);
@@ -39,11 +41,13 @@ namespace FestManager_Core.Forms
                         Resources.Error_connection_to_DB_Msg,
                         Resources.Error_connection_to_DB_Title, MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
-                var formSettings = new FormSettings();
+                var formSettings = new FormSettings(_settings);
                 formSettings.Show(this);
             }
 
             Text += " [" + name + "]";
+
+            _settings = settings;
         }
 
         private bool CheckDatabaseConnectivity()

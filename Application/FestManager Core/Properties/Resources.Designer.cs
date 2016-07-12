@@ -197,6 +197,26 @@ namespace FestManager_Core.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Bitte klicken Sie auf eine gültige Bestellung. ähnelt.
+        /// </summary>
+        internal static string FormBestellungenHistory_bestellungenHistoryDataGridView_CellDoubleClick_Invalid_order {
+            get {
+                return ResourceManager.GetString("FormBestellungenHistory_bestellungenHistoryDataGridView_CellDoubleClick_Invalid_o" +
+                        "rder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Ungültige Bestellung ähnelt.
+        /// </summary>
+        internal static string FormBestellungenHistory_bestellungenHistoryDataGridView_CellDoubleClick_Invalid_order_Title {
+            get {
+                return ResourceManager.GetString("FormBestellungenHistory_bestellungenHistoryDataGridView_CellDoubleClick_Invalid_o" +
+                        "rder_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Bestell-Details für # ähnelt.
         /// </summary>
         internal static string FormBestellungenHistory_bestellungenHistoryDataGridView_CellDoubleClick_Order_details_for {

@@ -39,8 +39,20 @@ namespace FestManager_Core.Forms.SubForms
             bestellungenHistoryDetailsDataGridView.Visible = true;
             buttonCancelBestellung.Visible = true;
             buttonPrintBestellung.Visible = true;
-            _actualBestellungId = (int)festManagerDataSet.BestellungenHistory_V.Rows[e.RowIndex]["BestellungId"];
-            lblBestellDetails.Text = Resources.FormBestellungenHistory_bestellungenHistoryDataGridView_CellDoubleClick_Order_details_for + _actualBestellungId.ToString() + @":";
+
+            try
+            {
+                _actualBestellungId = (int) festManagerDataSet.BestellungenHistory_V.Rows[e.RowIndex]["BestellungId"];
+                lblBestellDetails.Text =
+                    Resources.FormBestellungenHistory_bestellungenHistoryDataGridView_CellDoubleClick_Order_details_for +
+                    _actualBestellungId.ToString() + @":";
+            }
+            catch (IndexOutOfRangeException)
+            {
+                MessageBox.Show(Resources.FormBestellungenHistory_bestellungenHistoryDataGridView_CellDoubleClick_Invalid_order,
+                    Resources.FormBestellungenHistory_bestellungenHistoryDataGridView_CellDoubleClick_Invalid_order_Title,
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
 
             try
             {

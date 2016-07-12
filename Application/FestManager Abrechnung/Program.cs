@@ -4,6 +4,7 @@ using System.Windows.Forms;
 using FestManager_Core.Forms;
 using System.Collections.Specialized;
 using System.Configuration;
+using FestManager_Core;
 
 namespace FestManager_Abrechnung
 {
@@ -18,7 +19,11 @@ namespace FestManager_Abrechnung
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            FestManager_Core.Properties.Settings.Default["connectionString"] = Properties.Settings.Default.connectionString;
+            var settings = new FestManagerSettings()
+            {
+                ConnectionString = Properties.Settings.Default.connectionString,
+            };
+
 
             // Overwrite default settings:
             var appSettings = new StringCollection();
@@ -26,9 +31,10 @@ namespace FestManager_Abrechnung
             {
                 appSettings.Add(currentProperty.Name);
             }
+
             if (appSettings.Contains("organisation"))
             {
-                FestManager_Core.Properties.Settings.Default["organisation"] = Properties.Settings.Default["organisation"];
+                settings.Organisation = (string) Properties.Settings.Default["organisation"];
             }
 
             var kellnerabrechnungNode = new TreeViewNode("Kellnerabrechnung", 10, 11);
@@ -59,8 +65,8 @@ namespace FestManager_Abrechnung
                 einstellungenNode,
                 infoNode
             };
-
-            Application.Run(new FormMain("Abrechnung", nodes));
+            
+            Application.Run(new FormMain("Abrechnung", nodes, settings));
         }
     }
 }

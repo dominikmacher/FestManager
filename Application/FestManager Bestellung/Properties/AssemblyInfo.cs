@@ -7,7 +7,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("FestManager Bestellung")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Unisys")]
+[assembly: AssemblyCompany("Freiwillige Feuerwehr Karlstetten")]
 [assembly: AssemblyProduct("FestManager Bestellung")]
 [assembly: AssemblyCopyright("Copyright © Freiwillige Feuerwehr Karlstetten")]
 [assembly: AssemblyTrademark("")]
@@ -31,5 +31,5 @@ using System.Runtime.InteropServices;
 // Sie können alle Werte angeben oder die standardmäßigen Build- und Revisionsnummern 
 // übernehmen, indem Sie "*" eingeben:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.0.0.0")]
+[assembly: AssemblyVersion("3.0.*")]
 [assembly: AssemblyFileVersion("1.0.0.0")]

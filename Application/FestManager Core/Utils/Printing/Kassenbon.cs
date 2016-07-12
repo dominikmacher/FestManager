@@ -53,7 +53,7 @@ namespace FestManager_Core.Utils.Printing
         public Kassenbon(Graphics g, FestManagerDataSet.KassenbonDataTable t) {
             Graphic = g;
             _table = t;
-            _title = Properties.Settings.Default.organisation + " - Fest " + DateTime.Now.ToString("yyyy");
+            _title = FestManagerSettings.Default.Organisation + " - Fest " + DateTime.Now.ToString("yyyy");
 
             Init();
         }
@@ -119,7 +119,7 @@ namespace FestManager_Core.Utils.Printing
                 // first group elements:
                 var printTable = (DataTable)_table;
                 var alreadyGroupedElements = new StringCollection();
-                if (Properties.Settings.Default.groupElementsBeforePrint)
+                if (FestManagerSettings.Default.GroupElementsBeforePrint)
                 {
                     printTable = new DataTable();
                     printTable.Columns.Add("Artikel", typeof(string));
@@ -203,15 +203,15 @@ namespace FestManager_Core.Utils.Printing
                     var menge = (int)row["Menge"];
                     var einzelpreis = (decimal)row["Einzelpreis"];
 
-                    if (menge < 0 && !string.IsNullOrEmpty(Properties.Settings.Default.stornoSymbol)) 
+                    if (menge < 0 && !string.IsNullOrEmpty(FestManagerSettings.Default.StornoSymbol)) 
                     {
-                        if (!Properties.Settings.Default.printStornoOrders)
+                        if (!FestManagerSettings.Default.PrintStornoOrders)
                             continue;
 
                         if (artikel.Length > 23)
                             artikel = artikel.Substring(0, 23);
 
-                        artikel = Properties.Settings.Default.stornoSymbol + Properties.Settings.Default.stornoSymbol + Properties.Settings.Default.stornoSymbol + " " + artikel;
+                        artikel = FestManagerSettings.Default.StornoSymbol + FestManagerSettings.Default.StornoSymbol + FestManagerSettings.Default.StornoSymbol + " " + artikel;
                     }
                     var gesamtpreis = einzelpreis * menge;
                     summe += gesamtpreis;

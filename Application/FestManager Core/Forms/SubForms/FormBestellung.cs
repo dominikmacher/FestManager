@@ -19,10 +19,10 @@ namespace FestManager_Core.Forms.SubForms
         public FormBestellung()
         {
             InitializeComponent();
-            _printDirektverkaufTwice = Settings.Default.printDirektverkaufTwice;
-            _direktverkauftPersonalId = Settings.Default.direktverkaufPersonalId;
-            _direktverkaufAusgabestelleId = Settings.Default.direktverkaufAusgabestelleId;
-            _tischEnabled = Settings.Default.tableNumbers;
+            _printDirektverkaufTwice = FestManagerSettings.Default.PrintDirektverkaufTwice;
+            _direktverkauftPersonalId = FestManagerSettings.Default.DirektverkaufPersonalId;
+            _direktverkaufAusgabestelleId = FestManagerSettings.Default.DirektverkaufAusgabestelleId;
+            _tischEnabled = FestManagerSettings.Default.TableNumbers;
             personalIdComboBox.Focus();
 
             if (!_tischEnabled)
@@ -207,7 +207,7 @@ namespace FestManager_Core.Forms.SubForms
                 if (kbTable.Rows.Count > 0)
                 {
                     var print = true;
-                    if (!Settings.Default.printStornoOrders)
+                    if (!FestManagerSettings.Default.PrintStornoOrders)
                     {
                         print = false;
                         for (var i = 0; i < kbTable.Rows.Count; i++)

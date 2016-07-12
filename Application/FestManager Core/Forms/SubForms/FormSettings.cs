@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Configuration;
 using System.Windows.Forms;
-using FestManager_Core.Properties;
 
 namespace FestManager_Core.Forms.SubForms
 {
@@ -9,9 +8,13 @@ namespace FestManager_Core.Forms.SubForms
     {
         public const string ConnectionStringPfx = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=";
 
-        public FormSettings()
+        private readonly FestManagerSettings _settings;
+
+        public FormSettings(FestManagerSettings settings)
         {
             InitializeComponent();
+
+            _settings = settings;
         }
 
         private void buttonDatabase_Click(object sender, EventArgs e)
@@ -45,7 +48,7 @@ namespace FestManager_Core.Forms.SubForms
 
         private void FormSettings_Load(object sender, EventArgs e)
         {
-           textBoxDatabase.Text = Settings.Default.connectionString;
+           textBoxDatabase.Text = _settings.ConnectionString;
         }
     }
 }

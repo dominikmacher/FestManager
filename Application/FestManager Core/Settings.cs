@@ -1,12 +1,15 @@
 ﻿ // ReSharper disable once CheckNamespace
-namespace FestManager_Core.Properties {
-    
-    
-    // Diese Klasse ermöglicht die Behandlung bestimmter Ereignisse der Einstellungsklasse:
-    //  Das SettingChanging-Ereignis wird ausgelöst, bevor der Wert einer Einstellung geändert wird.
-    //  Das PropertyChanged-Ereignis wird ausgelöst, nachdem der Wert einer Einstellung geändert wurde.
-    //  Das SettingsLoaded-Ereignis wird ausgelöst, nachdem die Einstellungswerte geladen wurden.
-    //  Das SettingsSaving-Ereignis wird ausgelöst, bevor die Einstellungswerte gespeichert werden.
-    public sealed partial class Settings {
+namespace FestManager_Core.Properties
+{
+    /**
+     * This is just a helper to fix the DataSet Editor in Visual Studio
+     */
+    public class Settings
+    {
+
+        // ReSharper disable once InconsistentNaming
+        public string connectionString { get; set; }
+
+        public static Settings Default => new Settings() { connectionString =  FestManagerSettings.Default.ConnectionString };
     }
 }

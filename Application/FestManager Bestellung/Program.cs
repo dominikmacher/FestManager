@@ -4,6 +4,7 @@ using System.Windows.Forms;
 using FestManager_Core.Forms;
 using System.Configuration;
 using System.Collections.Specialized;
+using FestManager_Core;
 
 namespace FestManager_Bestellung
 {
@@ -18,48 +19,53 @@ namespace FestManager_Bestellung
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            FestManager_Core.Properties.Settings.Default["connectionString"] = Properties.Settings.Default.connectionString;
+            var settings = new FestManagerSettings()
+            {
+                ConnectionString = Properties.Settings.Default.connectionString,
+            };
+
             // Overwrite default settings:
             var appSettings = new StringCollection();
             foreach (SettingsProperty currentProperty in Properties.Settings.Default.Properties)
             {
                 appSettings.Add(currentProperty.Name);
             }
+
             if (appSettings.Contains("organisation"))
             {
-                FestManager_Core.Properties.Settings.Default["organisation"] = Properties.Settings.Default["organisation"];
+                settings.Organisation = (string) Properties.Settings.Default["organisation"];
             }
             if (appSettings.Contains("printDirektverkaufTwice"))
             {
-                FestManager_Core.Properties.Settings.Default["printDirektverkaufTwice"] = Properties.Settings.Default["printDirektverkaufTwice"];
+                settings.PrintDirektverkaufTwice = (bool) Properties.Settings.Default["printDirektverkaufTwice"];
             }
             if (appSettings.Contains("printStornoOrders"))
             {
-                FestManager_Core.Properties.Settings.Default["printStornoOrders"] = Properties.Settings.Default["printStornoOrders"];
+                settings.PrintStornoOrders = (bool) Properties.Settings.Default["printStornoOrders"];
             }
             if (appSettings.Contains("direktverkaufPersonalId"))
             {
-                FestManager_Core.Properties.Settings.Default["direktverkaufPersonalId"] = Properties.Settings.Default["direktverkaufPersonalId"];
+                settings.DirektverkaufPersonalId = (int) Properties.Settings.Default["direktverkaufPersonalId"];
             }
             if (appSettings.Contains("direktverkaufAusgabestelleId"))
             {
-                FestManager_Core.Properties.Settings.Default["direktverkaufAusgabestelleId"] = Properties.Settings.Default["direktverkaufAusgabestelleId"];
+                settings.DirektverkaufAusgabestelleId = (int) Properties.Settings.Default["direktverkaufAusgabestelleId"];
             }
             if (appSettings.Contains("stornoSymbol"))
             {
-                FestManager_Core.Properties.Settings.Default["stornoSymbol"] = Properties.Settings.Default["stornoSymbol"];
+                settings.StornoSymbol = (string) Properties.Settings.Default["stornoSymbol"];
             }
             if (appSettings.Contains("groupElementsBeforePrint"))
             {
-                FestManager_Core.Properties.Settings.Default["groupElementsBeforePrint"] = Properties.Settings.Default["groupElementsBeforePrint"];
+                settings.GroupElementsBeforePrint = (bool) Properties.Settings.Default["groupElementsBeforePrint"];
             }
             if (appSettings.Contains("einpackenSymbol"))
             {
-                FestManager_Core.Properties.Settings.Default["einpackenSymbol"] = Properties.Settings.Default["einpackenSymbol"];
+                settings.EinpackenSymbol = (string) Properties.Settings.Default["einpackenSymbol"];
             }
             if (appSettings.Contains("tableNumbers"))
             {
-                FestManager_Core.Properties.Settings.Default["tableNumbers"] = Properties.Settings.Default["tableNumbers"];
+                settings.TableNumbers = (bool) Properties.Settings.Default["tableNumbers"];
             }
 
             var bestellungNode = new TreeViewNode("Bestellung", 8, 9);
@@ -87,7 +93,9 @@ namespace FestManager_Bestellung
                 infoNode
             };
 
-            Application.Run(new FormMain("Bestellung", nodes));
+            FestManagerSettings.Default = settings;
+
+            Application.Run(new FormMain("Bestellung", nodes, settings));
         }
     }
 }
