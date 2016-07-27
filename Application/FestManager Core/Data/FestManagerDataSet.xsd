@@ -1172,7 +1172,7 @@ FROM            (KellnerabrechnungNachTagen_Abgeschlossen_V INNER JOIN
               <xs:element name="Tisch" msprop:Generator_ColumnVarNameInTable="columnTisch" msprop:Generator_ColumnPropNameInRow="Tisch" msprop:Generator_ColumnPropNameInTable="TischColumn" msprop:Generator_UserColumnName="Tisch" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
-                    <xs:maxLength value="5" />
+                    <xs:maxLength value="50" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>

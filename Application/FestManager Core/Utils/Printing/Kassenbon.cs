@@ -9,9 +9,9 @@ namespace FestManager_Core.Utils.Printing
 {
     public class Kassenbon
     {
-        private static readonly int Width = 200;
-        private static readonly int MarginTop = 10;
-        private static readonly int MarginLeft = 10;
+        private const int Width = 200;
+        private const int MarginTop = 10;
+        private const int MarginLeft = 10;
 
         /* Components */
         private Font _fontDefault;
@@ -64,185 +64,184 @@ namespace FestManager_Core.Utils.Printing
         }
         public void Draw(bool isCopy)
         {
-            if (_table.Rows.Count > 0)
+            if (_table.Rows.Count <= 0) return;
+
+            var firstRow = (FestManagerDataSet.KassenbonRow)_table.Rows[0];
+
+            var y = MarginTop;
+            AddHLine(MarginLeft, y);
+
+            y += 0;
+            AddString("Festmanager Kassenbon", MarginLeft + Width / 2, y, _fontBold, _sfCenter);
+
+            y += _lineSpacing;
+            AddString(_title, MarginLeft + Width / 2, y, _fontBold, _sfCenter);
+
+            y += _lineSpacing;
+            AddHLine(MarginLeft, y);
+
+            y += _lineSpacing;
+            AddString("Bedienung:", MarginLeft, y, _fontBold, _sfLeft);
+            AddString(firstRow.PersonalNr + " - " + firstRow.Personal, MarginLeft + Width, y, _fontDefault, _sfRight);
+
+            y += _lineSpacing;
+            AddString("Datum/Uhrzeit:", MarginLeft, y, _fontBold, _sfLeft);
+            AddString(firstRow.Zeitpunkt.ToString(CultureInfo.InvariantCulture), MarginLeft + Width, y, _fontDefault, _sfRight);
+
+            if (!string.IsNullOrEmpty(firstRow.Tisch))
             {
-                var firstRow = (FestManagerDataSet.KassenbonRow)_table.Rows[0];
-
-                var y = MarginTop;
-                AddHLine(MarginLeft, y);
-
-                y += 0;
-                AddString("Festmanager Kassenbon", MarginLeft + Width / 2, y, _fontBold, _sfCenter);
-
                 y += _lineSpacing;
-                AddString(_title, MarginLeft + Width / 2, y, _fontBold, _sfCenter);
+                AddString("Tisch:", MarginLeft, y, _fontBold, _sfLeft);
+                AddString(firstRow.Tisch, MarginLeft + Width, y, _fontDefault, _sfRight);
+            }
 
-                y += _lineSpacing;
-                AddHLine(MarginLeft, y);
+            y += _lineSpacing;
+            AddString("Bestellung-Nr:", MarginLeft, y, _fontBold, _sfLeft);
+            AddString(firstRow.BestellungId.ToString(), MarginLeft + Width, y, _fontDefault, _sfRight);
 
-                y += _lineSpacing;
-                AddString("Bedienung:", MarginLeft, y, _fontBold, _sfLeft);
-                AddString(firstRow.PersonalNr + " - " + firstRow.Personal, MarginLeft + Width, y, _fontDefault, _sfRight);
+            y += _lineSpacing;
+            AddString("Ausgabe:", MarginLeft, y, _fontBold, _sfLeft);
+            if (isCopy)
+            {
+                AddString("Kassa (Rechnungskopie)", MarginLeft + Width, y, _fontDefault, _sfRight);
+            }
+            else
+            {
+                AddString(firstRow.Ausgabestelle + "(" + firstRow.AusgabestelleId + ")", MarginLeft + Width, y, _fontDefault, _sfRight);
+            }
 
-                y += _lineSpacing;
-                AddString("Datum/Uhrzeit:", MarginLeft, y, _fontBold, _sfLeft);
-                AddString(firstRow.Zeitpunkt.ToString(CultureInfo.InvariantCulture), MarginLeft + Width, y, _fontDefault, _sfRight);
+            y += _lineSpacing;
+            AddHLine(MarginLeft, y);
 
-                if (!string.IsNullOrEmpty(firstRow.Tisch))
-                {
-                    y += _lineSpacing;
-                    AddString("Tisch:", MarginLeft, y, _fontBold, _sfLeft);
-                    AddString(firstRow.Tisch, MarginLeft + Width, y, _fontDefault, _sfRight);
-                }
-
-                y += _lineSpacing;
-                AddString("Bestellung-Nr:", MarginLeft, y, _fontBold, _sfLeft);
-                AddString(firstRow.BestellungId.ToString(), MarginLeft + Width, y, _fontDefault, _sfRight);
-
-                y += _lineSpacing;
-                AddString("Ausgabe:", MarginLeft, y, _fontBold, _sfLeft);
-                if (isCopy)
-                {
-                    AddString("Kassa (Rechnungskopie)", MarginLeft + Width, y, _fontDefault, _sfRight);
-                }
-                else
-                {
-                    AddString(firstRow.Ausgabestelle + "(" + firstRow.AusgabestelleId + ")", MarginLeft + Width, y, _fontDefault, _sfRight);
-                }
-
-                y += _lineSpacing;
-                AddHLine(MarginLeft, y);
-
-                /* Artikel */
-                y += _lineSpacing;
+            /* Artikel */
+            y += _lineSpacing;
                 
-                // first group elements:
-                var printTable = (DataTable)_table;
-                var alreadyGroupedElements = new StringCollection();
-                if (FestManagerSettings.Default.GroupElementsBeforePrint)
+            // first group elements:
+            var printTable = (DataTable)_table;
+            var alreadyGroupedElements = new StringCollection();
+            if (FestManagerSettings.Default.GroupElementsBeforePrint)
+            {
+                printTable = new DataTable();
+                printTable.Columns.Add("Artikel", typeof(string));
+                printTable.Columns.Add("Menge", typeof(int));
+                printTable.Columns.Add("Einzelpreis", typeof(decimal));
+
+                //StringCollection alreadyGroupedElements = new StringCollection();
+
+                for (var i = 0; i < _table.Rows.Count; i++)
                 {
-                    printTable = new DataTable();
-                    printTable.Columns.Add("Artikel", typeof(string));
-                    printTable.Columns.Add("Menge", typeof(int));
-                    printTable.Columns.Add("Einzelpreis", typeof(decimal));
-
-                    //StringCollection alreadyGroupedElements = new StringCollection();
-
-                    for (var i = 0; i < _table.Rows.Count; i++)
+                    var row = (FestManagerDataSet.KassenbonRow)_table.Rows[i];
+                    var artikel = row.Artikel;
+                    if (string.Compare("Einpacken", artikel, StringComparison.OrdinalIgnoreCase) == 0)    // look for pressed Einpacken-buttons
                     {
-                        var row = (FestManagerDataSet.KassenbonRow)_table.Rows[i];
-                        var artikel = row.Artikel;
-                        if (string.Compare("Einpacken", artikel, StringComparison.OrdinalIgnoreCase) == 0)    // look for pressed Einpacken-buttons
+                        continue;
+                    }
+                    else if (artikel.Contains("***"))    //skip "Leitungswasser" etc.
+                    {   
+                        continue;
+                    }
+                    else if (i<_table.Rows.Count-1)
+                    {
+                        var tmpRow = (FestManagerDataSet.KassenbonRow) _table.Rows[i+1];
+                        if (tmpRow.Artikel.Contains("***"))     //skip Artikel with "Leitungswasser" etc.
                         {
-                            continue;
-                        }
-                        else if (artikel.Contains("***"))    //skip "Leitungswasser" etc.
-                        {   
-                            continue;
-                        }
-                        else if (i<_table.Rows.Count-1)
-                        {
-                            var tmpRow = (FestManagerDataSet.KassenbonRow) _table.Rows[i+1];
-                            if (tmpRow.Artikel.Contains("***"))     //skip Artikel with "Leitungswasser" etc.
-                            {
-                                var dr = printTable.NewRow();
-                                dr["Artikel"] = row.Artikel;
-                                dr["Menge"] = row.Menge;
-                                dr["Einzelpreis"] = row.Einzelpreis;
-                                printTable.Rows.Add(dr);
-                                dr = printTable.NewRow();
-                                dr["Artikel"] = tmpRow.Artikel;
-                                dr["Menge"] = tmpRow.Menge;
-                                dr["Einzelpreis"] = tmpRow.Einzelpreis;
-                                printTable.Rows.Add(dr);
-                                continue;
-                            }
-                        }
-                        if (row.Menge < 0)
-                            artikel += "_neg_";
-                        
-                        if (!alreadyGroupedElements.Contains(artikel))
-                        {
-                            alreadyGroupedElements.Add(artikel);
-                            decimal artikelEinzelpreis = 0;
-                            var artikelMenge = 0;
-                            for (var j = i; j < _table.Rows.Count; j++)
-                            {
-                                var tmpRow = (FestManagerDataSet.KassenbonRow)_table.Rows[j];
-                                var tmpArtikel = tmpRow.Artikel;
-                                if (tmpRow.Menge < 0)
-                                    tmpArtikel += "_neg_";
-
-                                if (string.CompareOrdinal(tmpArtikel, artikel) != 0 && j != i) continue;
-
-                                if (j < _table.Rows.Count - 1)
-                                { 
-                                    var tmpRow2 = (FestManagerDataSet.KassenbonRow)_table.Rows[j+1];
-                                    if (tmpRow2.Artikel.Contains("***"))     //skip Artikel with "Leitungswasser" etc.
-                                        continue;
-                                }
-                                artikelMenge += tmpRow.Menge;
-                                artikelEinzelpreis = tmpRow.Einzelpreis;
-                            }
-
                             var dr = printTable.NewRow();
                             dr["Artikel"] = row.Artikel;
-                            dr["Menge"] = artikelMenge;
-                            dr["Einzelpreis"] = artikelEinzelpreis;
+                            dr["Menge"] = row.Menge;
+                            dr["Einzelpreis"] = row.Einzelpreis;
                             printTable.Rows.Add(dr);
+                            dr = printTable.NewRow();
+                            dr["Artikel"] = tmpRow.Artikel;
+                            dr["Menge"] = tmpRow.Menge;
+                            dr["Einzelpreis"] = tmpRow.Einzelpreis;
+                            printTable.Rows.Add(dr);
+                            continue;
                         }
                     }
-                }
-                
-                // then print:
-                decimal summe = 0;
-                for (var i = 0; i < printTable.Rows.Count; i++)
-                {
-                    var row = printTable.Rows[i];
-                    var artikel = (string)row["Artikel"];
-                    var menge = (int)row["Menge"];
-                    var einzelpreis = (decimal)row["Einzelpreis"];
-
-                    if (menge < 0 && !string.IsNullOrEmpty(FestManagerSettings.Default.StornoSymbol)) 
+                    if (row.Menge < 0)
+                        artikel += "_neg_";
+                        
+                    if (!alreadyGroupedElements.Contains(artikel))
                     {
-                        if (!FestManagerSettings.Default.PrintStornoOrders)
-                            continue;
+                        alreadyGroupedElements.Add(artikel);
+                        decimal artikelEinzelpreis = 0;
+                        var artikelMenge = 0;
+                        for (var j = i; j < _table.Rows.Count; j++)
+                        {
+                            var tmpRow = (FestManagerDataSet.KassenbonRow)_table.Rows[j];
+                            var tmpArtikel = tmpRow.Artikel;
+                            if (tmpRow.Menge < 0)
+                                tmpArtikel += "_neg_";
 
-                        if (artikel.Length > 23)
-                            artikel = artikel.Substring(0, 23);
+                            if (string.CompareOrdinal(tmpArtikel, artikel) != 0 && j != i) continue;
 
-                        artikel = FestManagerSettings.Default.StornoSymbol + FestManagerSettings.Default.StornoSymbol + FestManagerSettings.Default.StornoSymbol + " " + artikel;
+                            if (j < _table.Rows.Count - 1)
+                            { 
+                                var tmpRow2 = (FestManagerDataSet.KassenbonRow)_table.Rows[j+1];
+                                if (tmpRow2.Artikel.Contains("***"))     //skip Artikel with "Leitungswasser" etc.
+                                    continue;
+                            }
+                            artikelMenge += tmpRow.Menge;
+                            artikelEinzelpreis = tmpRow.Einzelpreis;
+                        }
+
+                        var dr = printTable.NewRow();
+                        dr["Artikel"] = row.Artikel;
+                        dr["Menge"] = artikelMenge;
+                        dr["Einzelpreis"] = artikelEinzelpreis;
+                        printTable.Rows.Add(dr);
                     }
-                    var gesamtpreis = einzelpreis * menge;
-                    summe += gesamtpreis;
-                    AddArtikel(menge, artikel, gesamtpreis, MarginLeft, y);
-                    y += _lineSpacing;
                 }
+            }
+                
+            // then print:
+            decimal summe = 0;
+            for (var i = 0; i < printTable.Rows.Count; i++)
+            {
+                var row = printTable.Rows[i];
+                var artikel = (string)row["Artikel"];
+                var menge = (int)row["Menge"];
+                var einzelpreis = (decimal)row["Einzelpreis"];
 
-                /*if (einpacken)
+                if (menge < 0 && !string.IsNullOrEmpty(FestManagerSettings.Default.StornoSymbol)) 
+                {
+                    if (!FestManagerSettings.Default.PrintStornoOrders)
+                        continue;
+
+                    if (artikel.Length > 23)
+                        artikel = artikel.Substring(0, 23);
+
+                    artikel = FestManagerSettings.Default.StornoSymbol + FestManagerSettings.Default.StornoSymbol + FestManagerSettings.Default.StornoSymbol + " " + artikel;
+                }
+                var gesamtpreis = einzelpreis * menge;
+                summe += gesamtpreis;
+                AddArtikel(menge, artikel, gesamtpreis, MarginLeft, y);
+                y += _lineSpacing;
+            }
+
+            /*if (einpacken)
                 {
                     string artikel = artikel = Properties.Settings.Default.einpackenSymbol + Properties.Settings.Default.einpackenSymbol + " Einpacken " + Properties.Settings.Default.einpackenSymbol + Properties.Settings.Default.einpackenSymbol;
                     addArtikel(1, artikel, 0, marginLeft, y);
                     y += lineSpacing;
                 }*/
 
-                AddHLine(MarginLeft, y);
+            AddHLine(MarginLeft, y);
 
-                /* Summe */
-                AddSumme(summe, MarginLeft, y);
+            /* Summe */
+            AddSumme(summe, MarginLeft, y);
 
-                /* Bestellung erledigt */
-                y += 2 * _lineSpacing;
+            /* Bestellung erledigt */
+            y += 2 * _lineSpacing;
 
-                AddString("Bestellung abgeschlossen", MarginLeft + _lineSpacing + 5, y, _fontDefault, _sfLeft);
-                AddHLine(MarginLeft, y, _lineSpacing);
-                AddHLine(MarginLeft, y + _lineSpacing, _lineSpacing);
-                AddVLine(MarginLeft, y, y + _lineSpacing);
-                AddVLine(MarginLeft + _lineSpacing, y, y + _lineSpacing);
+            AddString("Bestellung abgeschlossen", MarginLeft + _lineSpacing + 5, y, _fontDefault, _sfLeft);
+            AddHLine(MarginLeft, y, _lineSpacing);
+            AddHLine(MarginLeft, y + _lineSpacing, _lineSpacing);
+            AddVLine(MarginLeft, y, y + _lineSpacing);
+            AddVLine(MarginLeft + _lineSpacing, y, y + _lineSpacing);
 
-                y += 2 * _lineSpacing;
-                AddString("-", MarginLeft, y, _fontBold, _sfLeft);
-            }
+            y += 2 * _lineSpacing;
+            AddString("-", MarginLeft, y, _fontBold, _sfLeft);
         }
 
 

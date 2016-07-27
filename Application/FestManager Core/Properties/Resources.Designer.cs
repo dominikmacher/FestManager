@@ -61,6 +61,15 @@ namespace FestManager_Core.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Kritischer Fehler ähnelt.
+        /// </summary>
+        internal static string Critical_Error {
+            get {
+                return ResourceManager.GetString("Critical_Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Fehler beim Laden der Daten:  ähnelt.
         /// </summary>
         internal static string Database_Error_Message_Pfx {
@@ -79,7 +88,16 @@ namespace FestManager_Core.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Error ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Fehlerhafte Daten ähnelt.
+        /// </summary>
+        internal static string DataError_Title {
+            get {
+                return ResourceManager.GetString("DataError_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Fehler ähnelt.
         /// </summary>
         internal static string Error {
             get {
@@ -124,6 +142,24 @@ namespace FestManager_Core.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Sie haben ungültige Artikel erfasst! Überprüfen Sie die Eingaben ähnelt.
+        /// </summary>
+        internal static string FormBestellung_abschliessenButton_Click_Invalid_articles_selected {
+            get {
+                return ResourceManager.GetString("FormBestellung_abschliessenButton_Click_Invalid_articles_selected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Ungültige Artikel erfasst ähnelt.
+        /// </summary>
+        internal static string FormBestellung_abschliessenButton_Click_Invalid_articles_selected_title {
+            get {
+                return ResourceManager.GetString("FormBestellung_abschliessenButton_Click_Invalid_articles_selected_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Ungültiger Kellner gewählt! ähnelt.
         /// </summary>
         internal static string FormBestellung_abschliessenButton_Click_Invalid_Waiter_selected {
@@ -133,12 +169,38 @@ namespace FestManager_Core.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Bestellung abgeschlossen!
-        ///Gesamtpreis in €:  ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Gesamtpreis:  ähnelt.
         /// </summary>
         internal static string FormBestellung_abschliessenButton_Click_Order_placed {
             get {
                 return ResourceManager.GetString("FormBestellung_abschliessenButton_Click_Order_placed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Bestellung abgeschlossen! ähnelt.
+        /// </summary>
+        internal static string FormBestellung_abschliessenButton_Click_Order_placed_Title {
+            get {
+                return ResourceManager.GetString("FormBestellung_abschliessenButton_Click_Order_placed_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Unbekannter Fehler beim Drucken:  ähnelt.
+        /// </summary>
+        internal static string FormBestellung_abschliessenButton_Click_Unhandled_printing_error {
+            get {
+                return ResourceManager.GetString("FormBestellung_abschliessenButton_Click_Unhandled_printing_error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Fehler beim Drucken ähnelt.
+        /// </summary>
+        internal static string FormBestellung_abschliessenButton_Click_Unhandled_printing_error_Title {
+            get {
+                return ResourceManager.GetString("FormBestellung_abschliessenButton_Click_Unhandled_printing_error_Title", resourceCulture);
             }
         }
         
@@ -161,7 +223,16 @@ namespace FestManager_Core.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Fehler: Kein &apos;Kassa&apos;-Drucker eingerichtet !! ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Unbekannter Fehler beim Validieren der Daten:  ähnelt.
+        /// </summary>
+        internal static string FormBestellung_artikelDataGridView_CellValidating_Error_Pfx {
+            get {
+                return ResourceManager.GetString("FormBestellung_artikelDataGridView_CellValidating_Error_Pfx", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Kein &apos;Kassa&apos;-Drucker eingerichtet !! ähnelt.
         /// </summary>
         internal static string FormBestellung_PrintBestellung_Error_no_POS_printer_configured {
             get {
@@ -170,7 +241,7 @@ namespace FestManager_Core.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Fehler: Bestellung wird nicht gedruckt! Bitte starten Sie die Applikation neu. ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Bestellung wird nicht gedruckt! Bitte starten Sie die Applikation neu. ähnelt.
         /// </summary>
         internal static string FormBestellung_PrintKassabon_Critical_error_restart_application {
             get {
@@ -260,6 +331,60 @@ namespace FestManager_Core.Properties {
         internal static string FormKellnerabrechnung_buttonCloseOrders_Click_Finalize_orders {
             get {
                 return ResourceManager.GetString("FormKellnerabrechnung_buttonCloseOrders_Click_Finalize_orders", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Fehler beim Prüfen der Druckerkonfiguration ähnelt.
+        /// </summary>
+        internal static string FormMain_CheckPrinterConfiguration_Error {
+            get {
+                return ResourceManager.GetString("FormMain_CheckPrinterConfiguration_Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Folgende Drucker sind nicht installiert:  ähnelt.
+        /// </summary>
+        internal static string FormMain_CheckPrinterConfiguration_Missing {
+            get {
+                return ResourceManager.GetString("FormMain_CheckPrinterConfiguration_Missing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Es wird versucht auf einen ungültigen Drucker zuzugreifen. Kontrollieren Sie die Ausgabestellen-Einstellungen vor der nächsten Bestellung. ähnelt.
+        /// </summary>
+        internal static string Invalid_Printer {
+            get {
+                return ResourceManager.GetString("Invalid_Printer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Ungültiger Drucker! ähnelt.
+        /// </summary>
+        internal static string Invalid_Printer_Title {
+            get {
+                return ResourceManager.GetString("Invalid_Printer_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Ungültiges Kürzel ähnelt.
+        /// </summary>
+        internal static string Invalid_shortcut {
+            get {
+                return ResourceManager.GetString("Invalid_shortcut", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Unbekannter Fehler ähnelt.
+        /// </summary>
+        internal static string Unknown_Error {
+            get {
+                return ResourceManager.GetString("Unknown_Error", resourceCulture);
             }
         }
     }

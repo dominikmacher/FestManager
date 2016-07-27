@@ -29,16 +29,16 @@ namespace FestManager_Core.Forms.SubForms
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            var resources = new System.ComponentModel.ComponentResourceManager(typeof(FormBestellung));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormBestellung));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.toolStripContainer = new System.Windows.Forms.ToolStripContainer();
             this.actionsPanel = new System.Windows.Forms.Panel();
             this.rueckgaengigButton = new System.Windows.Forms.Button();
             this.printLastOrderButton = new System.Windows.Forms.Button();
             this.stornierenButton = new System.Windows.Forms.Button();
             this.abschliessenButton = new System.Windows.Forms.Button();
-            this.gesamtpreisTextBox = new System.Windows.Forms.TextBox();
-            this.gesamtpreisLabel = new System.Windows.Forms.Label();
             this.contentPanel = new System.Windows.Forms.Panel();
+            this.labelError = new System.Windows.Forms.Label();
             this.tischLabel = new System.Windows.Forms.Label();
             this.tischTextBox = new System.Windows.Forms.TextBox();
             this.artikelDataGridView = new System.Windows.Forms.DataGridView();
@@ -57,10 +57,10 @@ namespace FestManager_Core.Forms.SubForms
             this.personalVBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.bestellungIdLabel = new System.Windows.Forms.Label();
             this.bestellungIdTextBox = new System.Windows.Forms.TextBox();
-            this.personalVBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.printPreviewDialog = new System.Windows.Forms.PrintPreviewDialog();
             this.printDocument = new System.Drawing.Printing.PrintDocument();
             this.printDialog = new System.Windows.Forms.PrintDialog();
+            this.personalVBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.bestellungArtikelTableAdapter = new FestManager_Core.Data.FestManagerDataSetTableAdapters.BestellungArtikelTableAdapter();
             this.artikelTableAdapter = new FestManager_Core.Data.FestManagerDataSetTableAdapters.ArtikelTableAdapter();
             this.bestellungTableAdapter = new FestManager_Core.Data.FestManagerDataSetTableAdapters.BestellungTableAdapter();
@@ -102,8 +102,6 @@ namespace FestManager_Core.Forms.SubForms
             this.actionsPanel.Controls.Add(this.printLastOrderButton);
             this.actionsPanel.Controls.Add(this.stornierenButton);
             this.actionsPanel.Controls.Add(this.abschliessenButton);
-            this.actionsPanel.Controls.Add(this.gesamtpreisTextBox);
-            this.actionsPanel.Controls.Add(this.gesamtpreisLabel);
             this.actionsPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.actionsPanel.Location = new System.Drawing.Point(0, 432);
             this.actionsPanel.Name = "actionsPanel";
@@ -115,7 +113,7 @@ namespace FestManager_Core.Forms.SubForms
             this.rueckgaengigButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.rueckgaengigButton.Image = ((System.Drawing.Image)(resources.GetObject("rueckgaengigButton.Image")));
             this.rueckgaengigButton.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.rueckgaengigButton.Location = new System.Drawing.Point(643, 5);
+            this.rueckgaengigButton.Location = new System.Drawing.Point(639, 0);
             this.rueckgaengigButton.Name = "rueckgaengigButton";
             this.rueckgaengigButton.Size = new System.Drawing.Size(88, 23);
             this.rueckgaengigButton.TabIndex = 8;
@@ -128,7 +126,7 @@ namespace FestManager_Core.Forms.SubForms
             // 
             this.printLastOrderButton.Image = ((System.Drawing.Image)(resources.GetObject("printLastOrderButton.Image")));
             this.printLastOrderButton.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
-            this.printLastOrderButton.Location = new System.Drawing.Point(12, 5);
+            this.printLastOrderButton.Location = new System.Drawing.Point(15, 0);
             this.printLastOrderButton.Name = "printLastOrderButton";
             this.printLastOrderButton.Size = new System.Drawing.Size(156, 23);
             this.printLastOrderButton.TabIndex = 4;
@@ -142,7 +140,7 @@ namespace FestManager_Core.Forms.SubForms
             this.stornierenButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.stornierenButton.Image = ((System.Drawing.Image)(resources.GetObject("stornierenButton.Image")));
             this.stornierenButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.stornierenButton.Location = new System.Drawing.Point(735, 5);
+            this.stornierenButton.Location = new System.Drawing.Point(733, 0);
             this.stornierenButton.Name = "stornierenButton";
             this.stornierenButton.Size = new System.Drawing.Size(75, 23);
             this.stornierenButton.TabIndex = 2;
@@ -157,7 +155,7 @@ namespace FestManager_Core.Forms.SubForms
             this.abschliessenButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.abschliessenButton.Image = ((System.Drawing.Image)(resources.GetObject("abschliessenButton.Image")));
             this.abschliessenButton.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
-            this.abschliessenButton.Location = new System.Drawing.Point(814, 5);
+            this.abschliessenButton.Location = new System.Drawing.Point(814, 0);
             this.abschliessenButton.Name = "abschliessenButton";
             this.abschliessenButton.Size = new System.Drawing.Size(98, 23);
             this.abschliessenButton.TabIndex = 3;
@@ -166,25 +164,9 @@ namespace FestManager_Core.Forms.SubForms
             this.abschliessenButton.UseVisualStyleBackColor = true;
             this.abschliessenButton.Click += new System.EventHandler(this.abschliessenButton_Click);
             // 
-            // gesamtpreisTextBox
-            // 
-            this.gesamtpreisTextBox.Enabled = false;
-            this.gesamtpreisTextBox.Location = new System.Drawing.Point(291, 7);
-            this.gesamtpreisTextBox.Name = "gesamtpreisTextBox";
-            this.gesamtpreisTextBox.Size = new System.Drawing.Size(45, 20);
-            this.gesamtpreisTextBox.TabIndex = 7;
-            // 
-            // gesamtpreisLabel
-            // 
-            this.gesamtpreisLabel.AutoSize = true;
-            this.gesamtpreisLabel.Location = new System.Drawing.Point(181, 10);
-            this.gesamtpreisLabel.Name = "gesamtpreisLabel";
-            this.gesamtpreisLabel.Size = new System.Drawing.Size(112, 13);
-            this.gesamtpreisLabel.TabIndex = 6;
-            this.gesamtpreisLabel.Text = "Aktueller Gesamtpreis:";
-            // 
             // contentPanel
             // 
+            this.contentPanel.Controls.Add(this.labelError);
             this.contentPanel.Controls.Add(this.tischLabel);
             this.contentPanel.Controls.Add(this.tischTextBox);
             this.contentPanel.Controls.Add(this.artikelDataGridView);
@@ -199,6 +181,22 @@ namespace FestManager_Core.Forms.SubForms
             this.contentPanel.Name = "contentPanel";
             this.contentPanel.Size = new System.Drawing.Size(924, 474);
             this.contentPanel.TabIndex = 0;
+            // 
+            // labelError
+            // 
+            this.labelError.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelError.BackColor = System.Drawing.Color.Red;
+            this.labelError.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelError.ForeColor = System.Drawing.Color.White;
+            this.labelError.Location = new System.Drawing.Point(15, 63);
+            this.labelError.Margin = new System.Windows.Forms.Padding(3, 20, 3, 20);
+            this.labelError.Name = "labelError";
+            this.labelError.Size = new System.Drawing.Size(897, 40);
+            this.labelError.TabIndex = 8;
+            this.labelError.Text = "Fehlerbeschreibung";
+            this.labelError.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.labelError.Visible = false;
             // 
             // tischLabel
             // 
@@ -221,9 +219,9 @@ namespace FestManager_Core.Forms.SubForms
             // 
             // artikelDataGridView
             // 
-            this.artikelDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.artikelDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.artikelDataGridView.AutoGenerateColumns = false;
             this.artikelDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.artikelDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -233,18 +231,37 @@ namespace FestManager_Core.Forms.SubForms
             this.artikelIdDataGridViewTextBoxColumn,
             this.gesamtpreisDataGridViewTextBoxColumn});
             this.artikelDataGridView.DataSource = this.bestellungArtikelBindingSource;
-            this.artikelDataGridView.Location = new System.Drawing.Point(15, 70);
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.artikelDataGridView.DefaultCellStyle = dataGridViewCellStyle1;
+            this.artikelDataGridView.Location = new System.Drawing.Point(15, 106);
             this.artikelDataGridView.Name = "artikelDataGridView";
-            this.artikelDataGridView.Size = new System.Drawing.Size(897, 356);
+            this.artikelDataGridView.RowTemplate.DefaultCellStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.artikelDataGridView.RowTemplate.DefaultCellStyle.SelectionForeColor = System.Drawing.Color.Black;
+            this.artikelDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.artikelDataGridView.Size = new System.Drawing.Size(897, 320);
             this.artikelDataGridView.TabIndex = 2;
+            this.artikelDataGridView.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.artikelDataGridView_CellEndEdit);
+            this.artikelDataGridView.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.artikelDataGridView_CellFormatting);
             this.artikelDataGridView.CellValidated += new System.Windows.Forms.DataGridViewCellEventHandler(this.artikelDataGridView_CellValidated);
+            this.artikelDataGridView.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.artikelDataGridView_CellValidating);
+            this.artikelDataGridView.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.artikelDataGridView_DataError);
             this.artikelDataGridView.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.artikelDataGridView_RowEnter);
+            this.artikelDataGridView.RowsRemoved += new System.Windows.Forms.DataGridViewRowsRemovedEventHandler(this.artikelDataGridView_RowsRemoved);
+            this.artikelDataGridView.RowValidated += new System.Windows.Forms.DataGridViewCellEventHandler(this.artikelDataGridView_RowValidated);
+            this.artikelDataGridView.RowValidating += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.artikelDataGridView_RowValidating);
             // 
             // bestellungIdDataGridViewTextBoxColumn
             // 
             this.bestellungIdDataGridViewTextBoxColumn.DataPropertyName = "BestellungId";
             this.bestellungIdDataGridViewTextBoxColumn.HeaderText = "Bestellung-ID";
             this.bestellungIdDataGridViewTextBoxColumn.Name = "bestellungIdDataGridViewTextBoxColumn";
+            this.bestellungIdDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.bestellungIdDataGridViewTextBoxColumn.Visible = false;
             // 
             // mengeDataGridViewTextBoxColumn
@@ -252,13 +269,15 @@ namespace FestManager_Core.Forms.SubForms
             this.mengeDataGridViewTextBoxColumn.DataPropertyName = "Menge";
             this.mengeDataGridViewTextBoxColumn.HeaderText = "Menge";
             this.mengeDataGridViewTextBoxColumn.Name = "mengeDataGridViewTextBoxColumn";
+            this.mengeDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // shortcutDataGridViewTextBoxColumn
             // 
             this.shortcutDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
             this.shortcutDataGridViewTextBoxColumn.HeaderText = "Kürzel";
             this.shortcutDataGridViewTextBoxColumn.Name = "shortcutDataGridViewTextBoxColumn";
-            this.shortcutDataGridViewTextBoxColumn.Width = 61;
+            this.shortcutDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.shortcutDataGridViewTextBoxColumn.Width = 42;
             // 
             // artikelIdDataGridViewTextBoxColumn
             // 
@@ -266,10 +285,11 @@ namespace FestManager_Core.Forms.SubForms
             this.artikelIdDataGridViewTextBoxColumn.DataPropertyName = "ArtikelId";
             this.artikelIdDataGridViewTextBoxColumn.DataSource = this.artikelBindingSource;
             this.artikelIdDataGridViewTextBoxColumn.DisplayMember = "Bezeichnung";
+            this.artikelIdDataGridViewTextBoxColumn.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.Nothing;
             this.artikelIdDataGridViewTextBoxColumn.HeaderText = "Artikel";
             this.artikelIdDataGridViewTextBoxColumn.Name = "artikelIdDataGridViewTextBoxColumn";
+            this.artikelIdDataGridViewTextBoxColumn.ReadOnly = true;
             this.artikelIdDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.artikelIdDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.artikelIdDataGridViewTextBoxColumn.ValueMember = "ArtikelId";
             // 
             // artikelBindingSource
@@ -287,6 +307,8 @@ namespace FestManager_Core.Forms.SubForms
             this.gesamtpreisDataGridViewTextBoxColumn.DataPropertyName = "Gesamtpreis";
             this.gesamtpreisDataGridViewTextBoxColumn.HeaderText = "Gesamtpreis";
             this.gesamtpreisDataGridViewTextBoxColumn.Name = "gesamtpreisDataGridViewTextBoxColumn";
+            this.gesamtpreisDataGridViewTextBoxColumn.ReadOnly = true;
+            this.gesamtpreisDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // bestellungArtikelBindingSource
             // 
@@ -358,11 +380,6 @@ namespace FestManager_Core.Forms.SubForms
             this.bestellungIdTextBox.Size = new System.Drawing.Size(85, 20);
             this.bestellungIdTextBox.TabIndex = 0;
             // 
-            // personalVBindingSource
-            // 
-            this.personalVBindingSource.DataMember = "Personal_V";
-            this.personalVBindingSource.DataSource = this.festManagerDataSet;
-            // 
             // printPreviewDialog
             // 
             this.printPreviewDialog.AutoScrollMargin = new System.Drawing.Size(0, 0);
@@ -383,6 +400,11 @@ namespace FestManager_Core.Forms.SubForms
             this.printDialog.AllowPrintToFile = false;
             this.printDialog.Document = this.printDocument;
             this.printDialog.UseEXDialog = true;
+            // 
+            // personalVBindingSource
+            // 
+            this.personalVBindingSource.DataMember = "Personal_V";
+            this.personalVBindingSource.DataSource = this.festManagerDataSet;
             // 
             // bestellungArtikelTableAdapter
             // 
@@ -413,7 +435,6 @@ namespace FestManager_Core.Forms.SubForms
             this.toolStripContainer.ResumeLayout(false);
             this.toolStripContainer.PerformLayout();
             this.actionsPanel.ResumeLayout(false);
-            this.actionsPanel.PerformLayout();
             this.contentPanel.ResumeLayout(false);
             this.contentPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.artikelDataGridView)).EndInit();
@@ -439,8 +460,6 @@ namespace FestManager_Core.Forms.SubForms
         private System.Windows.Forms.Label personalIdLabel;
         private System.Windows.Forms.Label zeitpunktLabel;
         private System.Windows.Forms.TextBox zeitpunktTextBox;
-        private System.Windows.Forms.Label gesamtpreisLabel;
-        private System.Windows.Forms.TextBox gesamtpreisTextBox;
         private System.Windows.Forms.DataGridView artikelDataGridView;
         private System.Windows.Forms.BindingSource bestellungArtikelBindingSource;
         private FestManager_Core.Data.FestManagerDataSetTableAdapters.BestellungArtikelTableAdapter bestellungArtikelTableAdapter;
@@ -453,15 +472,16 @@ namespace FestManager_Core.Forms.SubForms
         private System.Windows.Forms.BindingSource personalVBindingSource;
         private System.Windows.Forms.BindingSource personalVBindingSource1;
         private FestManager_Core.Data.FestManagerDataSetTableAdapters.Personal_VTableAdapter personal_VTableAdapter;
-        private System.Windows.Forms.DataGridViewTextBoxColumn bestellungIdDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn mengeDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn shortcutDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewComboBoxColumn artikelIdDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn gesamtpreisDataGridViewTextBoxColumn;
         public System.Windows.Forms.ComboBox personalIdComboBox;
         private System.Windows.Forms.Button printLastOrderButton;
         private System.Windows.Forms.Label tischLabel;
         private System.Windows.Forms.TextBox tischTextBox;
         private System.Windows.Forms.Button rueckgaengigButton;
+        private System.Windows.Forms.Label labelError;
+        private System.Windows.Forms.DataGridViewTextBoxColumn bestellungIdDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn mengeDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn shortcutDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewComboBoxColumn artikelIdDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn gesamtpreisDataGridViewTextBoxColumn;
     }
 }

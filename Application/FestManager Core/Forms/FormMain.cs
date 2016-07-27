@@ -1,17 +1,23 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Drawing.Printing;
 using System.Linq;
 using System.Windows.Forms;
+using FestManager_Core.Data;
 using FestManager_Core.Data.FestManagerDataSetTableAdapters;
 using FestManager_Core.Forms.SubForms;
 using FestManager_Core.Properties;
 using FestManager_Core.Utils;
+using NLog;
 
 namespace FestManager_Core.Forms
 {
     public partial class FormMain : Form
     {
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+
         private readonly NameFormCollection _childs = new NameFormCollection();
 
         private readonly FestManagerSettings _settings;
@@ -44,6 +50,10 @@ namespace FestManager_Core.Forms
                 var formSettings = new FormSettings(_settings);
                 formSettings.Show(this);
             }
+            else
+            {
+                CheckPrinterConfiguration();
+            }
 
             Text += " [" + name + "]";
 
@@ -52,6 +62,8 @@ namespace FestManager_Core.Forms
 
         private bool CheckDatabaseConnectivity()
         {
+            Logger.Debug("CheckDatabaseConnectivity()");
+
             try
             {
                 var ausgabestelleTableAdapter = new AusgabestelleTableAdapter();
@@ -63,12 +75,54 @@ namespace FestManager_Core.Forms
                 if (count > 0)
                     return true;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                // ignored
+                Logger.Error(ex);
             }
 
             return false;
+        }
+
+        private void CheckPrinterConfiguration()
+        {
+            Logger.Debug("CheckPrinterConfiguration()");
+
+            try
+            {
+                var ausgabestelleTableAdapter = new AusgabestelleTableAdapter();
+
+                ausgabestelleTableAdapter.Fill(festManagerDataSet.Ausgabestelle);
+                var ausgabestellen = ausgabestelleTableAdapter.GetData();
+                
+                var printers = (from object printer in PrinterSettings.InstalledPrinters select printer as string).ToList();
+                var missingPrinters = new Dictionary<string, bool>();
+
+                foreach (FestManagerDataSet.AusgabestelleRow ausgabestelle in ausgabestellen.Rows)
+                {
+                    var printerName = ausgabestelle.Drucker;
+                    if (printers.Contains(printerName) || missingPrinters.ContainsKey(printerName)) continue;
+
+                    missingPrinters.Add(printerName, true);
+                }
+
+                var missingPrintersString = string.Join(", ", missingPrinters.Keys);
+
+                Logger.Error("Missing printers: " + missingPrintersString);
+                MessageBox.Show(
+                    Resources.FormMain_CheckPrinterConfiguration_Missing + missingPrintersString,
+                    Resources.FormMain_CheckPrinterConfiguration_Error,
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+            catch (Exception ex) { 
+            
+                Logger.Error(ex);
+                MessageBox.Show(
+                    ex.Message, 
+                    Resources.FormMain_CheckPrinterConfiguration_Error, 
+                    MessageBoxButtons.OK, 
+                    MessageBoxIcon.Error);
+            }
         }
 
         [Localizable(false)]

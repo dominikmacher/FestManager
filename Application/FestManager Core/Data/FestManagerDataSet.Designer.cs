@@ -1740,7 +1740,7 @@ namespace FestManager_Core.Data {
                 this.columnBestellungId.AllowDBNull = false;
                 this.columnBestellungId.Unique = true;
                 this.columnStorniert.MaxLength = 1;
-                this.columnTisch.MaxLength = 5;
+                this.columnTisch.MaxLength = 50;
                 this.columnAbgerechnet.MaxLength = 1;
             }
             
@@ -2450,7 +2450,7 @@ namespace FestManager_Core.Data {
                 this.columnBestellungId.AllowDBNull = false;
                 this.columnArtikel.MaxLength = 50;
                 this.columnAusgabestelle.MaxLength = 50;
-                this.columnTisch.MaxLength = 5;
+                this.columnTisch.MaxLength = 50;
                 this.columnPersonal.MaxLength = 50;
             }
             

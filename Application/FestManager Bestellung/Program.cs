@@ -39,6 +39,10 @@ namespace FestManager_Bestellung
             {
                 settings.PrintDirektverkaufTwice = (bool) Properties.Settings.Default["printDirektverkaufTwice"];
             }
+            if (appSettings.Contains("printTwice"))
+            {
+                settings.PrintTwice = (bool)Properties.Settings.Default["printTwice"];
+            }
             if (appSettings.Contains("printStornoOrders"))
             {
                 settings.PrintStornoOrders = (bool) Properties.Settings.Default["printStornoOrders"];

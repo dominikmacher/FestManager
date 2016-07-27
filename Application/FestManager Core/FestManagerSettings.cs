@@ -24,10 +24,12 @@
 
         public string EinpackenSymbol { get; set; }
 
+        public bool PrintTwice { get; set; }
+
         public FestManagerSettings()
         {
             ConnectionString = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=Data\FestManager.mdb";
-            DirektverkaufAusgabestelleId = -1;
+            DirektverkaufAusgabestelleId = 6;
             DirektverkaufPersonalId = 1;
             EinpackenSymbol = "";
             GroupElementsBeforePrint = true;
@@ -36,6 +38,7 @@
             PrintStornoOrders = true;
             StornoSymbol = "!!!";
             TableNumbers = true;
+            PrintTwice = false;
         }
     }
 }

@@ -124,17 +124,16 @@
     <value>Fehler</value>
   </data>
   <data name="FormBestellung_abschliessenButton_Click_Error_saving_order" xml:space="preserve">
-    <value>Fehler beim Speichern der Bestellung!</value>
+    <value>Fehler beim Speichern der Bestellung! </value>
   </data>
   <data name="FormBestellung_abschliessenButton_Click_Order_placed" xml:space="preserve">
-    <value>Bestellung abgeschlossen!
-Gesamtpreis in €: </value>
+    <value>Gesamtpreis: </value>
   </data>
   <data name="FormBestellung_PrintBestellung_Error_no_POS_printer_configured" xml:space="preserve">
-    <value>Fehler: Kein 'Kassa'-Drucker eingerichtet !!</value>
+    <value>Kein 'Kassa'-Drucker eingerichtet !!</value>
   </data>
   <data name="FormBestellung_PrintKassabon_Critical_error_restart_application" xml:space="preserve">
-    <value>Fehler: Bestellung wird nicht gedruckt! Bitte starten Sie die Applikation neu.</value>
+    <value>Bestellung wird nicht gedruckt! Bitte starten Sie die Applikation neu.</value>
   </data>
   <data name="FormBestellung_PrintKassabon_Printing_error" xml:space="preserve">
     <value>Fehler beim Drucken</value>
@@ -146,7 +145,7 @@ Gesamtpreis in €: </value>
     <value>Der angegebene Artikel konnte nicht gefunden werden!</value>
   </data>
   <data name="Error" xml:space="preserve">
-    <value>Error</value>
+    <value>Fehler</value>
   </data>
   <data name="FormBestellungenHistory_bestellungenHistoryDataGridView_CellDoubleClick_Order_details_for" xml:space="preserve">
     <value>Bestell-Details für #</value>
@@ -183,5 +182,47 @@ Gesamtpreis in €: </value>
   </data>
   <data name="FormBestellungenHistory_bestellungenHistoryDataGridView_CellDoubleClick_Invalid_order_Title" xml:space="preserve">
     <value>Ungültige Bestellung</value>
+  </data>
+  <data name="Critical_Error" xml:space="preserve">
+    <value>Kritischer Fehler</value>
+  </data>
+  <data name="FormBestellung_abschliessenButton_Click_Invalid_articles_selected" xml:space="preserve">
+    <value>Sie haben ungültige Artikel erfasst! Überprüfen Sie die Eingaben</value>
+  </data>
+  <data name="FormBestellung_abschliessenButton_Click_Invalid_articles_selected_title" xml:space="preserve">
+    <value>Ungültige Artikel erfasst</value>
+  </data>
+  <data name="Invalid_shortcut" xml:space="preserve">
+    <value>Ungültiges Kürzel</value>
+  </data>
+  <data name="DataError_Title" xml:space="preserve">
+    <value>Fehlerhafte Daten</value>
+  </data>
+  <data name="FormBestellung_artikelDataGridView_CellValidating_Error_Pfx" xml:space="preserve">
+    <value>Unbekannter Fehler beim Validieren der Daten: </value>
+  </data>
+  <data name="Unknown_Error" xml:space="preserve">
+    <value>Unbekannter Fehler</value>
+  </data>
+  <data name="FormBestellung_abschliessenButton_Click_Order_placed_Title" xml:space="preserve">
+    <value>Bestellung abgeschlossen!</value>
+  </data>
+  <data name="FormBestellung_abschliessenButton_Click_Unhandled_printing_error" xml:space="preserve">
+    <value>Unbekannter Fehler beim Drucken: </value>
+  </data>
+  <data name="FormBestellung_abschliessenButton_Click_Unhandled_printing_error_Title" xml:space="preserve">
+    <value>Fehler beim Drucken</value>
+  </data>
+  <data name="Invalid_Printer_Title" xml:space="preserve">
+    <value>Ungültiger Drucker!</value>
+  </data>
+  <data name="Invalid_Printer" xml:space="preserve">
+    <value>Es wird versucht auf einen ungültigen Drucker zuzugreifen. Kontrollieren Sie die Ausgabestellen-Einstellungen vor der nächsten Bestellung.</value>
+  </data>
+  <data name="FormMain_CheckPrinterConfiguration_Error" xml:space="preserve">
+    <value>Fehler beim Prüfen der Druckerkonfiguration</value>
+  </data>
+  <data name="FormMain_CheckPrinterConfiguration_Missing" xml:space="preserve">
+    <value>Folgende Drucker sind nicht installiert: </value>
   </data>
 </root>
