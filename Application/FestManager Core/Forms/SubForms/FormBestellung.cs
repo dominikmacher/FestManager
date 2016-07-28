@@ -309,12 +309,12 @@ namespace FestManager_Core.Forms.SubForms
                 ausgabestellen = new Data.FestManagerDataSetTableAdapters.AusgabestelleTableAdapter();
                 ausgabe = ausgabestellen.GetKassaData();
 
-                if (ausgabe.Count > _direktverkaufAusgabestelleId)
+                if (ausgabe.Count > 0)
                 {
                     printDocument.PrinterSettings = new PrinterSettings {Copies = 1};
 
                     var row =
-                        (FestManagerDataSet.AusgabestelleRow)ausgabe.Rows[_direktverkaufAusgabestelleId];
+                        (FestManagerDataSet.AusgabestelleRow)ausgabe.Rows[0];
                     
                     PrintKassabon(row);
                 }

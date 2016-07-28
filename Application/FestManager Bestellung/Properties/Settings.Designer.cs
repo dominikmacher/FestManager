@@ -68,5 +68,17 @@ namespace FestManager_Bestellung.Properties {
                 return ((string)(this["connectionString"]));
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool printTwice {
+            get {
+                return ((bool)(this["printTwice"]));
+            }
+            set {
+                this["printTwice"] = value;
+            }
+        }
     }
 }
