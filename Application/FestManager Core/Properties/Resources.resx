@@ -1,0 +1,228 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="FormBestellung_abschliessenButton_Click_Invalid_Waiter_selected" xml:space="preserve">
+    <value>Ungültiger Kellner gewählt!</value>
+  </data>
+  <data name="FormBestellung_abschliessenButton_Click_Error" xml:space="preserve">
+    <value>Fehler</value>
+  </data>
+  <data name="FormBestellung_abschliessenButton_Click_Error_saving_order" xml:space="preserve">
+    <value>Fehler beim Speichern der Bestellung! </value>
+  </data>
+  <data name="FormBestellung_abschliessenButton_Click_Order_placed" xml:space="preserve">
+    <value>Gesamtpreis: </value>
+  </data>
+  <data name="FormBestellung_PrintBestellung_Error_no_POS_printer_configured" xml:space="preserve">
+    <value>Kein 'Kassa'-Drucker eingerichtet !!</value>
+  </data>
+  <data name="FormBestellung_PrintKassabon_Critical_error_restart_application" xml:space="preserve">
+    <value>Bestellung wird nicht gedruckt! Bitte starten Sie die Applikation neu.</value>
+  </data>
+  <data name="FormBestellung_PrintKassabon_Printing_error" xml:space="preserve">
+    <value>Fehler beim Drucken</value>
+  </data>
+  <data name="FormBestellung_stornierenButton_Click_Order_will_be_canceled" xml:space="preserve">
+    <value>Bestellung wird nun storniert...</value>
+  </data>
+  <data name="FormBestellung_artikelDataGridView_CellValidated_Product_not_found" xml:space="preserve">
+    <value>Der angegebene Artikel konnte nicht gefunden werden!</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Fehler</value>
+  </data>
+  <data name="FormBestellungenHistory_bestellungenHistoryDataGridView_CellDoubleClick_Order_details_for" xml:space="preserve">
+    <value>Bestell-Details für #</value>
+  </data>
+  <data name="FormBestellungenHistory_buttonPrintBestellung_Click_Printing_error" xml:space="preserve">
+    <value>Fehler beim Drucken</value>
+  </data>
+  <data name="FormBestellungenHistory_buttonPrintBestellung_Click_Error_no_POS_printer" xml:space="preserve">
+    <value>Fehler: Kein 'Kassa'-Drucker eingerichtet !!</value>
+  </data>
+  <data name="FormKellnerabrechnung_buttonCloseOrders_Click_Continue_on_mark_all_open_orders_finalized" xml:space="preserve">
+    <value>Alle offenen Abrechnungen werden als 'abgerechnet' markiert. Fortfahren?</value>
+  </data>
+  <data name="FormKellnerabrechnung_buttonCloseOrders_Click_Finalize_orders" xml:space="preserve">
+    <value>Abrechnungen dauerhaft abschließen</value>
+  </data>
+  <data name="Database_Error_Message_Pfx" xml:space="preserve">
+    <value>Fehler beim Laden der Daten: </value>
+  </data>
+  <data name="Database_Error_Message_Title" xml:space="preserve">
+    <value>Datenbankfehler</value>
+  </data>
+  <data name="FormBestellung_artikelDataGridView_CellValidated_Product_not_found_Title" xml:space="preserve">
+    <value>Artikel nicht gefunden</value>
+  </data>
+  <data name="Error_connection_to_DB_Msg" xml:space="preserve">
+    <value>Fehler beim Verbinden mit der Datenbank! Wollen Sie den Speicherort der Datenbank prüfen?</value>
+  </data>
+  <data name="Error_connection_to_DB_Title" xml:space="preserve">
+    <value>Datenbank-Verbindungsfehler</value>
+  </data>
+  <data name="FormBestellungenHistory_bestellungenHistoryDataGridView_CellDoubleClick_Invalid_order" xml:space="preserve">
+    <value>Bitte klicken Sie auf eine gültige Bestellung.</value>
+  </data>
+  <data name="FormBestellungenHistory_bestellungenHistoryDataGridView_CellDoubleClick_Invalid_order_Title" xml:space="preserve">
+    <value>Ungültige Bestellung</value>
+  </data>
+  <data name="Critical_Error" xml:space="preserve">
+    <value>Kritischer Fehler</value>
+  </data>
+  <data name="FormBestellung_abschliessenButton_Click_Invalid_articles_selected" xml:space="preserve">
+    <value>Sie haben ungültige Artikel erfasst! Überprüfen Sie die Eingaben</value>
+  </data>
+  <data name="FormBestellung_abschliessenButton_Click_Invalid_articles_selected_title" xml:space="preserve">
+    <value>Ungültige Artikel erfasst</value>
+  </data>
+  <data name="Invalid_shortcut" xml:space="preserve">
+    <value>Ungültiges Kürzel</value>
+  </data>
+  <data name="DataError_Title" xml:space="preserve">
+    <value>Fehlerhafte Daten</value>
+  </data>
+  <data name="FormBestellung_artikelDataGridView_CellValidating_Error_Pfx" xml:space="preserve">
+    <value>Unbekannter Fehler beim Validieren der Daten: </value>
+  </data>
+  <data name="Unknown_Error" xml:space="preserve">
+    <value>Unbekannter Fehler</value>
+  </data>
+  <data name="FormBestellung_abschliessenButton_Click_Order_placed_Title" xml:space="preserve">
+    <value>Bestellung abgeschlossen!</value>
+  </data>
+  <data name="FormBestellung_abschliessenButton_Click_Unhandled_printing_error" xml:space="preserve">
+    <value>Unbekannter Fehler beim Drucken: </value>
+  </data>
+  <data name="FormBestellung_abschliessenButton_Click_Unhandled_printing_error_Title" xml:space="preserve">
+    <value>Fehler beim Drucken</value>
+  </data>
+  <data name="Invalid_Printer_Title" xml:space="preserve">
+    <value>Ungültiger Drucker!</value>
+  </data>
+  <data name="Invalid_Printer" xml:space="preserve">
+    <value>Es wird versucht auf einen ungültigen Drucker zuzugreifen. Kontrollieren Sie die Ausgabestellen-Einstellungen vor der nächsten Bestellung.</value>
+  </data>
+  <data name="FormMain_CheckPrinterConfiguration_Error" xml:space="preserve">
+    <value>Fehler beim Prüfen der Druckerkonfiguration</value>
+  </data>
+  <data name="FormMain_CheckPrinterConfiguration_Missing" xml:space="preserve">
+    <value>Folgende Drucker sind nicht installiert: </value>
+  </data>
+</root>

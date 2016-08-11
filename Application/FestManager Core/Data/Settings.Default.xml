@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Settings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://festmanager.feuerwehr-karlstetten.at/">
+  <ConnectionString>Provider=Microsoft.Jet.OLEDB.4.0;Data Source=Data\FestManager.mdb</ConnectionString>
+  <PrintDirektverkaufTwice>false</PrintDirektverkaufTwice>
+  <DirektverkaufPersonalId>1</DirektverkaufPersonalId>
+  <DirektverkaufAusgabestelleId>6</DirektverkaufAusgabestelleId>
+  <TableNumbers>true</TableNumbers>
+  <PrintStornoOrders>true</PrintStornoOrders>
+  <Organisation>FF-Karlstetten</Organisation>
+  <GroupElementsBeforePrint>true</GroupElementsBeforePrint>
+  <StornoSymbol>!!!</StornoSymbol>
+  <EinpackenSymbol />
+  <PrintTwice>true</PrintTwice>
+  <TableNumbersRequired>true</TableNumbersRequired>
+</Settings>
