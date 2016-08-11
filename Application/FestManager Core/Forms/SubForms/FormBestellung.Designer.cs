@@ -216,6 +216,7 @@ namespace FestManager_Core.Forms.SubForms
             this.tischTextBox.Size = new System.Drawing.Size(85, 20);
             this.tischTextBox.TabIndex = 1;
             this.tischTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tischTextBox_KeyDown);
+            this.tischTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.tischTextBox_Validating);
             // 
             // artikelDataGridView
             // 

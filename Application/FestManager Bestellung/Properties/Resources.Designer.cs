@@ -59,5 +59,41 @@ namespace FestManager_Bestellung.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Die Einstellungen sind fehlerhaft:  ähnelt.
+        /// </summary>
+        internal static string Fatal_Invalid_settings {
+            get {
+                return ResourceManager.GetString("Fatal_Invalid_settings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Einstellungen fehlerhaft! ähnelt.
+        /// </summary>
+        internal static string Fatal_Invalid_settings_Title {
+            get {
+                return ResourceManager.GetString("Fatal_Invalid_settings_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Das Programm kann nicht gestartet werden weil die Einstellungen nicht geladen werden konnten:  ähnelt.
+        /// </summary>
+        internal static string Fatal_Settings_not_found {
+            get {
+                return ResourceManager.GetString("Fatal_Settings_not_found", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Einstellungen nicht gefunden! ähnelt.
+        /// </summary>
+        internal static string Fatal_Settings_not_found_Title {
+            get {
+                return ResourceManager.GetString("Fatal_Settings_not_found_Title", resourceCulture);
+            }
+        }
     }
 }

@@ -7,7 +7,7 @@ using FestManager_Core.Utils.Printing;
 
 namespace FestManager_Core.Forms.SubForms
 {
-    public partial class FormBestellungenHistory : Form
+    public partial class FormBestellungenHistory : FestmanagerMdiChildForm
     {
         private int _actualBestellungId;
 

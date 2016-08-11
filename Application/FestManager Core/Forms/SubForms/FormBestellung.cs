@@ -12,27 +12,25 @@ using NLog;
 
 namespace FestManager_Core.Forms.SubForms
 {
-    public partial class FormBestellung : Form
+    public partial class FormBestellung : FestmanagerMdiChildForm
     {
 
         private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
         public const int ColIdxMenge  = 1;
+
         public const int ColIdxKuerzel = 2;
+
         public const int ColIdxArtikel = 3;
+
         public const int ColIdxPreis = 4;
-
-
-        private int _ausgabestelle;
-        private readonly bool _printDirektverkaufTwice;
-        private readonly int _direktverkauftPersonalId;
-        private readonly int _direktverkaufAusgabestelleId;
-        private readonly bool _printTwice;
-        private readonly bool _tischEnabled;
         
+        private int _ausgabestelle;
+
         private bool _printAll;
 
         private FestManagerDataSet.BestellungRow _bestellungRow;
+
         private decimal _gesamtpreis;
 
         public FormBestellung()
@@ -40,26 +38,18 @@ namespace FestManager_Core.Forms.SubForms
             Logger.Debug("FormBestellung()");
 
             InitializeComponent();
-            _printTwice = FestManagerSettings.Default.PrintTwice;
-            _printDirektverkaufTwice = FestManagerSettings.Default.PrintDirektverkaufTwice;
-            _direktverkauftPersonalId = FestManagerSettings.Default.DirektverkaufPersonalId;
-            _direktverkaufAusgabestelleId = FestManagerSettings.Default.DirektverkaufAusgabestelleId;
-            _tischEnabled = FestManagerSettings.Default.TableNumbers;
 
-            personalIdComboBox.Focus();
-
-            if (!_tischEnabled)
-            {
-                tischLabel.Visible = false;
-                tischTextBox.Visible = false;
-            }
-
-            personalIdComboBox.Focus();
         }
 
         private void FormBestellung_Load(object sender, EventArgs e)
         {
             Logger.Debug("FormBestellung_Load()");
+
+            if (!Settings.TableNumbers)
+            {
+                tischLabel.Visible = false;
+                tischTextBox.Visible = false;
+            }
 
             // TODO: This line of code loads data into the 'festManagerDataSet.PersonalKuerzel_V' table. You can move, or remove it, as needed.
             try { 
@@ -71,6 +61,8 @@ namespace FestManager_Core.Forms.SubForms
                     Resources.Database_Error_Message_Title, MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
             }
+            
+            personalIdComboBox.Focus();
 
             NewBestellung();
 
@@ -303,7 +295,7 @@ namespace FestManager_Core.Forms.SubForms
                 }
             }
 
-            if ((_printDirektverkaufTwice && (int)personalIdComboBox.SelectedValue == _direktverkauftPersonalId) || _printTwice || secondPrint)
+            if ((Settings.PrintDirektverkaufTwice && (int)personalIdComboBox.SelectedValue == Settings.DirektverkaufPersonalId) || Settings.PrintTwice || secondPrint)
             {
                 _printAll = true;
                 ausgabestellen = new Data.FestManagerDataSetTableAdapters.AusgabestelleTableAdapter();
@@ -357,7 +349,7 @@ namespace FestManager_Core.Forms.SubForms
                 if (kbTable.Rows.Count > 0)
                 {
                     var print = true;
-                    if (!FestManagerSettings.Default.PrintStornoOrders)
+                    if (!Settings.PrintStornoOrders)
                     {
                         print = false;
                         for (var i = 0; i < kbTable.Rows.Count; i++)
@@ -478,7 +470,7 @@ namespace FestManager_Core.Forms.SubForms
 
             if (e.KeyCode == Keys.Enter)
             {
-                if (_tischEnabled)
+                if (Settings.TableNumbers)
                 {
                     tischTextBox.Focus();
                 }
@@ -899,6 +891,20 @@ namespace FestManager_Core.Forms.SubForms
 
             _gesamtpreis = CalculateGesamtpreis();
             UpdateGesamtpreisLabel(_gesamtpreis);
+        }
+
+        private void tischTextBox_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (Settings.TableNumbersRequired && string.IsNullOrEmpty(tischTextBox.Text))
+            {
+                e.Cancel = true;
+                ShowError("Sie müssen eine Tischnummer eingeben!");
+            }
+
+            if (!e.Cancel)
+            {
+                HideError();
+            }
         }
     }
 }

@@ -4,7 +4,7 @@ using System.Windows.Forms;
 
 namespace FestManager_Core.Forms.SubForms
 {
-    public partial class FormAuswertungen : Form
+    public partial class FormAuswertungen : FestmanagerMdiChildForm
     {
         private readonly string _auswertung;
         private int _personalNr;

@@ -4,7 +4,7 @@ using System.Drawing.Printing;
 
 namespace FestManager_Core.Forms.SubForms
 {
-    public partial class FormPrinter : Form
+    public partial class FormPrinter : FestmanagerMdiChildForm
     {
         public FormPrinter()
         {

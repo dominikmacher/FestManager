@@ -4,7 +4,7 @@ using FestManager_Core.Properties;
 
 namespace FestManager_Core.Forms.SubForms
 {
-    public partial class FormArtikel : Form
+    public partial class FormArtikel : FestmanagerMdiChildForm
     {
         public FormArtikel()
         {

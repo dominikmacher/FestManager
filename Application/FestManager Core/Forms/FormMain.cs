@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing.Printing;
@@ -16,6 +15,8 @@ namespace FestManager_Core.Forms
 {
     public partial class FormMain : Form
     {
+        public const string DefaultSettingsPath = @"Data\Settings.xml";
+
         private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
         private readonly NameFormCollection _childs = new NameFormCollection();
@@ -47,7 +48,10 @@ namespace FestManager_Core.Forms
                         Resources.Error_connection_to_DB_Msg,
                         Resources.Error_connection_to_DB_Title, MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
-                var formSettings = new FormSettings(_settings);
+                var formSettings = new FormSettings()
+                {
+                    Settings = _settings
+                };
                 formSettings.Show(this);
             }
             else
@@ -104,9 +108,10 @@ namespace FestManager_Core.Forms
 
                     missingPrinters.Add(printerName, true);
                 }
+                
+                if (missingPrinters.Count <= 0) return;
 
                 var missingPrintersString = string.Join(", ", missingPrinters.Keys);
-
                 Logger.Error("Missing printers: " + missingPrintersString);
                 MessageBox.Show(
                     Resources.FormMain_CheckPrinterConfiguration_Missing + missingPrintersString,
@@ -148,6 +153,7 @@ namespace FestManager_Core.Forms
                     {
                         var formBestellung = new FormBestellung
                         {
+                            Settings = _settings,
                             MdiParent = this,
                             WindowState = FormWindowState.Maximized
                         };
@@ -173,6 +179,7 @@ namespace FestManager_Core.Forms
                     {
                         var formBestellungsHistory = new FormBestellungenHistory
                         {
+                            Settings = _settings,
                             MdiParent = this,
                             WindowState = FormWindowState.Maximized
                         };
@@ -195,6 +202,7 @@ namespace FestManager_Core.Forms
                     {
                         var formPersonal = new FormPersonal
                         {
+                            Settings = _settings,
                             MdiParent = this,
                             WindowState = FormWindowState.Maximized
                         };
@@ -217,6 +225,7 @@ namespace FestManager_Core.Forms
                     {
                         var formArtikel = new FormArtikel
                         {
+                            Settings = _settings,
                             MdiParent = this,
                             WindowState = FormWindowState.Maximized
                         };
@@ -239,6 +248,7 @@ namespace FestManager_Core.Forms
                     {
                         var formAusgabestelle = new FormAusgabestelle
                         {
+                            Settings = _settings,
                             MdiParent = this,
                             WindowState = FormWindowState.Maximized
                         };
@@ -279,6 +289,7 @@ namespace FestManager_Core.Forms
                     {
                         var formKellnerabrechnung = new FormKellnerabrechnung
                         {
+                            Settings = _settings,
                             MdiParent = this,
                             WindowState = FormWindowState.Maximized
                         };
@@ -300,6 +311,7 @@ namespace FestManager_Core.Forms
                     {
                         var formKellnerabrechnungOffen = new FormKellnerabrechnungOffen
                         {
+                            Settings = _settings,
                             MdiParent = this,
                             WindowState = FormWindowState.Maximized
                         };
@@ -321,6 +333,7 @@ namespace FestManager_Core.Forms
                     {
                         var formAuswertungen = new FormAuswertungen("Bestellungen")
                         {
+                            Settings = _settings,
                             MdiParent = this,
                             WindowState = FormWindowState.Maximized
                         };
@@ -343,6 +356,7 @@ namespace FestManager_Core.Forms
                     {
                         var formPrinter = new FormPrinter
                         {
+                            Settings = _settings,
                             MdiParent = this,
                             WindowState = FormWindowState.Maximized
                         };
@@ -365,6 +379,7 @@ namespace FestManager_Core.Forms
                     {
                         var formManualStorno = new FormManualStorno
                         {
+                            Settings = _settings,
                             MdiParent = this,
                             WindowState = FormWindowState.Maximized
                         };
@@ -387,6 +402,7 @@ namespace FestManager_Core.Forms
                     {
                         var formInfo = new FormInfo
                         {
+                            Settings = _settings,
                             MdiParent = this,
                             WindowState = FormWindowState.Maximized
                         };

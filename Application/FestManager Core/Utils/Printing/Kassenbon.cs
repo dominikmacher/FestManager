@@ -29,6 +29,8 @@ namespace FestManager_Core.Utils.Printing
 
         public Graphics Graphic { get; }
 
+        public FestManagerSettings Settings { get; set; }
+
         private void Init()
         {
             _fontDefault = new Font(FontFamily.GenericSansSerif, 8, FontStyle.Regular);
@@ -53,7 +55,7 @@ namespace FestManager_Core.Utils.Printing
         public Kassenbon(Graphics g, FestManagerDataSet.KassenbonDataTable t) {
             Graphic = g;
             _table = t;
-            _title = FestManagerSettings.Default.Organisation + " - Fest " + DateTime.Now.ToString("yyyy");
+            _title = Settings.Organisation + " - Fest " + DateTime.Now.ToString("yyyy");
 
             Init();
         }
@@ -119,7 +121,7 @@ namespace FestManager_Core.Utils.Printing
             // first group elements:
             var printTable = (DataTable)_table;
             var alreadyGroupedElements = new StringCollection();
-            if (FestManagerSettings.Default.GroupElementsBeforePrint)
+            if (Settings.GroupElementsBeforePrint)
             {
                 printTable = new DataTable();
                 printTable.Columns.Add("Artikel", typeof(string));
@@ -203,15 +205,15 @@ namespace FestManager_Core.Utils.Printing
                 var menge = (int)row["Menge"];
                 var einzelpreis = (decimal)row["Einzelpreis"];
 
-                if (menge < 0 && !string.IsNullOrEmpty(FestManagerSettings.Default.StornoSymbol)) 
+                if (menge < 0 && !string.IsNullOrEmpty(Settings.StornoSymbol)) 
                 {
-                    if (!FestManagerSettings.Default.PrintStornoOrders)
+                    if (!Settings.PrintStornoOrders)
                         continue;
 
                     if (artikel.Length > 23)
                         artikel = artikel.Substring(0, 23);
 
-                    artikel = FestManagerSettings.Default.StornoSymbol + FestManagerSettings.Default.StornoSymbol + FestManagerSettings.Default.StornoSymbol + " " + artikel;
+                    artikel = Settings.StornoSymbol + Settings.StornoSymbol + Settings.StornoSymbol + " " + artikel;
                 }
                 var gesamtpreis = einzelpreis * menge;
                 summe += gesamtpreis;

@@ -5,7 +5,7 @@ using FestManager_Core.Properties;
 
 namespace FestManager_Core.Forms.SubForms
 {
-    public partial class FormManualStorno : Form
+    public partial class FormManualStorno : FestmanagerMdiChildForm
     {
         private int _artikelBestellungId;
         private int _personalId;

@@ -23,42 +23,6 @@ namespace FestManager_Bestellung.Properties {
             }
         }
         
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("FF-Karlstetten")]
-        public string organisation {
-            get {
-                return ((string)(this["organisation"]));
-            }
-            set {
-                this["organisation"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool printDirektverkaufTwice {
-            get {
-                return ((bool)(this["printDirektverkaufTwice"]));
-            }
-            set {
-                this["printDirektverkaufTwice"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool tableNumbers {
-            get {
-                return ((bool)(this["tableNumbers"]));
-            }
-            set {
-                this["tableNumbers"] = value;
-            }
-        }
-        
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
@@ -66,18 +30,6 @@ namespace FestManager_Bestellung.Properties {
         public string connectionString {
             get {
                 return ((string)(this["connectionString"]));
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool printTwice {
-            get {
-                return ((bool)(this["printTwice"]));
-            }
-            set {
-                this["printTwice"] = value;
             }
         }
     }

@@ -4,39 +4,24 @@ using System.Windows.Forms;
 using FestManager_Core.Forms;
 using System.Collections.Specialized;
 using System.Configuration;
+using System.IO;
+using FestManager_Abrechnung.Properties;
 using FestManager_Core;
 
 namespace FestManager_Abrechnung
 {
     internal static class Program
     {
+        
         /// <summary>
         /// Der Haupteinstiegspunkt für die Anwendung.
         /// </summary>
         [STAThread]
-        private static void Main()
+        private static void Main(string[] args)
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-
-            var settings = new FestManagerSettings()
-            {
-                ConnectionString = Properties.Settings.Default.connectionString,
-            };
-
-
-            // Overwrite default settings:
-            var appSettings = new StringCollection();
-            foreach (SettingsProperty currentProperty in Properties.Settings.Default.Properties)
-            {
-                appSettings.Add(currentProperty.Name);
-            }
-
-            if (appSettings.Contains("organisation"))
-            {
-                settings.Organisation = (string) Properties.Settings.Default["organisation"];
-            }
-
+            
             var kellnerabrechnungNode = new TreeViewNode("Kellnerabrechnung", 10, 11);
             var offeneAbrechnungenNode = new TreeViewNode("Offene Abrechnungen", 10, 11);
             var manuellesStornierenNode = new TreeViewNode("Manuelles Stornieren", 8, 9);
@@ -65,7 +50,32 @@ namespace FestManager_Abrechnung
                 einstellungenNode,
                 infoNode
             };
-            
+
+            var settingsPath = FormMain.DefaultSettingsPath;
+            if (args.Length > 0)
+            {
+                settingsPath = args[0];
+            }
+
+            FestManagerSettings settings = null;
+
+            try
+            {
+                settings = FestManagerSettings.Load(settingsPath);
+            }
+            catch (FileNotFoundException)
+            {
+                MessageBox.Show(Resources.Fatal_Settings_not_found + settingsPath,
+                    Resources.Fatal_Settings_not_found_Title, MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                return;
+            }
+            catch (System.InvalidOperationException)
+            {
+                MessageBox.Show(Resources.Fatal_Invalid_settings + settingsPath,
+                    Resources.Fatal_Invalid_settings_Title, MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                return;
+            }
+
             Application.Run(new FormMain("Abrechnung", nodes, settings));
         }
     }

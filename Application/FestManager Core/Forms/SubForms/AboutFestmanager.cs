@@ -3,7 +3,7 @@ using System.Reflection;
 
 namespace FestManager_Core.Forms.SubForms
 {
-    public partial class AboutFestmanager : Form
+    public partial class AboutFestmanager : FestmanagerMdiChildForm
     {
         public AboutFestmanager()
         {

@@ -10,6 +10,6 @@ namespace FestManager_Core.Properties
         // ReSharper disable once InconsistentNaming
         public string connectionString { get; set; }
 
-        public static Settings Default => new Settings() { connectionString =  FestManagerSettings.Default.ConnectionString };
+        public static Settings Default => new Settings() { connectionString =  FestManagerSettings.StaticConnectionString };
     }
 }

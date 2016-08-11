@@ -32,7 +32,6 @@ namespace FestManager_Core.Forms
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
-            this.treeViewMain = new System.Windows.Forms.TreeView();
             this.imageList = new System.Windows.Forms.ImageList(this.components);
             this.BottomToolStripPanel = new System.Windows.Forms.ToolStripPanel();
             this.TopToolStripPanel = new System.Windows.Forms.ToolStripPanel();
@@ -41,6 +40,7 @@ namespace FestManager_Core.Forms
             this.ContentPanel = new System.Windows.Forms.ToolStripContentPanel();
             this.ToolTip = new System.Windows.Forms.ToolTip(this.components);
             this.festManagerDataSet = new FestManager_Core.Data.FestManagerDataSet();
+            this.treeViewMain = new System.Windows.Forms.TreeView();
             this.statusStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.festManagerDataSet)).BeginInit();
             this.SuspendLayout();
@@ -60,19 +60,6 @@ namespace FestManager_Core.Forms
             this.toolStripStatusLabel.Name = "toolStripStatusLabel";
             this.toolStripStatusLabel.Size = new System.Drawing.Size(39, 17);
             this.toolStripStatusLabel.Text = "Status";
-            // 
-            // treeViewMain
-            // 
-            this.treeViewMain.Dock = System.Windows.Forms.DockStyle.Left;
-            this.treeViewMain.ImageIndex = 0;
-            this.treeViewMain.ImageList = this.imageList;
-            this.treeViewMain.Location = new System.Drawing.Point(0, 0);
-            this.treeViewMain.Name = "treeViewMain";
-            this.treeViewMain.SelectedImageIndex = 0;
-            this.treeViewMain.Size = new System.Drawing.Size(213, 431);
-            this.treeViewMain.TabIndex = 4;
-            this.treeViewMain.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeViewMain_AfterSelect);
-            this.treeViewMain.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeViewMain_NodeMouseClick);
             // 
             // imageList
             // 
@@ -137,6 +124,19 @@ namespace FestManager_Core.Forms
             this.festManagerDataSet.DataSetName = "FestManagerDataSet";
             this.festManagerDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
+            // treeViewMain
+            // 
+            this.treeViewMain.Dock = System.Windows.Forms.DockStyle.Left;
+            this.treeViewMain.ImageIndex = 0;
+            this.treeViewMain.ImageList = this.imageList;
+            this.treeViewMain.Location = new System.Drawing.Point(0, 0);
+            this.treeViewMain.Name = "treeViewMain";
+            this.treeViewMain.SelectedImageIndex = 0;
+            this.treeViewMain.Size = new System.Drawing.Size(220, 431);
+            this.treeViewMain.TabIndex = 4;
+            this.treeViewMain.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeViewMain_AfterSelect);
+            this.treeViewMain.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeViewMain_NodeMouseClick);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -160,15 +160,15 @@ namespace FestManager_Core.Forms
 
         private System.Windows.Forms.StatusStrip statusStrip;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel;
-        private System.Windows.Forms.TreeView treeViewMain;
+        private System.Windows.Forms.ImageList imageList;
+        private System.Windows.Forms.ToolTip ToolTip;
+        private Data.FestManagerDataSet festManagerDataSet;
         private System.Windows.Forms.ToolStripPanel BottomToolStripPanel;
         private System.Windows.Forms.ToolStripPanel TopToolStripPanel;
         private System.Windows.Forms.ToolStripPanel RightToolStripPanel;
         private System.Windows.Forms.ToolStripPanel LeftToolStripPanel;
         private System.Windows.Forms.ToolStripContentPanel ContentPanel;
-        private System.Windows.Forms.ImageList imageList;
-        private System.Windows.Forms.ToolTip ToolTip;
-        private Data.FestManagerDataSet festManagerDataSet;
+        private System.Windows.Forms.TreeView treeViewMain;
     }
 }
 

@@ -4,17 +4,13 @@ using System.Windows.Forms;
 
 namespace FestManager_Core.Forms.SubForms
 {
-    public partial class FormSettings : Form
+    public partial class FormSettings : FestmanagerMdiChildForm
     {
         public const string ConnectionStringPfx = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=";
-
-        private readonly FestManagerSettings _settings;
-
-        public FormSettings(FestManagerSettings settings)
+        
+        public FormSettings()
         {
             InitializeComponent();
-
-            _settings = settings;
         }
 
         private void buttonDatabase_Click(object sender, EventArgs e)
@@ -48,7 +44,7 @@ namespace FestManager_Core.Forms.SubForms
 
         private void FormSettings_Load(object sender, EventArgs e)
         {
-           textBoxDatabase.Text = _settings.ConnectionString;
+           textBoxDatabase.Text = Settings.ConnectionString;
         }
     }
 }

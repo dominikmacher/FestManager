@@ -4,7 +4,7 @@ using FestManager_Core.Properties;
 
 namespace FestManager_Core.Forms.SubForms
 {
-    public partial class FormKellnerabrechnungOffen : Form
+    public partial class FormKellnerabrechnungOffen : FestmanagerMdiChildForm
     {
         public FormKellnerabrechnungOffen()
         {

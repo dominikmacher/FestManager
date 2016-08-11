@@ -6,7 +6,7 @@ using FestManager_Core.Properties;
 
 namespace FestManager_Core.Forms.SubForms
 {
-    public partial class FormKellnerabrechnung : Form
+    public partial class FormKellnerabrechnung : FestmanagerMdiChildForm
     {
         private int _personalId;
 
@@ -37,7 +37,10 @@ namespace FestManager_Core.Forms.SubForms
 
         private void personalComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            _personalId = (int)personalComboBox.SelectedValue;
+
+            if (personalComboBox.SelectedValue == null) return;
+
+            _personalId = (int) personalComboBox.SelectedValue;
             FillGridView();
         }
 
