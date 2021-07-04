@@ -1,4 +1,7 @@
 package org.festmanager;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Connection;
@@ -18,23 +21,6 @@ public class FestDatabaseParser {
 
 	public static void main(String[] args) throws IOException, ClassNotFoundException {
 		
-		
-		if (args.length > 0) { 
-			for (String parameter : args) {
-				/*if (parameter.toLowerCase().equals("-h") || parameter.toLowerCase().equals("--help")) {
-					System.out.println("Usage: java -jar firetelegram.jar");
-					System.out.println("  [-d|--debug]    print all log messages to console");
-					System.out.println("  [-i|--history]  take history alarms instead");
-					System.out.println("  [-t|--test]     test mode: fetch alarm + send to test telegram channel \n");
-		            return;
-		        }
-				/*else if (parameter.toLowerCase().equals("--debug") || parameter.toLowerCase().equals("-d")) {
-					DEBUG = true;
-				}
-				*/
-			}
-        } 
-		
 		Properties prop = new Properties();
 		InputStream inputStream = FestDatabaseParser.class.getClassLoader().getResourceAsStream("config.properties");
 
@@ -44,12 +30,34 @@ public class FestDatabaseParser {
         }
         prop.load(inputStream);
 				
-        final String dbFileName = prop.getProperty("dbFileName");
-        final String grillhendlId = prop.getProperty("grillhendlId");
+        String dbFileName = prop.getProperty("dbFileName");
+        String outputFileName = prop.getProperty("outputFileName");
+        String grillhendlId = prop.getProperty("grillhendlId");
+		
+		if (args.length > 0) { 
+			for (String parameter : args) {
+				if (parameter.toLowerCase().equals("-h") || parameter.toLowerCase().equals("--help")) {
+					System.out.println("Usage: java -jar FestDatabaseParser.jar");
+					System.out.println("  [dbfilename=...]      Database filename");
+					System.out.println("  [outputFileName=...]  Output filename");
+		            return;
+		        }
+				
+				String[] parameterParts = parameter.split("=");
+				if (parameterParts.length > 1) {
+					if (parameterParts[0].toLowerCase().equals("dbfilename")) {
+						dbFileName = parameterParts[1];
+					}
+					else if (parameterParts[0].toLowerCase().equals("outputfilename")) {
+						outputFileName = parameterParts[1];
+					}
+				}
+			}
+        } 
 	
-        System.out.println("Heute bereits bestellte Grillhendl: " + _fetchGrillhendlFromToday(dbFileName));
-		
-		
+        _writeToFile(outputFileName, "Grillhendl: "+_fetchGrillhendlFromToday(dbFileName), false);
+        
+        System.out.println("SUCCESS");
 	}
 	
 	
@@ -84,6 +92,27 @@ public class FestDatabaseParser {
 		}
 
 		return alreadyOrderedGrillhendl;
+	}
+	
+	
+	private static void _writeToFile(String fileName, String text, boolean append) {
+		File file = new File(fileName);
+		try {
+			file.createNewFile();
+		} catch (IOException e) {
+			System.out.println("ERROR: cannot create file");
+		} 
+		
+		try {
+			FileWriter fileWriter = new FileWriter(file, append);
+			BufferedWriter bufWriter = new BufferedWriter(fileWriter);
+			bufWriter.write(text);
+			bufWriter.newLine();
+			bufWriter.close();
+			fileWriter.close();
+		} catch (IOException e) {
+			System.out.println("ERROR: cannot write to file");
+		}
 	}
 
 }
